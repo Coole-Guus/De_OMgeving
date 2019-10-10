@@ -8,17 +8,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class Main  extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        ApplicationController mainController = new ApplicationController(primaryStage);
-        try {
-            mainController.launch();
-        } catch (IOException e) {
-            System.out.println("ERROR, Probably a gui file that is not found");
-            e.printStackTrace();
-        }
+        new ApplicationController(primaryStage);
     }
 
 
