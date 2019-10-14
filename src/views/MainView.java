@@ -9,6 +9,8 @@ import models.Observable;
 import java.io.IOException;
 
 public class MainView implements Observer {
+    private final String GUI_FILE = this.getClass().getSimpleName().concat(".fxml");
+
     private ProjectListView projectListView;
     private FilterView filterView;
     private DetailsView detailsView;
@@ -34,10 +36,10 @@ public class MainView implements Observer {
     }
 
     private Parent createGUI() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("MainView.fxml"));
+        System.out.println(GUI_FILE);
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(GUI_FILE));
         loader.setController(this);
-        Parent root = loader.load();
-        return root;
+        return loader.load();
     }
 
     @Override
