@@ -29,6 +29,7 @@ public class MainView implements Observer {
 
         try {
             Parent gui = this.createGUI();
+            //gui.lookup();
             primaryStage.setScene(new Scene(gui));
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,7 +37,6 @@ public class MainView implements Observer {
     }
 
     private Parent createGUI() throws IOException {
-        System.out.println(GUI_FILE);
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(GUI_FILE));
         loader.setController(this);
         return loader.load();
