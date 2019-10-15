@@ -15,6 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("de_OMgeving");
     }
 
+
     public static void main(String[] args) {
         launch(args);
     }
