@@ -8,7 +8,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         new ApplicationController(primaryStage);
+
+        primaryStage.setFullScreen(true);
+        primaryStage.setTitle("de_OMgeving");
     }
 
 
