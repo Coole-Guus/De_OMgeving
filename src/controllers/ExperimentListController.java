@@ -1,8 +1,8 @@
 package controllers;
 
-public class ProjectListController  {
+public class ExperimentListController  {
     private ApplicationController applicationController;
-    public ProjectListController(ApplicationController applicationController) {
+    public ExperimentListController(ApplicationController applicationController) {
         this.applicationController = applicationController;
     }
 }

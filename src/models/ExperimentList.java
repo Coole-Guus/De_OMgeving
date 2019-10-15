@@ -2,7 +2,7 @@ package models;
 
 import views.Observer;
 
-public class ProjectList implements Observable {
+public class ExperimentList implements Observable {
     @Override
     public void registerObserver(Observer observer) {
 

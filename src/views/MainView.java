@@ -3,6 +3,8 @@ package views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import models.Observable;
 
@@ -11,7 +13,7 @@ import java.io.IOException;
 public class MainView implements Observer {
     private final String GUI_FILE = this.getClass().getSimpleName().concat(".fxml");
 
-    private ProjectListView projectListView;
+    private ExperimentListView experimentListView;
     private FilterView filterView;
     private DetailsView detailsView;
     private OrderByView orderView;
@@ -21,7 +23,7 @@ public class MainView implements Observer {
 
     public MainView(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        projectListView = new ProjectListView();
+        experimentListView = new ExperimentListView();
         filterView = new FilterView();
         detailsView = new DetailsView();
         orderView = new OrderByView();
@@ -29,7 +31,10 @@ public class MainView implements Observer {
 
         try {
             Parent gui = this.createGUI();
-            //gui.lookup();
+
+            BorderPane g = (BorderPane) gui.lookup("#mainBorderPane");
+            g.setCenter(experimentListView.createGUI());
+            System.out.println(g);
             primaryStage.setScene(new Scene(gui));
         } catch (IOException e) {
             e.printStackTrace();
