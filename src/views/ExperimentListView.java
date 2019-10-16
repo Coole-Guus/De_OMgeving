@@ -3,6 +3,7 @@ package views;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.stage.Stage;
 import models.Observable;
 
 import java.io.IOException;
@@ -12,7 +13,22 @@ public class ExperimentListView implements Observer {
     private Parent GUI;
 
     @Override
+    public void setStage(Stage stage) {
+
+    }
+
+    @Override
+    public void setController(Object controller) {
+
+    }
+
+    @Override
     public void update(Observable observable) {
+
+    }
+
+    @Override
+    public void start() {
 
     }
 
