@@ -1,17 +1,20 @@
 package views;
 
+import controllers.AccountLoginController;
+import controllers.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Observable;
 
 import java.io.IOException;
 
 public class MainView implements Observer {
-    private final String GUI_FILE = this.getClass().getSimpleName().concat(".fxml");
 
     private ExperimentListView experimentListView;
     private FilterView filterView;
@@ -19,36 +22,53 @@ public class MainView implements Observer {
     private OrderByView orderView;
     private ToolsView toolView;
 
-    private Stage primaryStage;
 
-    public MainView(Stage primaryStage) {
+    private Stage primaryStage;
+    private MainController controller;
+
+
+    public MainView() {}
+    public MainView(Stage primaryStage, Object mainController) {
         this.primaryStage = primaryStage;
+
+        this.controller = (MainController) mainController;
+
         experimentListView = new ExperimentListView();
         filterView = new FilterView();
         detailsView = new DetailsView();
         orderView = new OrderByView();
         toolView = new ToolsView();
 
-        try {
-            Parent gui = this.createGUI();
-
-            BorderPane g = (BorderPane) gui.lookup("#mainBorderPane");
-            g.setCenter(experimentListView.createGUI());
-            System.out.println(g);
-            primaryStage.setScene(new Scene(gui));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        show();
     }
 
-    private Parent createGUI() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(GUI_FILE));
-        loader.setController(this);
-        return loader.load();
+    public void show() {
+        System.out.println("hier niet null");
+
+        Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
+
+        Pane pane = (Pane)root.lookup("AnchorPane");
+
+        primaryStage.getScene().setRoot(pane);
+    }
+
+    @Override
+    public void setStage(Stage stage) {
+
+    }
+
+    @Override
+    public void setController(Object controller) {
+
     }
 
     @Override
     public void update(Observable observable) {
+
+    }
+
+    @Override
+    public void start() {
 
     }
 }
