@@ -37,6 +37,11 @@ public class PopUpVoorbeeldView implements Observer{
         stagePopUp.show();
     }
 
+    @FXML
+    public void buttonFunction() {
+        controller.buttonFunction();
+    }
+
     @Override
     public void setStage(Stage stage) {
 

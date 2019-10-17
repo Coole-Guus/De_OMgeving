@@ -14,4 +14,7 @@ public class PopUpVoorbeeldController {
     }
 
 
+    public void buttonFunction() {
+
+    }
 }

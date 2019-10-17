@@ -13,7 +13,7 @@ public class AccountLoginController  {
 
     public void login() {
         System.out.println("hier niet null");
-        applicationController.popUpVoorbeeldController.showPopUp();
+        applicationController.loadView(MainView.class, applicationController.mainController);
     }
 }
 

@@ -5,6 +5,6 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpVoorbeeldView">
    <children>
-      <Button layoutX="228.0" layoutY="188.0" mnemonicParsing="false" text="button" />
+      <Button layoutX="228.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#buttonFunction" text="button" />
    </children>
 </AnchorPane>
