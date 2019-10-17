@@ -24,7 +24,6 @@ public class PopUpVoorbeeldView implements Observer{
         show();
     }
 
-
     public void show() {
         Parent root = ViewUtilities.loadFxml("/Pop-up_voorbeeld.fxml", primaryStage, controller);
 
