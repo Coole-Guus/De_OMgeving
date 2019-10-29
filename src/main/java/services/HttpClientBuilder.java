@@ -6,60 +6,16 @@ import com.sun.jersey.api.client.WebResource;
 
 public class HttpClientBuilder {
 
-    public void httpGet(String tabel, String var1, String var2, String var3) {
+    public void httpGet(String tabel, String... attributen) {
         try {
 
             Client client = Client.create();
+            String totalVars = "";
+            for(String attribuut : attributen) {
+                totalVars = totalVars + "/" + attribuut;
+            }
 
-            WebResource webResource = client.resource("http://localhost:8080/" + tabel + "/" + var1 + "/" + var2 + "/" + var3);
-
-            getReturn (webResource);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-    }
-
-    public void httpGet(String tabel, String var1, String var2) {
-        try {
-
-            Client client = Client.create();
-
-            WebResource webResource = client.resource("http://localhost:8080/" + tabel + "/" + var1 + "/" + var2);
-
-            getReturn (webResource);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-    }
-
-    public void httpGet(String tabel, String var1) {
-        try {
-
-            Client client = Client.create();
-
-            WebResource webResource = client.resource("http://localhost:8080/" + tabel + "/" + var1);
-
-            getReturn (webResource);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-    }
-
-    public void httpGet(String tabel) {
-        try {
-
-            Client client = Client.create();
-
-            WebResource webResource = client.resource("http://localhost:8080/" + tabel);
+            WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
 
             getReturn (webResource);
 
@@ -79,7 +35,7 @@ public class HttpClientBuilder {
 
         String output = response.getEntity(String.class);
 
-        System.out.println("Output from Server .... \n");
-        System.out.println(output);
+//        System.out.println("Output from Server .... \n");
+//        System.out.println(output);
     }
 }

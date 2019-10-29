@@ -64,8 +64,7 @@ public class AccountLoginView implements Observer {
     @FXML
     public void loginButton(){
         controller.login();
-        httpClientBuilder.httpGet ("experimenten", "2019");
-        System.out.println (username.getText () + password.getText ());
+//        httpClientBuilder.httpGet ("experimenten", username.getText (), password.getText ());
     }
 
 }
