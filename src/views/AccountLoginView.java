@@ -21,7 +21,7 @@ public class AccountLoginView implements Observer {
         show();
     }
 
-    public void show() {
+    private void show() {
         Parent root = ViewUtilities.loadFxml("/AccountLoginView.fxml", primaryStage, controller);
 
         Pane pane = (Pane)root.lookup("AnchorPane");
@@ -54,4 +54,5 @@ public class AccountLoginView implements Observer {
     public void loginButton(){
         controller.login();
     }
+
 }
