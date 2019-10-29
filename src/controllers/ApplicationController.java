@@ -3,6 +3,7 @@ package controllers;
 import javafx.stage.Stage;
 import views.AccountLoginView;
 import views.Observer;
+import views.PopUpVoorbeeldView;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -13,7 +14,9 @@ public class ApplicationController {
     public AccountLoginController accountLoginController;
     public ArchiveController archiveController;
     public MainController mainController;
-        //etc
+    public PopUpVoorbeeldController popUpVoorbeeldController;
+
+    //etc
 
     public ApplicationController(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -23,6 +26,7 @@ public class ApplicationController {
         accountLoginController = new AccountLoginController(this);
         archiveController = new ArchiveController(this);
         mainController = new MainController(this);
+        popUpVoorbeeldController = new PopUpVoorbeeldController(this);
             //etc
 
         //load the first view

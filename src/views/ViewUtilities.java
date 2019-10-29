@@ -21,17 +21,13 @@ public class ViewUtilities {
             Parent root = fxmlLoader.<Parent>load(ViewUtilities.class.getResourceAsStream(location));
 
             Observer observer = (Observer)fxmlLoader.getController();
-            System.out.println("getController returns: " + (Observer)fxmlLoader.getController());
-            System.out.println("observer: " + observer);
             observer.setStage(stage);
-            System.out.println("stage: " + stage);
             observer.setController(controller);
 
             observer.start();
 
             return root;
         } catch (IOException e) {
-
             e.printStackTrace();
         }
 
