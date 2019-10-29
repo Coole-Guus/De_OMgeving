@@ -1,10 +1,22 @@
 package models;
 
-public class Account {
-    private String userName;
-    private String passwd;
-    private enum accountRole
+import views.Observer;
+
+public class Account implements Observable {
+    public String userName;
+    public String passwd;
+    public enum accountRole
     {
-        gebruiker, medewerker, admin;
+        gebruiker, medewerker, admin
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
     }
 }
