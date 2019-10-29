@@ -9,11 +9,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Observable;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import services.HttpClientBuilder;
+
 
 import javax.print.attribute.standard.RequestingUserName;
 
 public class AccountLoginView implements Observer {
 
+    private HttpClientBuilder httpClientBuilder = new HttpClientBuilder ();
     private Stage primaryStage;
     private AccountLoginController controller;
     @FXML
@@ -61,6 +64,7 @@ public class AccountLoginView implements Observer {
     @FXML
     public void loginButton(){
         controller.login();
+        httpClientBuilder.httpGet ("experimenten", "2019");
         System.out.println (username.getText () + password.getText ());
     }
 
