@@ -3,22 +3,29 @@ package views;
 import controllers.AccountLoginController;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Observable;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
+import javax.print.attribute.standard.RequestingUserName;
 
 public class AccountLoginView implements Observer {
 
     private Stage primaryStage;
     private AccountLoginController controller;
+    @FXML
+    public TextField username;
+    @FXML
+    public TextField password;
 
     //Need an empty constructor for FXML
     public AccountLoginView(){}
     public AccountLoginView(Stage primaryStage, Object accountLoginController) {
         this.primaryStage = primaryStage;
         this.controller = (AccountLoginController) accountLoginController;
-
         show();
     }
 
@@ -54,6 +61,7 @@ public class AccountLoginView implements Observer {
     @FXML
     public void loginButton(){
         controller.login();
+        System.out.println (username.getText () + password.getText ());
     }
 
 }
