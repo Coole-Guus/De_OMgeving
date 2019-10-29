@@ -18,7 +18,6 @@ public class AccountLoginView implements Observer {
     public AccountLoginView(Stage primaryStage, Object accountLoginController) {
         this.primaryStage = primaryStage;
         this.controller = (AccountLoginController) accountLoginController;
-
         show();
     }
 
