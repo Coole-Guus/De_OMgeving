@@ -2,6 +2,7 @@ package views;
 
 import controllers.PopUpVoorbeeldController;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -60,5 +61,10 @@ public class PopUpVoorbeeldView implements Observer{
     @Override
     public void start() {
 
+    }
+
+    @Override
+    public Node getParent() {
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.scene.control.Alert;
+import views.FilterView;
 import views.MainView;
 import views.ViewUtilities;
 

@@ -32,6 +32,11 @@ public class ExperimentListView implements Observer {
 
     }
 
+    @Override
+    public Node getParent() {
+        return null;
+    }
+
     public Parent createGUI() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(GUI_FILE));
         loader.setController(this);

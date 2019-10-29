@@ -1,5 +1,6 @@
 package views;
 
+import javafx.scene.Node;
 import javafx.stage.Stage;
 import models.Observable;
 
@@ -22,5 +23,10 @@ public class ArchiveView implements Observer {
     @Override
     public void start() {
 
+    }
+
+    @Override
+    public Node getParent() {
+        return null;
     }
 }
