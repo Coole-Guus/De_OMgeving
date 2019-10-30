@@ -22,6 +22,7 @@ public class FilterView implements Observer {
         this.controller = (FilterController) filterController;
     }
 
+
     @Override
     public void setStage(Stage stage) {
         this.primaryStage = stage;
@@ -47,10 +48,5 @@ public class FilterView implements Observer {
         Parent node = ViewUtilities.loadFxml("/FilterView.fxml", primaryStage, controller);
 
         return node;
-    }
-
-    public void checkbox1(ActionEvent actionEvent) {
-        CheckBox checkboc1 = (CheckBox) actionEvent.getTarget();
-        System.out.println("CLINK " + checkboc1.isSelected());
     }
 }

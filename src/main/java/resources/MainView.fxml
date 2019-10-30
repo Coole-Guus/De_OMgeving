@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainView">
+<AnchorPane prefHeight="950.0" prefWidth="1500.0" stylesheets="/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainView">
    <children>
       <BorderPane fx:id="mainBorderPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <!-- ExperimentListView WILL BE 'imported' HERE -->
          </center>
          <left>
-            <VBox minWidth="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <VBox minWidth="250.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefWidth="200.0">
                      <children>
@@ -56,10 +56,13 @@
             </VBox>
          </left>
          <center>
-            <AnchorPane prefHeight="950.0" prefWidth="1288.0" BorderPane.alignment="CENTER">
+            <AnchorPane BorderPane.alignment="CENTER">
                <children>
                   <HBox fx:id="topRibbon" prefHeight="50.0" />
-                  <ScrollPane layoutY="50.0" />
+                  <ScrollPane fx:id="mainSection" fitToWidth="true" layoutY="50.0" prefHeight="900.0">
+                     <content>
+
+                     </content></ScrollPane>
                </children>
             </AnchorPane>
          </center>

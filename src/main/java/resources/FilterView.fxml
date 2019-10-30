@@ -37,6 +37,6 @@
             </Button>
          </children>
       </HBox>
-      <CheckBox mnemonicParsing="false" text="CheckBox" onAction="#checkbox1"/>
+      <CheckBox mnemonicParsing="false" text="CheckBox" />
    </children>
 </VBox>
