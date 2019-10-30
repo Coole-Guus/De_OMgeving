@@ -54,7 +54,6 @@ public class MainView implements Observer {
         // load filter segment
         Node filterNode = controller.applicationController.loadViewSegment(FilterView.class, controller.applicationController.filterController);
         AnchorPane filterPane = (AnchorPane) root.lookup("#filterTab");
-        System.out.println(filterNode + "+" + filterPane);
         filterPane.getChildren().add(filterNode);
 
         // load mainsection segment set in mainNode VAR
@@ -63,16 +62,36 @@ public class MainView implements Observer {
         mainPane.setPrefHeight(ViewUtilities.screenHeight - 120);
         mainPane.setPrefWidth(ViewUtilities.screenWidth - 200);
 
+
         Pane pane = (Pane)root.lookup("AnchorPane");
 
         primaryStage.getScene().setRoot(pane);
     }
 
+    public void showdetails(){
+        Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
+        mainNode = controller.applicationController.loadViewSegment(
+                DetailsView.class, controller.applicationController.detailsController
+        );
+        ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
+        mainPane.setContent(mainNode);
+    }
+
+    public void showList(){
+        Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
+        mainNode = controller.applicationController.loadViewSegment(
+                ExperimentListView.class, controller.applicationController.experimentListController
+        );
+        ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
+        mainPane.setContent(mainNode);
+    }
+
     public void setupExperimentButtons() {
         String labels[] = {
-                "Status 1",
-                "Status 2",
-                "Status 3" };
+                // change on release
+                "ShowDetails",
+                "Ornaje",
+                "Rood" };
         for(int i = 0; i < experimentButtons.length; i++) {
             Button button = new Button();
 //            button.addEventHandler(ActionEvent.ACTION, event -> toggleStatus());
@@ -81,13 +100,16 @@ public class MainView implements Observer {
             button.setPrefHeight(50);
             experimentButtons[i] = button;
         }
+
+        experimentButtons[0].setOnMouseClicked(event -> {
+            showdetails();
+        });
+
     }
 
     private void toggleStatus(int status) {
 
     }
-
-
 
     public void loadButtons(Button buttonlist[]) {
             topRibbon.getChildren().removeAll();

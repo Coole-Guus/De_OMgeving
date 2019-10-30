@@ -19,6 +19,7 @@ public class ApplicationController {
     public FilterController filterController;
     public ToolsController toolsController;
     public ExperimentListController experimentListController;
+    public DetailsController detailsController;
 
     //etc
 
@@ -34,6 +35,7 @@ public class ApplicationController {
         toolsController = new ToolsController(this);
         filterController = new FilterController(this);
         experimentListController = new ExperimentListController(this);
+        detailsController = new DetailsController(this);
 
             //etc
 

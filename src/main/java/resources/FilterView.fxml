@@ -42,12 +42,12 @@
             </Button>
          </children>
       </HBox>
-      <CheckBox id="1" fx:id="LabIn" mnemonicParsing="false" onAction="#Checkpress" text="Lab in">
+      <CheckBox id="2" fx:id="Idee" mnemonicParsing="false" onAction="#Checkpress" text="Idee">
          <VBox.margin>
             <Insets bottom="7.0" left="15.0" />
          </VBox.margin>
       </CheckBox>
-      <CheckBox id="2" fx:id="Idee" mnemonicParsing="false" onAction="#Checkpress" text="Idee">
+      <CheckBox id="1" fx:id="LabIn" mnemonicParsing="false" onAction="#Checkpress" text="Lab in">
          <VBox.margin>
             <Insets bottom="7.0" left="15.0" />
          </VBox.margin>
