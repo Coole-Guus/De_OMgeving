@@ -13,6 +13,7 @@ public class HttpClientBuilder {
     private GsonBuilder builder = new GsonBuilder();
     Gson gson = builder.create();
     private boolean logintoken;
+    private String currentRol;
 
     public void httpGet(String tabel, String... attributen) {
         try {
@@ -63,9 +64,13 @@ public class HttpClientBuilder {
 
         String output = response.getEntity(String.class);
 
-        if(tabel.equals ("accounts")) {
+        if(output.contains ("false") || output.contains ("true")) {
             logintoken = Boolean.valueOf (output);
         }
+        if(tabel.contains ("accounts")) {
+            currentRol = output;
+        }
+
         Gson gson = new Gson();
 
 //        Experiment experiment = gson.fromJson(output, Experiment.class);
@@ -73,4 +78,7 @@ public class HttpClientBuilder {
     }
 
     public boolean getIsValidLogin() { return logintoken; }
+
+    public String getRol() { return currentRol; }
+
 }
