@@ -19,7 +19,7 @@
             <!-- ExperimentListView WILL BE 'imported' HERE -->
          </center>
          <left>
-            <VBox minWidth="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <VBox minWidth="250.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefWidth="200.0">
                      <children>
