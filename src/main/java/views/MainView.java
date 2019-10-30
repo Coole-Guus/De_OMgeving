@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -26,6 +27,8 @@ public class MainView implements Observer {
 
     public ImageView exitButton;
 
+    private  Node mainNode;
+
     public HBox topRibbon = new HBox();
     private Button[] experimentButtons = new Button[3];
 
@@ -43,10 +46,21 @@ public class MainView implements Observer {
     public void show() {
         Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
 
-        Node filterNode = controller.applicationController.loadViewSegment(FilterView.class, controller.applicationController.filterController);
+        //load tools segment
+        Node toolsNode = controller.applicationController.loadViewSegment(ToolsView.class, controller.applicationController.toolsController);
+        AnchorPane toolsPane = (AnchorPane) root.lookup("#toolsTab");
+        toolsPane.getChildren().add(toolsNode);
 
+        // load filter segment
+        Node filterNode = controller.applicationController.loadViewSegment(FilterView.class, controller.applicationController.filterController);
         AnchorPane filterPane = (AnchorPane) root.lookup("#filterTab");
         filterPane.getChildren().add(filterNode);
+
+        // load mainsection segment set in mainNode VAR
+        ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
+        mainPane.setContent(mainNode);
+        mainPane.setPrefHeight(ViewUtilities.screenHeight - 120);
+        mainPane.setPrefWidth(ViewUtilities.screenWidth - 200);
 
         Pane pane = (Pane)root.lookup("AnchorPane");
 
@@ -119,6 +133,10 @@ public class MainView implements Observer {
     public void start() {
         setupExperimentButtons();
         loadButtons(experimentButtons);
+        mainNode = controller.applicationController.loadViewSegment(
+                ExperimentListView.class, controller.applicationController.experimentListController
+        );
+
     }
 
     @Override

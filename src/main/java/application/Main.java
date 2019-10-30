@@ -25,6 +25,7 @@ public class Main extends Application {
         new ApplicationController(primaryStage);
 
         primaryStage.setFullScreen(false);
+        primaryStage.setMaximized(true);
         primaryStage.setTitle("de_OMgeving");
 
         primaryStage.show();

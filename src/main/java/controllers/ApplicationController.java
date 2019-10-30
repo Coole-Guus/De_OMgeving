@@ -17,6 +17,8 @@ public class ApplicationController {
     public MainController mainController;
     public PopUpVoorbeeldController popUpVoorbeeldController;
     public FilterController filterController;
+    public ToolsController toolsController;
+    public ExperimentListController experimentListController;
 
     //etc
 
@@ -29,7 +31,10 @@ public class ApplicationController {
         archiveController = new ArchiveController(this);
         mainController = new MainController(this);
         popUpVoorbeeldController = new PopUpVoorbeeldController(this);
+        toolsController = new ToolsController(this);
         filterController = new FilterController(this);
+        experimentListController = new ExperimentListController(this);
+
             //etc
 
         //load the first view
