@@ -4,39 +4,101 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.FilterView">
+<VBox fx:id="vbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.FilterView">
    <children>
       <Label text="Filters">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font>
          <VBox.margin>
-            <Insets left="100.0" />
+            <Insets left="108.0" />
          </VBox.margin>
          <padding>
             <Insets top="20.0" />
          </padding>
       </Label>
-      <HBox prefHeight="71.0" prefWidth="236.0">
+      <Separator prefWidth="200.0">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </Separator>
+      <HBox prefWidth="250.0">
          <children>
-            <TextField promptText="search...">
+            <TextField id="search" fx:id="searchBar" prefHeight="25.0" prefWidth="159.0" promptText="search...">
                <HBox.margin>
-                  <Insets left="15.0" top="25.0" />
+                  <Insets left="15.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" text="search">
+            <Button mnemonicParsing="false" onAction="#search" onKeyPressed="#search" text="search">
                <HBox.margin>
-                  <Insets left="10.0" top="25.0" />
+                  <Insets bottom="10.0" left="10.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <CheckBox mnemonicParsing="false" text="CheckBox" />
+      <CheckBox id="1" fx:id="LabIn" mnemonicParsing="false" onAction="#Checkpress" text="Lab in">
+         <VBox.margin>
+            <Insets bottom="7.0" left="15.0" />
+         </VBox.margin>
+      </CheckBox>
+      <CheckBox id="2" fx:id="Idee" mnemonicParsing="false" onAction="#Checkpress" text="Idee">
+         <VBox.margin>
+            <Insets bottom="7.0" left="15.0" />
+         </VBox.margin>
+      </CheckBox>
+      <CheckBox id="3" fx:id="LabUit" mnemonicParsing="false" onAction="#Checkpress" text="Lab uit">
+         <VBox.margin>
+            <Insets bottom="7.0" left="15.0" />
+         </VBox.margin>
+      </CheckBox>
+      <Label text="Sorteren">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+         <padding>
+            <Insets left="100.0" top="20.0" />
+         </padding>
+      </Label>
+      <Separator prefWidth="200.0">
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
+      </Separator>
+      <CheckBox id="4" fx:id="NaamOp" mnemonicParsing="false" onAction="#Checkpress" text="expirement naam ▲">
+         <VBox.margin>
+            <Insets left="15.0" />
+         </VBox.margin>
+      </CheckBox>
+      <CheckBox id="5" fx:id="NaamAf" mnemonicParsing="false" onAction="#Checkpress" text="expirement naam ▼">
+         <VBox.margin>
+            <Insets left="15.0" top="7.0" />
+         </VBox.margin>
+      </CheckBox>
+      <CheckBox id="6" fx:id="LeiderOp" mnemonicParsing="false" onAction="#Checkpress" text="expirement leider ▲">
+         <VBox.margin>
+            <Insets left="15.0" top="7.0" />
+         </VBox.margin>
+      </CheckBox>
+      <CheckBox id="7" fx:id="LeiderAf" mnemonicParsing="false" onAction="#Checkpress" text="expirement leider ▼">
+         <VBox.margin>
+            <Insets left="15.0" top="7.0" />
+         </VBox.margin>
+      </CheckBox>
+      <CheckBox id="8" fx:id="GewijzigdOp" mnemonicParsing="false" onAction="#Checkpress" text="laatst gewijzigd ▲">
+         <VBox.margin>
+            <Insets left="15.0" top="7.0" />
+         </VBox.margin>
+      </CheckBox>
+      <CheckBox id="9" fx:id="GewijzigdAf" mnemonicParsing="false" onAction="#Checkpress" text="laatst gewijzigd ▼">
+         <VBox.margin>
+            <Insets bottom="30.0" left="15.0" top="7.0" />
+         </VBox.margin>
+      </CheckBox>
    </children>
 </VBox>

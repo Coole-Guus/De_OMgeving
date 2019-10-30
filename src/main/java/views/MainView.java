@@ -54,6 +54,7 @@ public class MainView implements Observer {
         // load filter segment
         Node filterNode = controller.applicationController.loadViewSegment(FilterView.class, controller.applicationController.filterController);
         AnchorPane filterPane = (AnchorPane) root.lookup("#filterTab");
+        System.out.println(filterNode + "+" + filterPane);
         filterPane.getChildren().add(filterNode);
 
         // load mainsection segment set in mainNode VAR
