@@ -1,14 +1,15 @@
 package views;
 
 import controllers.MainController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import models.Observable;
 
@@ -26,7 +27,9 @@ public class MainView implements Observer {
 
     public ImageView exitButton;
 
-    public HBox topRibbon;
+    private  Node mainNode;
+
+    public HBox topRibbon = new HBox();
     private Button[] experimentButtons = new Button[3];
 
     public MainView() { }
@@ -36,11 +39,6 @@ public class MainView implements Observer {
 
         this.controller = (MainController) mainController;
 
-        experimentListView = new ExperimentListView();
-        filterView = new FilterView();
-        detailsView = new DetailsView();
-        orderView = new OrderByView();
-        toolView = new ToolsView();
         start();
         show();
     }
@@ -48,38 +46,56 @@ public class MainView implements Observer {
     public void show() {
         Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
 
+        //load tools segment
+        Node toolsNode = controller.applicationController.loadViewSegment(ToolsView.class, controller.applicationController.toolsController);
+        AnchorPane toolsPane = (AnchorPane) root.lookup("#toolsTab");
+        toolsPane.getChildren().add(toolsNode);
+
+        // load filter segment
+        Node filterNode = controller.applicationController.loadViewSegment(FilterView.class, controller.applicationController.filterController);
+        AnchorPane filterPane = (AnchorPane) root.lookup("#filterTab");
+        filterPane.getChildren().add(filterNode);
+
+        // load mainsection segment set in mainNode VAR
+        ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
+        mainPane.setContent(mainNode);
+        mainPane.setPrefHeight(ViewUtilities.screenHeight - 120);
+        mainPane.setPrefWidth(ViewUtilities.screenWidth - 200);
+
         Pane pane = (Pane)root.lookup("AnchorPane");
 
         primaryStage.getScene().setRoot(pane);
     }
 
     public void setupExperimentButtons() {
-        System.out.println();
         String labels[] = {
-                "Status",
-                "Status",
-                "Status"
-        };
+                "Status 1",
+                "Status 2",
+                "Status 3" };
         for(int i = 0; i < experimentButtons.length; i++) {
-            System.out.println(i);
             Button button = new Button();
-            button.setText("button");
+//            button.addEventHandler(ActionEvent.ACTION, event -> toggleStatus());
+            button.setText(labels[i]);
             button.setId(Integer.toString(i));
+            button.setPrefHeight(50);
             experimentButtons[i] = button;
         }
+    }
+
+    private void toggleStatus(int status) {
 
     }
 
+
+
     public void loadButtons(Button buttonlist[]) {
-        topRibbon.getChildren().removeAll();
+            topRibbon.getChildren().removeAll();
+
         for (Button button : buttonlist) {
             topRibbon.getChildren().add(button);
         }
     }
 
-    public void loadExperimentList() {
-           loadButtons(experimentButtons);
-    }
 
     @FXML
     public void exitButton() {
@@ -116,5 +132,15 @@ public class MainView implements Observer {
     @Override
     public void start() {
         setupExperimentButtons();
+        loadButtons(experimentButtons);
+        mainNode = controller.applicationController.loadViewSegment(
+                ExperimentListView.class, controller.applicationController.experimentListController
+        );
+
+    }
+
+    @Override
+    public Node getParent() {
+        return null;
     }
 }

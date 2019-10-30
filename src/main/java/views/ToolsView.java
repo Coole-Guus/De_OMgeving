@@ -1,9 +1,24 @@
 package views;
 
+import controllers.ToolsController;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import models.Observable;
 
 public class ToolsView implements Observer {
+
+    private  Stage primaryStage;
+    private  ToolsController controller;
+
+    public ToolsView() {}
+
+    public ToolsView(Stage primaryStage, Object toolsController) {
+        this.primaryStage = primaryStage;
+
+        this.controller = (ToolsController) toolsController;
+    }
+    
     @Override
     public void setStage(Stage stage) {
 
@@ -22,5 +37,12 @@ public class ToolsView implements Observer {
     @Override
     public void start() {
 
+    }
+
+    @Override
+    public Node getParent() {
+        Parent node = ViewUtilities.loadFxml("/ToolsView.fxml", primaryStage, controller);
+
+        return node;
     }
 }

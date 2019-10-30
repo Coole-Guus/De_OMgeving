@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.scene.Node;
 import javafx.stage.Stage;
 import views.AccountLoginView;
 import views.Observer;
@@ -15,6 +16,9 @@ public class ApplicationController {
     public ArchiveController archiveController;
     public MainController mainController;
     public PopUpVoorbeeldController popUpVoorbeeldController;
+    public FilterController filterController;
+    public ToolsController toolsController;
+    public ExperimentListController experimentListController;
 
     //etc
 
@@ -27,6 +31,10 @@ public class ApplicationController {
         archiveController = new ArchiveController(this);
         mainController = new MainController(this);
         popUpVoorbeeldController = new PopUpVoorbeeldController(this);
+        toolsController = new ToolsController(this);
+        filterController = new FilterController(this);
+        experimentListController = new ExperimentListController(this);
+
             //etc
 
         //load the first view
@@ -49,4 +57,22 @@ public class ApplicationController {
         }
 
     }
+
+    public Node loadViewSegment(Class<? extends Observer> view, Object controller) {
+        try {
+            return view.getDeclaredConstructor(Stage.class, Object.class).newInstance(primaryStage, controller).getParent();
+        } catch (InstantiationException e) {
+            System.err.println("Cannot create instance for " + view.toString());
+        } catch (IllegalAccessException e) {
+            System.err.println("Cannot access " + view.toString());
+        } catch (NoSuchMethodException e) {
+            System.err.println("Constructor does not exist or has the wrong parameters in " + view.toString());
+        } catch (InvocationTargetException e) {
+            System.err.println("Exception thrown by " + view.toString());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

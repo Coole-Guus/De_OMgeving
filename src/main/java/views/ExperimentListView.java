@@ -1,16 +1,27 @@
 package views;
 
+import controllers.ExperimentListController;
+import controllers.FilterController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import models.Experiment;
+import models.ExperimentList;
 import models.Observable;
 
 import java.io.IOException;
 
 public class ExperimentListView implements Observer {
-    private final String GUI_FILE = this.getClass().getSimpleName().concat(".fxml");
-    private Parent GUI;
+    private  Stage primaryStage;
+    private  ExperimentListController controller;
+
+    public ExperimentListView() {}
+
+    public ExperimentListView(Stage primaryStage, Object experimentListController) {
+        this.primaryStage = primaryStage;
+        this.controller = (ExperimentListController) experimentListController;
+    }
 
     @Override
     public void setStage(Stage stage) {
@@ -32,11 +43,10 @@ public class ExperimentListView implements Observer {
 
     }
 
-    public Parent createGUI() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(GUI_FILE));
-        loader.setController(this);
+    @Override
+    public Node getParent() {
+        Parent node = ViewUtilities.loadFxml("/ExperimentListView.fxml", primaryStage, controller);
 
-        this.GUI = loader.load();
-        return this.GUI;
+        return node;
     }
 }
