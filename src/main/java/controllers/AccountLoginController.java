@@ -8,7 +8,7 @@ import services.HttpClientBuilder;
 
 public class AccountLoginController  {
     private ApplicationController applicationController;
-    private AccountLoginController(ApplicationController applicationController) {
+    public AccountLoginController(ApplicationController applicationController) {
         this.applicationController = applicationController;
     }
 
