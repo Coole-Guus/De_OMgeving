@@ -1,23 +1,33 @@
 package services;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import models.Experiment;
+
 
 public class HttpClientBuilder {
+
+    private GsonBuilder builder = new GsonBuilder();
+    Gson gson = builder.create();
+    private boolean logintoken;
 
     public void httpGet(String tabel, String... attributen) {
         try {
 
             Client client = Client.create();
             String totalVars = "";
+
             for(String attribuut : attributen) {
+
                 totalVars = totalVars + "/" + attribuut;
             }
 
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
 
-            getReturn (webResource);
+            getReturn (webResource, tabel);
 
         } catch (Exception e) {
 
@@ -26,7 +36,25 @@ public class HttpClientBuilder {
         }
     }
 
-    private void getReturn(WebResource webResource) {
+    public void httpPost(Object object) {
+        try {
+
+            Client client = Client.create();
+
+            Gson gson = new Gson();
+            String json = gson.toJson (object);
+
+            WebResource webResource = client.resource("http://localhost:8080/experiment/create");
+            webResource.accept("application/json").post(ClientResponse.class, json);
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+    }
+
+    private void getReturn(WebResource webResource, String tabel) {
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 
         if (response.getStatus() != 200) {
@@ -35,7 +63,14 @@ public class HttpClientBuilder {
 
         String output = response.getEntity(String.class);
 
-//        System.out.println("Output from Server .... \n");
-//        System.out.println(output);
+        if(tabel.equals ("accounts")) {
+            logintoken = Boolean.valueOf (output);
+        }
+        Gson gson = new Gson();
+
+//        Experiment experiment = gson.fromJson(output, Experiment.class);
+
     }
+
+    public boolean getIsValidLogin() { return logintoken; }
 }

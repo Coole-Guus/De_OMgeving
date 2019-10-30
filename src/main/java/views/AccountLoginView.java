@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.Experiment;
 import models.Observable;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import services.HttpClientBuilder;
@@ -17,7 +18,6 @@ import javax.print.attribute.standard.RequestingUserName;
 
 public class AccountLoginView implements Observer {
 
-    private HttpClientBuilder httpClientBuilder = new HttpClientBuilder ();
     private Stage primaryStage;
     private AccountLoginController controller;
     @FXML
@@ -54,7 +54,6 @@ public class AccountLoginView implements Observer {
 
     @Override
     public void update(Observable observable) {
-
     }
 
     @Override
@@ -67,10 +66,15 @@ public class AccountLoginView implements Observer {
         return null;
     }
 
+//  TODO rename users tabel to actual tabel name
     @FXML
     public void loginButton(){
-        controller.login();
+//        controller.login(httpClientBuilder.httpGet ("users", username.getText (), password.getText ()));
+//        Experiment experiment = new Experiment (99, "test_expiriment", "2019-11-20", Experiment.Fase.IDEE, "Testpersoon");
+//        httpClientBuilder.httpPost (experiment);
 //        httpClientBuilder.httpGet ("experimenten", username.getText (), password.getText ());
+        controller.login (username.getText (), password.getText ());
+
     }
 
 }

@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import services.HttpClientBuilder;
 import views.AccountLoginView;
 import views.Observer;
 import views.PopUpVoorbeeldView;
@@ -17,6 +18,7 @@ public class ApplicationController {
     public MainController mainController;
     public PopUpVoorbeeldController popUpVoorbeeldController;
     public FilterController filterController;
+    public HttpClientBuilder httpClientBuilder = new HttpClientBuilder ();
 
     //etc
 
