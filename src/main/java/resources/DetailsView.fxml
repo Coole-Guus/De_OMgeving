@@ -1,14 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.DetailsView">
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <left>
+         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+            <right>
+            </right>
+            <center>
+               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                  <Label text="Project naam">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                     <children>
+                        <VBox spacing="20.0">
+                           <children>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label text="Experiment naam:">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" prefWidth="236.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Fase: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField maxWidth="10000.0" minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Leider: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Status kleur: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField maxWidth="10000.0" minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Gearchiveerd: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField maxWidth="10000.0" minWidth="200.0" />
+                                 </children>
+                              </HBox>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.DetailsView">
-   <right>
-      <AnchorPane fx:id="updateHis" prefHeight="900.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
-   </right>
-   <center>
-      <AnchorPane fx:id="details" prefHeight="900.0" prefWidth="900.0" BorderPane.alignment="CENTER" />
-   </center>
-</BorderPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox minWidth="400.0" prefHeight="900.0" spacing="20.0">
+                           <children>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Netwerk: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Status: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Kosten innovatie: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Kosten anders: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Doorlooptijd: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Beschrijving: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Voortgang: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Kosten innovatie: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font></Label>
+                                    <TextField minWidth="200.0" />
+                                 </children>
+                              </HBox>
+
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </VBox>
+            </center>
+         </BorderPane>
+      </left>
+      <padding>
+         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
+      <right>
+         <AnchorPane fx:id="updateHis" prefHeight="900.0" prefWidth="400.0">
+            <children>
+               <BorderPane layoutX="59.0" layoutY="228.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <center>
+                     <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                       <content>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                       </content>
+                     </ScrollPane>
+                  </center>
+                  <bottom>
+                     <HBox prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <children>
+                           <Label text="Verstuur update:">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                           <TextField prefHeight="31.0" prefWidth="243.0" />
+                        </children>
+                     </HBox>
+                  </bottom>
+               </BorderPane>
+            </children></AnchorPane>
+      </right>
+   </BorderPane>
+</AnchorPane>
