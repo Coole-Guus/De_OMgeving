@@ -2,9 +2,11 @@ package views;
 
 import controllers.ExperimentListController;
 import controllers.FilterController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import models.Experiment;
 import models.ExperimentList;
@@ -16,9 +18,16 @@ public class ExperimentListView implements Observer {
     private  Stage primaryStage;
     private  ExperimentListController controller;
 
-    public ExperimentListView() {}
+    @FXML
+    public FlowPane experimentPane;
+
+    public ExperimentListView() {
+        System.out.println("ExpListView Created 1");
+    }
 
     public ExperimentListView(Stage primaryStage, Object experimentListController) {
+        System.out.println("ExpListView Created 2");
+
         this.primaryStage = primaryStage;
         this.controller = (ExperimentListController) experimentListController;
     }
@@ -35,17 +44,30 @@ public class ExperimentListView implements Observer {
 
     @Override
     public void update(Observable observable) {
+        System.out.println("updating...");
+        updateList((ExperimentList) observable);
+    }
 
+    private void updateList(ExperimentList experimentList) {
+
+        for (VBox card : experimentList.experimentCards) {
+            System.out.println(card);
+            experimentPane.getChildren().add(card);
+        }
     }
 
     @Override
     public void start() {
+        controller.registerObserver(this);
 
+        controller.experimentList.updateList();
+
+        experimentPane.setPrefWrapLength(ViewUtilities.screenWidth - 205);
     }
 
     @Override
     public Node getParent() {
-        Parent node = ViewUtilities.loadFxml("/ExperimentListView.fxml", primaryStage, controller);
+        Parent node = ViewUtilities.loadFxml("/ExperimentListView.fxml", primaryStage, controller, this);
 
         return node;
     }

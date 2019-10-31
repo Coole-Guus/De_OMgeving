@@ -27,6 +27,9 @@ public class MainView implements Observer {
 
     public ImageView exitButton;
 
+    private Node experimentsNode;
+    private Node detailsNode;
+
     private  Node mainNode;
 
     private Parent root;
@@ -41,7 +44,6 @@ public class MainView implements Observer {
 
         this.controller = (MainController) mainController;
 
-        start();
         show();
     }
 
@@ -71,17 +73,13 @@ public class MainView implements Observer {
     }
 
     public void showDetails(){
-        mainNode = controller.applicationController.loadViewSegment(
-                DetailsView.class, controller.applicationController.detailsController
-        );
+        mainNode = detailsNode;
         ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
         mainPane.setContent(mainNode);
     }
 
     public void showList(){
-        mainNode = controller.applicationController.loadViewSegment(
-                ExperimentListView.class, controller.applicationController.experimentListController
-        );
+        mainNode = experimentsNode;
         ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
         mainPane.setContent(mainNode);
     }
@@ -160,9 +158,13 @@ public class MainView implements Observer {
         setupExperimentButtons();
         loadButtons(experimentButtons);
 
-        mainNode = controller.applicationController.loadViewSegment(
+        experimentsNode = controller.applicationController.loadViewSegment(
                 ExperimentListView.class, controller.applicationController.experimentListController
         );
+        detailsNode = controller.applicationController.loadViewSegment(
+                DetailsView.class, controller.applicationController.detailsController
+        );
+        mainNode = experimentsNode;
 
     }
 

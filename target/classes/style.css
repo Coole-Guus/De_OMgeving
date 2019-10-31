@@ -1,5 +1,35 @@
 #borderCenter {
     -fx-height: 100%;
 }
-#mainSection {
+
+#experimentPane {
+}
+
+.experiment-card {
+    -fx-margin: 20px;
+    -fx-padding: 10px;
+}
+
+.experiment-card-green {
+    -fx-background-color: #8CFF8E;
+}
+
+.experiment-card-green:hover {
+    -fx-background-color: #CCFFCC;
+}
+
+.experiment-card-red {
+    -fx-background-color: #FF7256;
+}
+
+.experiment-card-red:hover {
+    -fx-background-color: #FF9F8E;
+}
+
+.experiment-card-yellow {
+    -fx-background-color: #FFD942;
+}
+
+.experiment-card-yellow:hover {
+    -fx-background-color: #FFECA8;
 }
