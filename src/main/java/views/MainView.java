@@ -29,6 +29,8 @@ public class MainView implements Observer {
 
     private  Node mainNode;
 
+    private Parent root;
+
     public HBox topRibbon = new HBox();
     private Button[] experimentButtons = new Button[3];
 
@@ -44,7 +46,7 @@ public class MainView implements Observer {
     }
 
     public void show() {
-        Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
+        root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller, this);
 
         //load tools segment
         Node toolsNode = controller.applicationController.loadViewSegment(ToolsView.class, controller.applicationController.toolsController);
@@ -68,8 +70,7 @@ public class MainView implements Observer {
         primaryStage.getScene().setRoot(pane);
     }
 
-    public void showdetails(){
-        Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
+    public void showDetails(){
         mainNode = controller.applicationController.loadViewSegment(
                 DetailsView.class, controller.applicationController.detailsController
         );
@@ -78,7 +79,6 @@ public class MainView implements Observer {
     }
 
     public void showList(){
-        Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
         mainNode = controller.applicationController.loadViewSegment(
                 ExperimentListView.class, controller.applicationController.experimentListController
         );
@@ -90,7 +90,7 @@ public class MainView implements Observer {
         String labels[] = {
                 // change on release
                 "ShowDetails",
-                "Ornaje",
+                "ShowList",
                 "Rood" };
         for(int i = 0; i < experimentButtons.length; i++) {
             Button button = new Button();
@@ -102,7 +102,10 @@ public class MainView implements Observer {
         }
 
         experimentButtons[0].setOnMouseClicked(event -> {
-            showdetails();
+            showDetails();
+        });
+        experimentButtons[1].setOnAction(event -> {
+            showList();
         });
 
     }
@@ -156,6 +159,7 @@ public class MainView implements Observer {
     public void start() {
         setupExperimentButtons();
         loadButtons(experimentButtons);
+
         mainNode = controller.applicationController.loadViewSegment(
                 ExperimentListView.class, controller.applicationController.experimentListController
         );

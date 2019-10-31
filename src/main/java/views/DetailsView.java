@@ -48,7 +48,6 @@ public class DetailsView implements Observer {
     @Override
     public Node getParent() {
         Parent node = ViewUtilities.loadFxml("/DetailsView.fxml", primaryStage, controller);
-
         return node;
     }
 }
