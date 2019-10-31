@@ -25,10 +25,10 @@ public class AccountLoginController  {
             applicationController.loadView (MainView.class, applicationController.mainController);
             accountLogin = new AccountLogin (username, applicationController.httpClientBuilder.getRol ());
         }
-//        System.out.println (applicationController.httpClientBuilder.getRol ());
+        System.out.println (applicationController.httpClientBuilder.getRol ());
     }
 
-    public String getRol() { return accountLogin.accountrole; }
+    public String getRol() { return accountLogin.getAccountRol (); }
 
 }
 

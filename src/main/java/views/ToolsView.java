@@ -1,18 +1,19 @@
 package views;
 
+import controllers.AccountLoginController;
 import controllers.ToolsController;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import models.Observable;
+import models.Tools;
 
 public class ToolsView implements Observer {
 
     private Stage primaryStage;
     private ToolsController controller;
 
-    public ToolsView() {
-    }
+    public ToolsView() { }
 
     public ToolsView(Stage primaryStage, Object toolsController) {
         this.primaryStage = primaryStage;
@@ -32,7 +33,8 @@ public class ToolsView implements Observer {
 
     @Override
     public void setController(Object controller) {
-
+        ToolsController toolsController = (ToolsController) controller;
+        this.controller = toolsController;
     }
 
     @Override

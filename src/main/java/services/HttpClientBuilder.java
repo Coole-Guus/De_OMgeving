@@ -5,7 +5,11 @@ import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import models.Account;
 import models.Experiment;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 
 public class HttpClientBuilder {
@@ -14,6 +18,7 @@ public class HttpClientBuilder {
     Gson gson = builder.create();
     private boolean logintoken;
     private String currentRol;
+    private Account[] accounts;
 
     public void httpGet(String tabel, String... attributen) {
         try {
@@ -28,7 +33,7 @@ public class HttpClientBuilder {
 
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
 
-            getReturn (webResource, tabel);
+            getReturn (webResource, tabel, attributen, totalVars);
 
         } catch (Exception e) {
 
@@ -55,7 +60,9 @@ public class HttpClientBuilder {
         }
     }
 
-    private void getReturn(WebResource webResource, String tabel) {
+    private void getReturn(WebResource webResource, String tabel, String[] attributen, String totalVars) {
+        Gson gson = new Gson();
+
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 
         if (response.getStatus() != 200) {
@@ -67,11 +74,13 @@ public class HttpClientBuilder {
         if(output.contains ("false") || output.contains ("true")) {
             logintoken = Boolean.valueOf (output);
         }
-        else if(tabel.contains ("accounts")) {
+        else if(totalVars.contains ("users/accountId/accountRol")) {
+            this.accounts = gson.fromJson(output, Account[].class);
+        }
+        else if(tabel.contains ("accounts") && attributen[0] != null) {
             currentRol = output;
         }
 
-        Gson gson = new Gson();
 
 //        Experiment experiment = gson.fromJson(output, Experiment.class);
 
@@ -80,5 +89,7 @@ public class HttpClientBuilder {
     public boolean getIsValidLogin() { return logintoken; }
 
     public String getRol() { return currentRol; }
+
+    public Account[] getAccounts() { return accounts; }
 
 }

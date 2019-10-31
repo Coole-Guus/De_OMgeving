@@ -1,13 +1,15 @@
 package views;
 
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import models.Observable;
 
 public class UserManagementView implements Observer {
+    public GridPane accountList = new GridPane();
+
     @Override
     public void setStage(Stage stage) {
-
     }
 
     @Override
@@ -22,11 +24,13 @@ public class UserManagementView implements Observer {
 
     @Override
     public void start() {
-
     }
 
     @Override
     public Node getParent() {
         return null;
     }
+
+
+
 }

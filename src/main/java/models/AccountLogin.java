@@ -5,10 +5,15 @@ import views.Observer;
 public class AccountLogin implements Observable {
 
     public String username;
-    public String accountrole;
-    public AccountLogin(String username, String accountrole) {
+
+    public String getAccountRol() {
+        return accountRol;
+    }
+
+    public String accountRol;
+    public AccountLogin(String username, String accountRol) {
         this.username = username;
-        this.accountrole = accountrole;
+        this.accountRol = accountRol;
     }
 
     @Override
