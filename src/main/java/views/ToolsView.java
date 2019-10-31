@@ -8,16 +8,22 @@ import models.Observable;
 
 public class ToolsView implements Observer {
 
-    private  Stage primaryStage;
-    private  ToolsController controller;
+    private Stage primaryStage;
+    private ToolsController controller;
 
-    public ToolsView() {}
+    public ToolsView() {
+    }
 
     public ToolsView(Stage primaryStage, Object toolsController) {
         this.primaryStage = primaryStage;
 
         this.controller = (ToolsController) toolsController;
     }
+
+    public void rolCheck() {
+        controller.rolCheck();
+    }
+
     
     @Override
     public void setStage(Stage stage) {

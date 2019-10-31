@@ -36,7 +36,7 @@ public class HttpClientBuilder {
 
         }
     }
-
+//TODO fix
     public void httpPost(Object object) {
         try {
 
@@ -67,7 +67,7 @@ public class HttpClientBuilder {
         if(output.contains ("false") || output.contains ("true")) {
             logintoken = Boolean.valueOf (output);
         }
-        if(tabel.contains ("accounts")) {
+        else if(tabel.contains ("accounts")) {
             currentRol = output;
         }
 

@@ -4,7 +4,11 @@ import views.Observer;
 
 public class AccountLogin implements Observable {
 
+    public String username;
+    public String accountrole;
     public AccountLogin(String username, String accountrole) {
+        this.username = username;
+        this.accountrole = accountrole;
     }
 
     @Override
@@ -15,5 +19,9 @@ public class AccountLogin implements Observable {
     @Override
     public void notifyObservers() {
 
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
