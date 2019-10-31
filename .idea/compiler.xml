@@ -19,6 +19,8 @@
         <module name="De OMgeving" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="De OMgeving" target="8" />
     <bytecodeTargetLevel target="1.8">
       <module name="De OMgeving" target="1.8" />
     </bytecodeTargetLevel>
