@@ -5,7 +5,6 @@ import javafx.stage.Stage;
 import services.HttpClientBuilder;
 import views.AccountLoginView;
 import views.Observer;
-import views.PopUpVoorbeeldView;
 
 import java.lang.reflect.InvocationTargetException;
 
