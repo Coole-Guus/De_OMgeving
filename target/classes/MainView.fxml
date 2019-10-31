@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="950.0" prefWidth="1500.0" stylesheets="/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainView">
+   <children>
+      <BorderPane fx:id="mainBorderPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <!-- ExperimentListView WILL BE 'imported' HERE -->
+         </center>
+         <left>
+            <VBox minWidth="250.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="exitButton" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#exitButton" onMouseEntered="#toggleExitButton" onMouseExited="#toggleExitButton" opacity="0.3" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                           <image>
+                              <Image url="@/img/icon_logout.png" />
+                           </image>
+                        </ImageView>
+                        <Separator orientation="VERTICAL" />
+                        <TextField editable="false" prefHeight="50.0" text="Welkom!" />
+                     </children>
+                  </HBox>
+                  <Separator />
+                  <ImageView fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="img/Logo.jpg" />
+                     </image>
+                  </ImageView>
+                  <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Tools">
+                        <content>
+                          <AnchorPane fx:id="toolsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </Tab>
+                      <Tab text="Filter">
+                        <content>
+                          <AnchorPane fx:id="filterTab" minHeight="0.0" minWidth="0.0" prefWidth="200.0" />
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="topRibbon" prefHeight="50.0" />
+                  <ScrollPane fx:id="mainSection" fitToWidth="true" layoutY="50.0" prefHeight="900.0">
+                     <content>
+
+                     </content></ScrollPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
