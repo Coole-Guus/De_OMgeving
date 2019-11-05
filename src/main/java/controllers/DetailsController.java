@@ -2,9 +2,14 @@ package controllers;
 
 import models.Details;
 import models.Experiment;
+import services.HttpClientBuilder;
+import views.DetailsView;
 
 public class DetailsController {
     private ApplicationController applicationController;
+
+    private Experiment detailedExperiment;
+
     public DetailsController(ApplicationController applicationController) {
         this.applicationController = applicationController;
     }
@@ -36,8 +41,21 @@ public class DetailsController {
         experimentDetails.setDoorlooptijd(details_doorlooptijd);
         experimentDetails.setBeschrijving(details_beschrijving);
         experimentDetails.setVoortgang(details_voortgang);
+    }
 
 
+    public void loadDetails(DetailsView detailsView) {
 
+        final int projectId = 1;
+        HttpClientBuilder requester = new HttpClientBuilder();
+        Details details = (Details) requester.httpGet(Details.class, "experimentDetails", String.valueOf(projectId));
+
+        detailedExperiment = new Experiment();
+
+        detailedExperiment.details = details;
+
+        detailedExperiment.registerObserver(detailsView);
+
+        detailedExperiment.notifyObservers();
     }
 }

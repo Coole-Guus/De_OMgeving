@@ -34,13 +34,10 @@ public class DetailsView implements Observer {
         this.primaryStage = primaryStage;
 
         this.controller = (DetailsController) filterController;
-
-        start();
     }
 
     public void clickedUpdate(ActionEvent actionEvent) {
 
-        System.out.println("BOE");
         this.controller.clickedUpdate(
                 experiment_naam.getText(),
                 experiment_fase.getText(),
@@ -68,11 +65,22 @@ public class DetailsView implements Observer {
 
     @Override
     public void update(Observable observable) {
+        Experiment updatedExperiment = (Experiment) observable;
+        Details details = updatedExperiment.details;
 
+        details_beschrijving.setText(details.getBeschrijving());
+        details_kosten_anders.setText(details.getKostenAnders());
+        details_doorlooptijd.setText(details.getDoorlooptijd());
+        details_kosten_inovatie.setText(details.getKostenInovatie());
+        details_netwerk.setText(details.getNetwerk());
+        details_status.setText(details.getStatus());
+        details_status_kleur.setText(details.getStatusKleur());
+        details_voortgang.setText(details.getVoortgang());
     }
 
     @Override
     public void start() {
+        controller.loadDetails(this);
 
     }
 

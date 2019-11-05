@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import models.Details;
 import models.Experiment;
 
 
@@ -34,6 +35,39 @@ public class HttpClientBuilder {
             e.printStackTrace();
 
         }
+    }
+
+    public Object httpGet(Class resultClass, String tabel, String... attributen) {
+        try {
+            Client client = Client.create();
+            String totalVars = "";
+
+            for(String attribuut : attributen) {
+
+                totalVars = totalVars + "/" + attribuut;
+            }
+
+            WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
+            System.out.println("URL: " + "http://localhost:8080/" + tabel + totalVars);
+            ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "  + response.getStatus());
+            }
+
+            String output = response.getEntity(String.class);
+
+            Gson gson = new Gson();
+            Object outputObject = gson.fromJson(output, resultClass);
+
+            return outputObject;
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public void httpPost(Object object) {
@@ -73,4 +107,5 @@ public class HttpClientBuilder {
     }
 
     public boolean getIsValidLogin() { return logintoken; }
+
 }

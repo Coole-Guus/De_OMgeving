@@ -1,6 +1,11 @@
 package models;
 
-public class Experiment {
+import views.DetailsView;
+import views.Observer;
+
+import java.util.ArrayList;
+
+public class Experiment implements Observable {
 
     private int experimentId;
 
@@ -10,13 +15,17 @@ public class Experiment {
 
     private Fase fase;
 
+    private ArrayList<Observer> observers = new ArrayList<>();
+
+
+
+
     public enum Fase
     {
         LAB_IN,
         LAB_UIT,
-        IDEE
+        IDEE;
     }
-
     private String experiment_leider;
 
     public Details details;
@@ -68,5 +77,17 @@ public class Experiment {
 
     public void setExperiment_leider(String experiment_leider) {
         this.experiment_leider = experiment_leider;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(this);
+        }
     }
 }

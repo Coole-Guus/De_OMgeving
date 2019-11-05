@@ -24,6 +24,8 @@ public class Details {
 
     private String archiefType;
 
+    private String name;
+
     public int getExperimentId() {
         return experimentId;
     }
