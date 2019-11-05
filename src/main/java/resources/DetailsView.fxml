@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.DetailsView">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <left>
          <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
@@ -30,11 +31,11 @@
                            <children>
                               <HBox styleClass="detailsProperty">
                                  <children>
-                                    <Label text="Experiment naam:">
+                                    <Label text="Experiment naam: ">
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField minWidth="200.0" prefWidth="236.0" />
+                                    <TextField fx:id="experiment_naam" minWidth="200.0" prefWidth="236.0" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -43,7 +44,7 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField maxWidth="10000.0" minWidth="200.0" />
+                                    <TextField fx:id="experiment_fase" maxWidth="10000.0" minWidth="200.0" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -52,16 +53,7 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="detailsProperty">
-                                 <children>
-                                    <Label minWidth="50.0" text="Status kleur: ">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font></Label>
-                                    <TextField maxWidth="10000.0" minWidth="200.0" />
+                                    <TextField fx:id="experiment_leider" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -88,7 +80,7 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField minWidth="200.0" />
+                                    <TextField fx:id="details_netwerk" minWidth="200.0" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -97,7 +89,17 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField minWidth="200.0" />
+                                    <TextField fx:id="details_status" minWidth="200.0" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="detailsProperty">
+                                 <children>
+                                    <Label minWidth="50.0" text="Status kleur: ">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="details_status_kleur" maxWidth="10000.0" minWidth="200.0" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -106,7 +108,7 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField minWidth="200.0" />
+                                    <TextField fx:id="details_kosten_inovatie" minWidth="200.0" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -115,7 +117,7 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField minWidth="200.0" />
+                                    <TextField fx:id="details_kosten_anders" minWidth="200.0" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -124,7 +126,7 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField minWidth="200.0" />
+                                    <TextField fx:id="details_doorlooptijd" minWidth="200.0" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -133,7 +135,7 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField minWidth="200.0" />
+                                    <TextField fx:id="details_beschrijving" minWidth="200.0" />
                                  </children>
                               </HBox>
                               <HBox styleClass="detailsProperty">
@@ -142,19 +144,9 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <TextField minWidth="200.0" />
+                                    <TextField fx:id="details_voortgang" minWidth="200.0" />
                                  </children>
                               </HBox>
-                              <HBox styleClass="detailsProperty">
-                                 <children>
-                                    <Label minWidth="50.0" text="Kosten innovatie: ">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font></Label>
-                                    <TextField minWidth="200.0" />
-                                 </children>
-                              </HBox>
-
                            </children>
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -164,6 +156,17 @@
                   </HBox>
                </VBox>
             </center>
+            <bottom>
+               <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <children>
+                     <Button mnemonicParsing="false" onAction="#clickedUpdate" text="Update details">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </HBox>
+            </bottom>
          </BorderPane>
       </left>
       <padding>

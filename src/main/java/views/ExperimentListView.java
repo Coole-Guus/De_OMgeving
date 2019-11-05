@@ -35,7 +35,7 @@ public class ExperimentListView implements Observer {
 
     @Override
     public void update(Observable observable) {
-
+        Experiment editingExperiment = (Experiment) observable;
     }
 
     @Override
