@@ -5,7 +5,7 @@ import views.ExperimentListView;
 import views.Observer;
 
 public class ExperimentListController  {
-    private ApplicationController applicationController;
+    public ApplicationController applicationController;
 
     public ExperimentList experimentList = new ExperimentList();
 

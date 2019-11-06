@@ -48,9 +48,17 @@ public class ExperimentListView implements Observer {
 
     private void updateList(ExperimentList experimentList) {
         for (GridPane card : experimentList.experimentCards) {
+            card.setOnMouseClicked( event -> {
+                LoadDetails(card.getId());
+            });
             experimentPane.getChildren().add(card);
         }
     }
+
+    private void LoadDetails(String id) {
+        controller.applicationController.detailsController.showDetails(id);
+    }
+
 
     @Override
     public void start() {
@@ -66,7 +74,6 @@ public class ExperimentListView implements Observer {
     @Override
     public Node getParent() {
         Parent node = ViewUtilities.loadFxml("/ExperimentListView.fxml", primaryStage, controller, this);
-
         return node;
     }
 }

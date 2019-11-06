@@ -6,4 +6,8 @@ public class DetailsController {
     public DetailsController(ApplicationController applicationController) {
         this.applicationController = applicationController;
     }
+
+    public void showDetails(String id) {
+        System.out.println("load details of " + id);
+    }
 }
