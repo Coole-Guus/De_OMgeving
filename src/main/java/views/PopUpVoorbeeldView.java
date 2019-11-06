@@ -65,9 +65,10 @@ public class PopUpVoorbeeldView implements Observer{
         String combodoos = String.valueOf(combobox);
         String description = String.valueOf(beschrijving);
         String pattern = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(new Date());
-        Timestamp ts = Timestamp.valueOf(date);
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+//        String date = simpleDateFormat.format(new Date());
+//        Timestamp ts = Timestamp.valueOf(date);
+        Date date = new Date();
         Experiment.Fase fase = Experiment.Fase.LAB_IN;
         if(combodoos.equals("Idee"))
             fase = Experiment.Fase.IDEE;
@@ -75,8 +76,10 @@ public class PopUpVoorbeeldView implements Observer{
             fase = Experiment.Fase.LAB_IN;
         else if(combodoos.equals("Lab uit"))
             fase = Experiment.Fase.LAB_UIT;
-        Experiment newExperiment = new Experiment(0, projectname, ts,  fase, projectleader1);
-        (new HttpClientBuilder()).httpPost(newExperiment);
+        Experiment.Color color = Experiment.Color.GREEN;
+//        Experiment newExperiment = new Experiment(0, projectname, ts,  fase, projectleader1);
+        Experiment newExperiment = new Experiment(0, projectname, date, fase, projectleader1, color);
+        (new HttpClientBuilder()).httpPostAdd(newExperiment);
 
     }
 

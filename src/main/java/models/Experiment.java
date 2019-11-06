@@ -44,7 +44,7 @@ public class Experiment implements Observable {
     public Experiment() {}
 
     public Experiment(int experimentId, String experiment_naam, Date wijziging_datum, Fase fase, String experiment_leider, Experiment.Color color) {
-        this.experimentId = experimentId;
+        this.experimentID = experimentId;
         this.experiment_naam = experiment_naam;
         this.wijziging_datum = wijziging_datum;
         this.experiment_leider = experiment_leider;
@@ -66,7 +66,7 @@ public class Experiment implements Observable {
     }
 
     public int getExperimentId() {
-        return experimentId;
+        return experimentID;
     }
 
     public String getWijziging_datum() {
