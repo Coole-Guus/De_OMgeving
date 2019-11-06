@@ -62,7 +62,7 @@ public class Experiment {
     }
 
     public String getWijziging_datum() {
-        return getWijziging_datum();
+        return wijziging_datum.toString();
     }
 
     public String getStatus() {

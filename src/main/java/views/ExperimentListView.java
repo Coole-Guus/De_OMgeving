@@ -26,8 +26,6 @@ public class ExperimentListView implements Observer {
     }
 
     public ExperimentListView(Stage primaryStage, Object experimentListController) {
-        System.out.println("ExpListView Created 2");
-
         this.primaryStage = primaryStage;
         this.controller = (ExperimentListController) experimentListController;
     }
@@ -49,9 +47,7 @@ public class ExperimentListView implements Observer {
     }
 
     private void updateList(ExperimentList experimentList) {
-
-        for (VBox card : experimentList.experimentCards) {
-            System.out.println(card);
+        for (GridPane card : experimentList.experimentCards) {
             experimentPane.getChildren().add(card);
         }
     }
@@ -62,7 +58,9 @@ public class ExperimentListView implements Observer {
 
         controller.experimentList.updateList();
 
-        experimentPane.setPrefWrapLength(ViewUtilities.screenWidth - 205);
+        experimentPane.setPrefWrapLength(ViewUtilities.screenWidth - 260);
+        experimentPane.setHgap(20);
+        experimentPane.setVgap(20);
     }
 
     @Override

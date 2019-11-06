@@ -2,12 +2,11 @@
     -fx-height: 100%;
 }
 
-#experimentPane {
-}
 
 .experiment-card {
-    -fx-margin: 20px;
-    -fx-padding: 10px;
+    -fx-padding: 20px;
+    -fx-hgap: 20;
+    -fx-vgap: 10;
 }
 
 .experiment-card-green {
@@ -32,4 +31,13 @@
 
 .experiment-card-yellow:hover {
     -fx-background-color: #FFECA8;
+}
+
+.experiment-card .label {
+
+}
+
+.experiment-card .title {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
 }

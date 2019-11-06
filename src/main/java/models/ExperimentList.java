@@ -1,9 +1,11 @@
 package models;
 
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import views.Observer;
+import views.ViewUtilities;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,14 +15,16 @@ public class ExperimentList implements Observable {
     private ArrayList<Observer> observers = new ArrayList<>();
 
     private ArrayList<Experiment> experimentList = new ArrayList<>();
-    public ArrayList<VBox> experimentCards = new ArrayList<>();
+    public ArrayList<GridPane> experimentCards = new ArrayList<>();
 
     public void makeList() {
         experimentCards.clear();
         for(Experiment experiment : experimentList) {
-            VBox card = new VBox();
+            GridPane card = new GridPane();
             card.setId(Integer.toString(experiment.getExperimentId()));
             card.getStyleClass().add("experiment-card");
+            card.setMinWidth(ViewUtilities.screenWidth/5);
+            card.setMinHeight(ViewUtilities.screenHeight/5);
 
             switch (experiment.getColor()) {
                 case "GREEN":
@@ -36,19 +40,17 @@ public class ExperimentList implements Observable {
 
             Label nameLabel = new Label();
             nameLabel.setText(experiment.getExperiment_naam());
-            card.getChildren().add(nameLabel);
+            nameLabel.getStyleClass().add("title");
+            card.add(nameLabel, 0, 0, 2, 1);
 
-            Label leaderLabel = new Label();
-            leaderLabel.setText("Leider: " + experiment.getExperiment_leider());
-            card.getChildren().add(leaderLabel);
+            card.add(new Label("Experiment-leader:"), 0, 1);
+            card.add(new Label(experiment.getExperiment_leider()), 1, 1);
 
-//            Label dateLabel = new Label();
-//            dateLabel.setText("Laatst gewijzigd: " + experiment.getWijziging_datum());
-//            pane.getChildren().add(dateLabel);
+            card.add(new Label("Laatst gewijzigd: "), 0, 2);
+            card.add(new Label(experiment.getWijziging_datum()), 1, 2);
 
-            Label statusLabel = new Label();
-            statusLabel.setText("Status: " + experiment.getStatus());
-            card.getChildren().add(statusLabel);
+            card.add(new Label("Status: "), 0, 3);
+            card.add(new Label(experiment.getStatus()), 1, 3);
 
             experimentCards.add(card);
         }
@@ -62,7 +64,7 @@ public class ExperimentList implements Observable {
 
     public void fillList() {
         //replace with database baloney
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 75; i++) {
             Experiment experiment = new Experiment(i, "Experiment_naam_" + i, new Date(2323223232L), Experiment.Fase.IDEE, "Henk van Damme", Experiment.Color.GREEN);
             experimentList.add(experiment);
         }

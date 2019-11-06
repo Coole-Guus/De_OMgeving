@@ -3,6 +3,7 @@ package views;
 import controllers.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -64,7 +65,7 @@ public class MainView implements Observer {
         ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
         mainPane.setContent(mainNode);
         mainPane.setPrefHeight(ViewUtilities.screenHeight - 120);
-        mainPane.setPrefWidth(ViewUtilities.screenWidth - 200);
+        mainPane.setPrefWidth(ViewUtilities.screenWidth - 230);
 
 
         Pane pane = (Pane)root.lookup("AnchorPane");
@@ -155,6 +156,7 @@ public class MainView implements Observer {
 
     @Override
     public void start() {
+        topRibbon.setAlignment(Pos.TOP_CENTER);
         setupExperimentButtons();
         loadButtons(experimentButtons);
 
