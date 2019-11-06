@@ -4,27 +4,38 @@ import views.DetailsView;
 import views.Observer;
 
 import java.util.ArrayList;
+import com.sun.javaws.exceptions.InvalidArgumentException;
 
+import java.util.Date;
 public class Experiment implements Observable {
 
     private int experimentId;
 
     private String experiment_naam;
 
-    private String wijziging_datum;
+    private Date wijziging_datum;
 
     private Fase fase;
 
     private ArrayList<Observer> observers = new ArrayList<>();
 
+    private String status;
 
+    private Color color;
 
+    public enum Color {
+        GREEN,
+        YELLOW,
+        RED
+    }
 
     public enum Fase
     {
         LAB_IN,
         LAB_UIT,
-        IDEE;
+        IDEE,
+        ERROR
+
     }
     private String experiment_leider;
 
@@ -32,37 +43,39 @@ public class Experiment implements Observable {
 
     public Experiment() {}
 
-    public Experiment(int experimentId, String experiment_naam, String wijziging_datum, Fase fase, String experiment_leider) {
+    public Experiment(int experimentId, String experiment_naam, Date wijziging_datum, Fase fase, String experiment_leider, Experiment.Color color) {
         this.experimentId = experimentId;
         this.experiment_naam = experiment_naam;
         this.wijziging_datum = wijziging_datum;
-        this.fase = fase;
-    }
+        this.experiment_leider = experiment_leider;
+        this.color = color;
+        try {
+            this.fase = fase;
+        }catch (IllegalArgumentException e) {
+            this.fase = Fase.ERROR;
+        }
 
-    public int getExperimentId() {
-        return experimentId;
-    }
-
-    public void setExperimentId(int experimentId) {
-        this.experimentId = experimentId;
     }
 
     public String getExperiment_naam() {
         return experiment_naam;
     }
 
-    public void setExperiment_naam(String experiment_naam) {
-        this.experiment_naam = experiment_naam;
+    public int getExperimentId() {
+        return experimentId;
     }
 
     public String getWijziging_datum() {
-        return wijziging_datum;
+        return wijziging_datum.toString();
     }
 
-    public void setWijziging_datum(String wijziging_datum) {
-        this.wijziging_datum = wijziging_datum;
+    public String getStatus() {
+        return fase.toString();
     }
 
+    public String getColor() {
+        return Color.values()[(int) Math.floor(Math.random() * Color.values().length)].toString();
+    }
     public Fase getFase() {
         return fase;
     }

@@ -10,8 +10,13 @@ public class DetailsController {
 
     private Experiment detailedExperiment;
 
+
     public DetailsController(ApplicationController applicationController) {
         this.applicationController = applicationController;
+    }
+
+    public void showDetails(String id) {
+        System.out.println("load details of " + id);
     }
 
     public void clickedUpdate(
