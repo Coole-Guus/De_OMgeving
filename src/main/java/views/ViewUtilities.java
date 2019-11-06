@@ -30,8 +30,7 @@ public class ViewUtilities {
             Parent root = fxmlLoader.<Parent>load(ViewUtilities.class.getResourceAsStream(location));
 
             if(viewController == null){
-
-                Observer observer = (Observer)fxmlLoader.getController();
+                Observer observer = (Observer) fxmlLoader.getController();
                 observer.setStage(stage);
                 observer.setController(controller);
 

@@ -61,6 +61,10 @@ public class Experiment implements Observable {
         return experiment_naam;
     }
 
+    public void setExperiment_naam(String experiment_naam) {
+        this.experiment_naam = experiment_naam;
+    }
+
     public int getExperimentId() {
         return experimentId;
     }
