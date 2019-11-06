@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import models.Observable;
 
 import javax.swing.*;
+import java.sql.SQLOutput;
 
 
 public class FilterView implements Observer {
@@ -54,7 +55,8 @@ public class FilterView implements Observer {
 
     @Override
     public void setController(Object controller) {
-
+        FilterController filterController = (FilterController) controller;
+        this.controller = filterController;
     }
 
     @Override
@@ -76,7 +78,7 @@ public class FilterView implements Observer {
 
     @FXML
     public void search(){
-        System.out.println(searchBar.getText());
+        controller.Search("filterSearch", searchBar.getText());
 
     }
 
@@ -89,38 +91,48 @@ public class FilterView implements Observer {
             case 1:
                 uncheck();
                 LabIn.setSelected(true);
+                controller.filter("filterLabIn");
                 break;
             case 2:
                 uncheck();
                 Idee.setSelected(true);
+                controller.filter("filterIdee");
                 break;
             case 3:
                 uncheck();
                 LabUit.setSelected(true);
+                controller.filter("filterLabUit");
                 break;
             case 4:
                 uncheck();
                 NaamOp.setSelected(true);
+                controller.filter("orderNameAsc");
                 break;
             case 5:
                 uncheck();
                 NaamAf.setSelected(true);
+                controller.filter("orderNameDesc");
                 break;
             case 6:
                 uncheck();
                 LeiderOp.setSelected(true);
+                controller.filter("orderLiederAsc");
                 break;
             case 7:
                 uncheck();
                 LeiderAf.setSelected(true);
+                controller.filter("orderLiederDesc");
+                System.out.println("1");
                 break;
             case 8:
                 uncheck();
                 GewijzigdOp.setSelected(true);
+                controller.filter("orderEditedAsc");
                 break;
             case 9:
                 uncheck();
                 GewijzigdAf.setSelected(true);
+                controller.filter("orderEditedDesc");
                 break;
         }
     }

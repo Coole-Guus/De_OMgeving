@@ -11,20 +11,34 @@ import java.io.IOException;
 public class ViewUtilities {
 
     //the dimensions of the client's screen
-    public static double screenWidth = Screen.getPrimary().getBounds().getWidth();
-    public static double screenHeight = Screen.getPrimary().getBounds().getHeight();
+    public static double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
+    public static double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
+    public static double screenMinX = Screen.getPrimary().getVisualBounds().getMinX();
+    public static double screenMinY = Screen.getPrimary().getVisualBounds().getMinY();
 
     public static Parent loadFxml(String location, Stage stage, Object controller) {
+        return loadFxml(location, stage, controller, null);
+    }
+
+    public static Parent loadFxml(String location, Stage stage, Object controller, Observer viewController) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
+            if(viewController != null){
 
+                fxmlLoader.setController(viewController);
+            }
             Parent root = fxmlLoader.<Parent>load(ViewUtilities.class.getResourceAsStream(location));
 
-            Observer observer = (Observer)fxmlLoader.getController();
-            observer.setStage(stage);
-            observer.setController(controller);
+            if(viewController == null){
 
-            observer.start();
+                Observer observer = (Observer)fxmlLoader.getController();
+                observer.setStage(stage);
+                observer.setController(controller);
+
+                observer.start();
+            } else {
+                viewController.start();
+            }
 
             return root;
         } catch (IOException e) {
@@ -34,3 +48,4 @@ public class ViewUtilities {
         return null;
     }
 }
+

@@ -30,9 +30,9 @@ public class HttpClientBuilder {
 
                 totalVars = totalVars + "/" + attribuut;
             }
-
+            System.out.println("http://localhost:8080/" + tabel + totalVars);
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
-
+            System.out.println("halllo");
             getReturn (webResource, tabel, attributen, totalVars);
 
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class HttpClientBuilder {
         }
     }
 //TODO fix
-    public void httpPost(Object object) {
+    public void httpPostAdd(Object object) {
         try {
 
             Client client = Client.create();
@@ -60,9 +60,28 @@ public class HttpClientBuilder {
         }
     }
 
+
+
+//    public void httpPost() {
+//        try {
+//
+//            Client client = Client.create();
+//
+//            Gson gson = new Gson();
+//            String json = gson.toJson (object);
+//
+//            WebResource webResource = client.resource("http://localhost:8080/experiment/create");
+//            webResource.accept("application/json").post(ClientResponse.class, json);
+//
+//        } catch (Exception e) {
+//
+//            e.printStackTrace();
+//
+//        }
+//    }
+
     private void getReturn(WebResource webResource, String tabel, String[] attributen, String totalVars) {
         Gson gson = new Gson();
-
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 
         if (response.getStatus() != 200) {
@@ -74,13 +93,13 @@ public class HttpClientBuilder {
         if(output.contains ("false") || output.contains ("true")) {
             logintoken = Boolean.valueOf (output);
         }
+
         else if(totalVars.contains ("users/accountId/accountRol")) {
             this.accounts = gson.fromJson(output, Account[].class);
         }
         else if(tabel.contains ("accounts") && attributen[0] != null) {
             currentRol = output;
         }
-
 
 //        Experiment experiment = gson.fromJson(output, Experiment.class);
 

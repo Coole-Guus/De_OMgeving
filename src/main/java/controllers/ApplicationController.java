@@ -5,7 +5,6 @@ import javafx.stage.Stage;
 import services.HttpClientBuilder;
 import views.AccountLoginView;
 import views.Observer;
-import views.PopUpVoorbeeldView;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -21,6 +20,7 @@ public class ApplicationController {
     public ToolsController toolsController;
     public ExperimentListController experimentListController;
     public HttpClientBuilder httpClientBuilder = new HttpClientBuilder ();
+    public DetailsController detailsController;
 
     //etc
 
@@ -36,6 +36,7 @@ public class ApplicationController {
         toolsController = new ToolsController(this);
         filterController = new FilterController(this);
         experimentListController = new ExperimentListController(this);
+        detailsController = new DetailsController(this);
 
             //etc
 

@@ -3,6 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import views.AccountLoginView;
+import views.MainView;
 
 public class MainController {
     public ApplicationController applicationController;
@@ -16,4 +17,7 @@ public class MainController {
     }
 
 
+    public void reloadView() {
+        applicationController.loadView(MainView.class, applicationController.mainController);
+    }
 }

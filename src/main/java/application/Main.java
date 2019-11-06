@@ -19,13 +19,16 @@ public class Main extends Application {
 
         //wordt gevuld met loadView
         Parent root = new Pane();
-        Scene scene = new Scene(root, ViewUtilities.screenWidth, (ViewUtilities.screenHeight - 70));
+        Scene scene = new Scene(root, ViewUtilities.screenWidth, (ViewUtilities.screenHeight));
+
         primaryStage.setScene(scene);
+        primaryStage.setY(ViewUtilities.screenMinY);
+        primaryStage.setX(ViewUtilities.screenMinX);
+
+        primaryStage.setResizable(false);
 
         new ApplicationController(primaryStage);
 
-        primaryStage.setFullScreen(false);
-        primaryStage.setMaximized(true);
         primaryStage.setTitle("de_OMgeving");
 
         primaryStage.show();

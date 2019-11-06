@@ -3,6 +3,7 @@ package views;
 import controllers.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -27,7 +28,12 @@ public class MainView implements Observer {
 
     public ImageView exitButton;
 
+    private Node experimentsNode;
+    private Node detailsNode;
+
     private  Node mainNode;
+
+    private Parent root;
 
     public HBox topRibbon = new HBox();
     private Button[] experimentButtons = new Button[3];
@@ -39,12 +45,11 @@ public class MainView implements Observer {
 
         this.controller = (MainController) mainController;
 
-        start();
         show();
     }
 
     public void show() {
-        Parent root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller);
+        root = ViewUtilities.loadFxml("/MainView.fxml", primaryStage, controller, this);
 
         //load tools segment
         Node toolsNode = controller.applicationController.loadViewSegment(ToolsView.class, controller.applicationController.toolsController);
@@ -54,25 +59,38 @@ public class MainView implements Observer {
         // load filter segment
         Node filterNode = controller.applicationController.loadViewSegment(FilterView.class, controller.applicationController.filterController);
         AnchorPane filterPane = (AnchorPane) root.lookup("#filterTab");
-        System.out.println(filterNode + "+" + filterPane);
         filterPane.getChildren().add(filterNode);
 
         // load mainsection segment set in mainNode VAR
         ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
         mainPane.setContent(mainNode);
         mainPane.setPrefHeight(ViewUtilities.screenHeight - 120);
-        mainPane.setPrefWidth(ViewUtilities.screenWidth - 200);
+        mainPane.setPrefWidth(ViewUtilities.screenWidth - 230);
+
 
         Pane pane = (Pane)root.lookup("AnchorPane");
 
         primaryStage.getScene().setRoot(pane);
     }
 
+    public void showDetails(){
+        mainNode = detailsNode;
+        ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
+        mainPane.setContent(mainNode);
+    }
+
+    public void showList(){
+        mainNode = experimentsNode;
+        ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
+        mainPane.setContent(mainNode);
+    }
+
     public void setupExperimentButtons() {
         String labels[] = {
-                "Status 1",
-                "Status 2",
-                "Status 3" };
+                // change on release
+                "ShowDetails",
+                "ShowList",
+                "Rood" };
         for(int i = 0; i < experimentButtons.length; i++) {
             Button button = new Button();
 //            button.addEventHandler(ActionEvent.ACTION, event -> toggleStatus());
@@ -81,13 +99,19 @@ public class MainView implements Observer {
             button.setPrefHeight(50);
             experimentButtons[i] = button;
         }
+
+        experimentButtons[0].setOnMouseClicked(event -> {
+            showDetails();
+        });
+        experimentButtons[1].setOnAction(event -> {
+            showList();
+        });
+
     }
 
     private void toggleStatus(int status) {
 
     }
-
-
 
     public void loadButtons(Button buttonlist[]) {
             topRibbon.getChildren().removeAll();
@@ -132,11 +156,17 @@ public class MainView implements Observer {
 
     @Override
     public void start() {
+        topRibbon.setAlignment(Pos.TOP_CENTER);
         setupExperimentButtons();
         loadButtons(experimentButtons);
-        mainNode = controller.applicationController.loadViewSegment(
+
+        experimentsNode = controller.applicationController.loadViewSegment(
                 ExperimentListView.class, controller.applicationController.experimentListController
         );
+        detailsNode = controller.applicationController.loadViewSegment(
+                DetailsView.class, controller.applicationController.detailsController
+        );
+        mainNode = experimentsNode;
 
     }
 
