@@ -1,5 +1,9 @@
 package views;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.filter.LoggingFilter;
 import controllers.ApplicationController;
 import controllers.PopUpVoorbeeldController;
 import javafx.collections.FXCollections;
@@ -20,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import services.HttpClientBuilder;
 
+import javax.ws.rs.core.MediaType;
 import java.awt.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -65,10 +70,10 @@ public class PopUpVoorbeeldView implements Observer{
         String combodoos = String.valueOf(combobox);
         String description = String.valueOf(beschrijving);
         String pattern = "yyyy-MM-dd HH:mm:ss";
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-//        String date = simpleDateFormat.format(new Date());
-//        Timestamp ts = Timestamp.valueOf(date);
-        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+        Timestamp ts = Timestamp.valueOf(date);
+//        Date date = new Date();
         Experiment.Fase fase = Experiment.Fase.LAB_IN;
         if(combodoos.equals("Idee"))
             fase = Experiment.Fase.IDEE;
@@ -77,11 +82,15 @@ public class PopUpVoorbeeldView implements Observer{
         else if(combodoos.equals("Lab uit"))
             fase = Experiment.Fase.LAB_UIT;
         Experiment.Color color = Experiment.Color.GREEN;
-//        Experiment newExperiment = new Experiment(0, projectname, ts,  fase, projectleader1);
-        Experiment newExperiment = new Experiment(0, projectname, date, fase, projectleader1, color);
-        (new HttpClientBuilder()).httpPostAdd(newExperiment);
-
-    }
+        if(combodoos.equals("Idee"))
+            color = Experiment.Color.RED;
+        else if(combodoos.equals("Lab in"))
+            color = Experiment.Color.GREEN;
+        else if(combodoos.equals("Lab uit"))
+            color = Experiment.Color.YELLOW;
+        Experiment newExperiment = new Experiment(50, projectname, ts, fase, projectleader1, color);
+        (new HttpClientBuilder()).httpPostAdd(newExperiment, "experimenten", "create");
+}
 
     public void show() {
 
