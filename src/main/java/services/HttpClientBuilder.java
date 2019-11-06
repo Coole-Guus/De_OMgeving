@@ -24,9 +24,9 @@ public class HttpClientBuilder {
 
                 totalVars = totalVars + "/" + attribuut;
             }
-
+            System.out.println("http://localhost:8080/" + tabel + totalVars);
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
-
+            System.out.println("halllo");
             getReturn (webResource, tabel);
 
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class HttpClientBuilder {
         }
     }
 
-    public void httpPost(Object object) {
+    public void httpPostAdd(Object object) {
         try {
 
             Client client = Client.create();
@@ -54,6 +54,26 @@ public class HttpClientBuilder {
         }
     }
 
+
+
+//    public void httpPost() {
+//        try {
+//
+//            Client client = Client.create();
+//
+//            Gson gson = new Gson();
+//            String json = gson.toJson (object);
+//
+//            WebResource webResource = client.resource("http://localhost:8080/experiment/create");
+//            webResource.accept("application/json").post(ClientResponse.class, json);
+//
+//        } catch (Exception e) {
+//
+//            e.printStackTrace();
+//
+//        }
+//    }
+
     private void getReturn(WebResource webResource, String tabel) {
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 
@@ -66,6 +86,7 @@ public class HttpClientBuilder {
         if(tabel.equals ("accounts")) {
             logintoken = Boolean.valueOf (output);
         }
+
         Gson gson = new Gson();
 
 //        Experiment experiment = gson.fromJson(output, Experiment.class);

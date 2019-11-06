@@ -1,4 +1,4 @@
 package models;
 
-public interface Filter {
+public class Filter {
 }
