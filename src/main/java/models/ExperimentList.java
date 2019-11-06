@@ -64,7 +64,7 @@ public class ExperimentList implements Observable {
 
     public void fillList() {
         //replace with database baloney
-        for (int i = 0; i < 75; i++) {
+        for (int i = 1; i < 75; i++) {
             Experiment experiment = new Experiment(i, "Experiment_naam_" + i, new Date(2323223232L), Experiment.Fase.IDEE, "Henk van Damme", Experiment.Color.GREEN);
             experimentList.add(experiment);
         }
