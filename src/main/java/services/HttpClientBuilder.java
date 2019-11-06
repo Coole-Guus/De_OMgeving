@@ -38,14 +38,13 @@ public class HttpClientBuilder {
 
     public void httpPost(Object object) {
         try {
-
             Client client = Client.create();
 
             Gson gson = new Gson();
             String json = gson.toJson (object);
-
-            WebResource webResource = client.resource("http://localhost:8080/experiment/create");
-            webResource.accept("application/json").post(ClientResponse.class, json);
+            System.out.print(object);
+            WebResource webResource = client.resource("http://localhost:8080/experimenten/create");
+            webResource.type("application/json").post(ClientResponse.class, json);
 
         } catch (Exception e) {
 

@@ -1,12 +1,14 @@
 package models;
 
+import java.sql.Timestamp;
+
 public class Experiment {
 
-    private int experimentId;
+    private int experimentID;
 
     private String experiment_naam;
 
-    private String wijziging_datum;
+    private Timestamp wijziging_datum;
 
     private Fase fase;
 
@@ -19,8 +21,10 @@ public class Experiment {
 
     private String experiment_leider;
 
-    public Experiment(int experimentId, String experiment_naam, String wijziging_datum, Fase fase, String experiment_leider) {
-        this.experimentId = experimentId;
+    private String status_kleur = "Groen";
+
+    public Experiment(int experimentId, String experiment_naam, Timestamp wijziging_datum, Fase fase, String experiment_leider) {
+        this.experimentID = experimentId;
         this.experiment_naam = experiment_naam;
         this.wijziging_datum = wijziging_datum;
         this.fase = fase;
