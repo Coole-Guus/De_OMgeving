@@ -12,6 +12,4 @@ public class ToolsController  {
         if (applicationController.accountLoginController.getRol ().contains ("Admin"))
             applicationController.loadView (UserManagementView.class, applicationController.mainController);
     }
-
-
 }
