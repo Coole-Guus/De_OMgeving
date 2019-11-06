@@ -21,6 +21,7 @@ public class ApplicationController {
     public ExperimentListController experimentListController;
     public HttpClientBuilder httpClientBuilder = new HttpClientBuilder ();
     public DetailsController detailsController;
+    public UpdateHistoryController updateHistoryController;
 
     //etc
 
@@ -37,6 +38,7 @@ public class ApplicationController {
         filterController = new FilterController(this);
         experimentListController = new ExperimentListController(this);
         detailsController = new DetailsController(this);
+        updateHistoryController = new UpdateHistoryController(this);
 
             //etc
 
@@ -76,6 +78,4 @@ public class ApplicationController {
         }
         return null;
     }
-
-
 }

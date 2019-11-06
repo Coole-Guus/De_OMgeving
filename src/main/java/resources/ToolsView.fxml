@@ -21,6 +21,6 @@
          </VBox.margin></Separator>
         <Button mnemonicParsing="false" text="Button" />
         <Button mnemonicParsing="false" text="Button" />
-        <Button mnemonicParsing="false" onAction="#rolCheck" text="user management" />
+        <Button mnemonicParsing="false" onMouseClicked="#show" text="Nieuw project" />
     </children>
 </VBox>

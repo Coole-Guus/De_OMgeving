@@ -41,18 +41,56 @@ public class HttpClientBuilder {
 
         }
     }
-//TODO fix
-    public void httpPostAdd(Object object) {
+
+    public Object httpGet(Class resultClass, String tabel, String... attributen) {
         try {
 
             Client client = Client.create();
+            String totalVars = "";
+
+            for(String attribuut : attributen) {
+
+                totalVars = totalVars + "/" + attribuut;
+            }
+
+            WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
+            System.out.println("URL: " + "http://localhost:8080/" + tabel + totalVars);
+            ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "  + response.getStatus());
+            }
+
+            String output = response.getEntity(String.class);
 
             Gson gson = new Gson();
+            Object outputObject = gson.fromJson(output, resultClass);
+
+            return outputObject;
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void httpPostAdd(Object object, String tabel, String... attributen) {
+        try {
+            Client client = Client.create();
+
+            Gson gson = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .create();
             String json = gson.toJson (object);
+            String totalVars = "";
 
-            WebResource webResource = client.resource("http://localhost:8080/experiment/create");
-            webResource.accept("application/json").post(ClientResponse.class, json);
-
+            for (String attribuut: attributen)
+                totalVars = totalVars + "/" + attribuut;
+            WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
+            ClientResponse response = webResource.type("application/json").post(ClientResponse.class, json);
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -110,5 +148,6 @@ public class HttpClientBuilder {
     public String getRol() { return currentRol; }
 
     public Account[] getAccounts() { return accounts; }
+
 
 }

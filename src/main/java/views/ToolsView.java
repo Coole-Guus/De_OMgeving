@@ -43,7 +43,7 @@ public class ToolsView implements Observer {
 
         Pane pane = (Pane) root.lookup("AnchorPane");
 
-        Scene scene = new Scene(root, 500, 250);
+        Scene scene = new Scene(root, 500, 410);
         Stage stagePopUp = new Stage(StageStyle.DECORATED);
         stagePopUp.setTitle("Nieuw project aanmaken");
         stagePopUp.initOwner(primaryStage);
