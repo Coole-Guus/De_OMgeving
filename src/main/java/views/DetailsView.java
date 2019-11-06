@@ -36,6 +36,9 @@ public class DetailsView implements Observer {
 
     public DetailsView() { }
 
+
+
+
     public DetailsView(Stage primaryStage, Object filterController) {
         this.primaryStage = primaryStage;
 
@@ -58,6 +61,7 @@ public class DetailsView implements Observer {
                 details_voortgang.getText()
         );
     }
+
 
     @Override
     public void setStage(Stage stage) {

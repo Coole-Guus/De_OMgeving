@@ -34,6 +34,8 @@ public class MainView implements Observer {
     private Node experimentsNode;
     private Node detailsNode;
 
+    private Node UpdateHistory;
+
     private  Node mainNode;
 
     private Parent root;
@@ -80,6 +82,7 @@ public class MainView implements Observer {
         mainNode = detailsNode;
         ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
         mainPane.setContent(mainNode);
+
     }
 
     public void showList(){
@@ -105,9 +108,15 @@ public class MainView implements Observer {
 
         experimentButtons[0].setOnMouseClicked(event -> {
             showDetails();
+            controller.filter("filterGreen");
         });
         experimentButtons[1].setOnAction(event -> {
             showList();
+            controller.filter("filterOrange");
+        });
+
+        experimentButtons[2].setOnAction(event -> {
+            controller.filter("filterRed");
         });
 
     }
