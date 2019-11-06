@@ -12,6 +12,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import models.Details;
+import models.Experiment;
+import models.ExperimentList;
 import models.Observable;
 
 public class MainView implements Observer {
@@ -151,7 +154,12 @@ public class MainView implements Observer {
 
     @Override
     public void update(Observable observable) {
-
+        if (observable instanceof ExperimentList) {
+            showList();
+        }
+        else if (observable instanceof Experiment) {
+            showDetails();
+        }
     }
 
     @Override
@@ -167,6 +175,9 @@ public class MainView implements Observer {
                 DetailsView.class, controller.applicationController.detailsController
         );
         mainNode = experimentsNode;
+
+        controller.applicationController.experimentListController.registerObserver(this);
+        controller.applicationController.detailsController.registerObserver(this);
 
     }
 
