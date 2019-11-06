@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="950.0" prefWidth="1500.0" stylesheets="/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainView">
+<AnchorPane prefHeight="950.0" prefWidth="1500.0" stylesheets="/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane fx:id="mainBorderPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -58,7 +58,7 @@
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <HBox fx:id="topRibbon" prefHeight="50.0" />
+                  <HBox fx:id="topRibbon" alignment="TOP_CENTER" prefHeight="50.0" />
                   <ScrollPane fx:id="mainSection" fitToWidth="true" layoutY="50.0" prefHeight="900.0">
                      <content>
 
