@@ -7,7 +7,7 @@ import views.DetailsView;
 import views.Observer;
 
 public class DetailsController {
-    private ApplicationController applicationController;
+    public ApplicationController applicationController;
 
     private Experiment detailedExperiment = new Experiment();
 

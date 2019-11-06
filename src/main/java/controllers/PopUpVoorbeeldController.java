@@ -8,9 +8,6 @@ public class PopUpVoorbeeldController {
         this.applicationController = applicationController;
     }
 
-
-
-
     public void buttonFunction() {
 
     }

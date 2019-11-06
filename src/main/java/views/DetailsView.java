@@ -6,10 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Details;
 import models.Experiment;
 import models.Observable;
+import sun.plugin.javascript.navig.Anchor;
 
 public class DetailsView implements Observer {
 
@@ -25,8 +27,12 @@ public class DetailsView implements Observer {
     public TextField experiment_fase;
     public TextField experiment_naam;
 
+    public AnchorPane updateHistoryPane = new AnchorPane();
+
     private DetailsController controller;
     private Stage primaryStage;
+
+    private Parent root;
 
     public DetailsView() { }
 
@@ -80,9 +86,17 @@ public class DetailsView implements Observer {
 
     @Override
     public void start() {
+        loadUpdateHistory();
+        System.out.println();
         controller.loadDetails(this);
         controller.registerObserver(this);
+    }
 
+    private void loadUpdateHistory() {
+        updateHistoryPane.getChildren().add(controller.applicationController.loadViewSegment(
+                UpdateHistoryView.class, controller.applicationController.updateHistoryController
+        ));
+        System.out.println("pane: " + updateHistoryPane);
     }
 
     @Override
