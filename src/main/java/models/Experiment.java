@@ -1,5 +1,7 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import views.DetailsView;
 import views.Observer;
 
@@ -9,12 +11,17 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 import java.util.Date;
 public class Experiment implements Observable {
 
+    @Expose
+    @SerializedName("experimentId")
     private int experimentID;
 
+    @Expose
     private String experiment_naam;
 
+    @Expose
     private Date wijziging_datum;
 
+    @Expose
     private Fase fase;
 
     public ArrayList<Observer> observers = new ArrayList<>();
@@ -24,19 +31,20 @@ public class Experiment implements Observable {
     private Color color;
 
     public enum Color {
-        GREEN,
-        YELLOW,
-        RED
+       @SerializedName("Groen") GREEN,
+        @SerializedName("Geel") YELLOW,
+        @SerializedName("Rood") RED
     }
 
     public enum Fase
     {
-        LAB_IN,
-        LAB_UIT,
-        IDEE,
+        @SerializedName("Lab in") LAB_IN,
+        @SerializedName("Lab uit") LAB_UIT,
+        @SerializedName("Idee") IDEE,
         ERROR
 
     }
+    @Expose
     private String experiment_leider;
 
     public Details details;

@@ -69,16 +69,21 @@ public class HttpClientBuilder {
         return null;
     }
 
-    public void httpPostAdd(Object object) {
+    public void httpPostAdd(Object object, String tabel, String... attributen) {
         try {
             Client client = Client.create();
 
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .create();
             String json = gson.toJson (object);
-            System.out.print(object);
-            WebResource webResource = client.resource("http://localhost:8080/experimenten/create");
-            webResource.type("application/json").post(ClientResponse.class, json);
+            String totalVars = "";
 
+            for (String attribuut: attributen)
+                totalVars = totalVars + "/" + attribuut;
+            WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
+            ClientResponse response = webResource.type("application/json").post(ClientResponse.class, json);
         } catch (Exception e) {
 
             e.printStackTrace();
