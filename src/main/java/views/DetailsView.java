@@ -67,7 +67,7 @@ public class DetailsView implements Observer {
     public void update(Observable observable) {
         Experiment updatedExperiment = (Experiment) observable;
         Details details = updatedExperiment.details;
-
+        System.out.println("getting update");
         details_beschrijving.setText(details.getBeschrijving());
         details_kosten_anders.setText(details.getKostenAnders());
         details_doorlooptijd.setText(details.getDoorlooptijd());
@@ -81,6 +81,7 @@ public class DetailsView implements Observer {
     @Override
     public void start() {
         controller.loadDetails(this);
+        controller.registerObserver(this);
 
     }
 

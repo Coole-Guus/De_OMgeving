@@ -4,19 +4,36 @@ import models.Details;
 import models.Experiment;
 import services.HttpClientBuilder;
 import views.DetailsView;
+import views.Observer;
 
 public class DetailsController {
     private ApplicationController applicationController;
 
-    private Experiment detailedExperiment;
+    private Experiment detailedExperiment = new Experiment();
 
 
     public DetailsController(ApplicationController applicationController) {
         this.applicationController = applicationController;
     }
 
-    public void showDetails(String id) {
-        System.out.println("load details of " + id);
+    public void showDetails(String projectId) {
+        HttpClientBuilder requester = new HttpClientBuilder();
+        Details details = (Details) requester.httpGet(Details.class, "experimentDetails", String.valueOf(projectId));
+
+        Experiment detailedExperiment = new Experiment();
+
+        detailedExperiment.details = details;
+
+
+        detailedExperiment.observers = this.detailedExperiment.observers;
+
+        this.detailedExperiment = detailedExperiment;
+
+        this.detailedExperiment.notifyObservers();
+    }
+
+    public void registerObserver(Observer observer) {
+        detailedExperiment.registerObserver(observer);
     }
 
     public void clickedUpdate(
@@ -51,16 +68,17 @@ public class DetailsController {
 
     public void loadDetails(DetailsView detailsView) {
 
-        final int projectId = 1;
-        HttpClientBuilder requester = new HttpClientBuilder();
-        Details details = (Details) requester.httpGet(Details.class, "experimentDetails", String.valueOf(projectId));
-
-        detailedExperiment = new Experiment();
-
-        detailedExperiment.details = details;
-
-        detailedExperiment.registerObserver(detailsView);
-
-        detailedExperiment.notifyObservers();
+//        final int projectId = 1;
+//        HttpClientBuilder requester = new HttpClientBuilder();
+//        Details details = (Details) requester.httpGet(Details.class, "experimentDetails", String.valueOf(projectId));
+//
+//        detailedExperiment = new Experiment();
+//
+//        detailedExperiment.details = details;
+//
+//        registerObserver((Observer) detailsView);
+//        detailedExperiment.registerObserver(detailsView);
+//
+//        detailedExperiment.notifyObservers();
     }
 }

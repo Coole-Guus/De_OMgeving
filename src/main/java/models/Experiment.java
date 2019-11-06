@@ -17,7 +17,7 @@ public class Experiment implements Observable {
 
     private Fase fase;
 
-    private ArrayList<Observer> observers = new ArrayList<>();
+    public ArrayList<Observer> observers = new ArrayList<>();
 
     private String status;
 
@@ -103,7 +103,10 @@ public class Experiment implements Observable {
 
     @Override
     public void notifyObservers() {
+        System.out.println("notifying observers...");
         for (Observer observer : observers) {
+            System.out.println("notifying: " + observer);
+            System.out.println(observer);
             observer.update(this);
         }
     }
