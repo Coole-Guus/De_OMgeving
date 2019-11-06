@@ -58,7 +58,7 @@
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <HBox fx:id="topRibbon" prefHeight="50.0" />
+                  <HBox fx:id="topRibbon" alignment="TOP_CENTER" prefHeight="50.0" />
                   <ScrollPane fx:id="mainSection" fitToWidth="true" layoutY="50.0" prefHeight="900.0">
                      <content>
 

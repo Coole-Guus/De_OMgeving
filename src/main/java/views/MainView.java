@@ -3,6 +3,7 @@ package views;
 import controllers.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -27,6 +28,9 @@ public class MainView implements Observer {
 
     public ImageView exitButton;
 
+    private Node experimentsNode;
+    private Node detailsNode;
+
     private  Node mainNode;
 
     private Parent root;
@@ -41,7 +45,6 @@ public class MainView implements Observer {
 
         this.controller = (MainController) mainController;
 
-        start();
         show();
     }
 
@@ -62,7 +65,7 @@ public class MainView implements Observer {
         ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
         mainPane.setContent(mainNode);
         mainPane.setPrefHeight(ViewUtilities.screenHeight - 120);
-        mainPane.setPrefWidth(ViewUtilities.screenWidth - 200);
+        mainPane.setPrefWidth(ViewUtilities.screenWidth - 230);
 
 
         Pane pane = (Pane)root.lookup("AnchorPane");
@@ -71,17 +74,13 @@ public class MainView implements Observer {
     }
 
     public void showDetails(){
-        mainNode = controller.applicationController.loadViewSegment(
-                DetailsView.class, controller.applicationController.detailsController
-        );
+        mainNode = detailsNode;
         ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
         mainPane.setContent(mainNode);
     }
 
     public void showList(){
-        mainNode = controller.applicationController.loadViewSegment(
-                ExperimentListView.class, controller.applicationController.experimentListController
-        );
+        mainNode = experimentsNode;
         ScrollPane mainPane = (ScrollPane) root.lookup("#mainSection");
         mainPane.setContent(mainNode);
     }
@@ -157,12 +156,17 @@ public class MainView implements Observer {
 
     @Override
     public void start() {
+        topRibbon.setAlignment(Pos.TOP_CENTER);
         setupExperimentButtons();
         loadButtons(experimentButtons);
 
-        mainNode = controller.applicationController.loadViewSegment(
+        experimentsNode = controller.applicationController.loadViewSegment(
                 ExperimentListView.class, controller.applicationController.experimentListController
         );
+        detailsNode = controller.applicationController.loadViewSegment(
+                DetailsView.class, controller.applicationController.detailsController
+        );
+        mainNode = experimentsNode;
 
     }
 
