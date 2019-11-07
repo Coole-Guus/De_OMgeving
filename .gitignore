@@ -26,3 +26,5 @@ hs_err_pid*
 .idea/usage.statistics.xml
 .idea/tasks.xml
 .idea/shelf/*
+
+target/*

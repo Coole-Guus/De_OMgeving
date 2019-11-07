@@ -4,7 +4,7 @@
 
 
 .experiment-card {
-    -fx-padding: 20px;
+    -fx-padding: 20;
     -fx-hgap: 20;
     -fx-vgap: 10;
 }
@@ -35,6 +35,16 @@
 
 .experiment-card .label {
 
+}
+
+.account-card-gray {
+    -fx-background-color: #9e9e9e;
+}
+
+.account-card {
+    -fx-padding: 20;
+    -fx-hgap: 20;
+    -fx-vgap: 10;
 }
 
 .experiment-card .title {
