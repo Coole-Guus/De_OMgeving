@@ -19,13 +19,13 @@ public class ExperimentListController  {
         experimentList.registerObserver(observer);
     }
 
-    public void updateHeleList(){
-        HttpClientBuilder get = new HttpClientBuilder();
-        Experiment[] experimenten = (Experiment[]) get.httpGet(Experiment[].class, "experimenten");
-        updateList(experimenten);
-    }
 
-    public void updateList(Experiment[] experimenten) {
+    public void updateList(String argument) {
+        experimentList.clearList();
+
+        HttpClientBuilder get = new HttpClientBuilder();
+        Experiment[] experimenten = (Experiment[]) get.httpGet(Experiment[].class, "experimenten" + argument);
+
         for (Experiment experiment : experimenten) {
             experimentList.addToList(experiment);
         }

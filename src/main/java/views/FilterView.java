@@ -80,72 +80,73 @@ public class FilterView implements Observer {
 
     @FXML
     public void search(){
-        controller.Search("filterSearch", searchBar.getText());
+        if (searchBar.getText().isEmpty()) {
+            controller.applicationController.experimentListController.updateList("");
+            uncheck();
+        }
+        else {
+            controller.Search("filterSearch", searchBar.getText());
+        }
 
     }
 
     @FXML
     public void Checkpress(ActionEvent actionEvent) {
         CheckBox checkBox = (CheckBox) actionEvent.getTarget();
-        int ID = Integer.parseInt(checkBox.getId());
-
-        switch(ID){
-            case 1:
-                uncheck();
-                LabIn.setSelected(true);
-                controller.filter("filterLabIn");
-                break;
-            case 2:
-                uncheck();
-                Idee.setSelected(true);
-                controller.filter("filterIdee");
-                break;
-            case 3:
-                uncheck();
-                LabUit.setSelected(true);
-                controller.filter("filterLabUit");
-                break;
-            case 4:
-                uncheck();
-                NaamOp.setSelected(true);
-                controller.filter("orderNameAsc");
-                break;
-            case 5:
-                uncheck();
-                NaamAf.setSelected(true);
-                controller.filter("orderNameDesc");
-                break;
-            case 6:
-                uncheck();
-                LeiderOp.setSelected(true);
-                controller.filter("orderLiederAsc");
-                break;
-            case 7:
-                uncheck();
-                LeiderAf.setSelected(true);
-                controller.filter("orderLiederDesc");
-                System.out.println("1");
-                break;
-            case 8:
-                uncheck();
-                GewijzigdOp.setSelected(true);
-                controller.filter("orderEditedAsc");
-                break;
-            case 9:
-                uncheck();
-                GewijzigdAf.setSelected(true);
-                controller.filter("orderEditedDesc");
-                break;
-            case 10:
-                uncheck();
-                HoF.setSelected(true);
-                controller.filter("filterHoF");
-                break;
-            case 11:
-                uncheck();
-                GY.setSelected(true);
-                controller.filter("FilterGY");
-                break;
+        if (checkBox.isSelected()) {
+            int ID = Integer.parseInt(checkBox.getId());
+            uncheck();
+            switch(ID) {
+                case 1:
+                    LabIn.setSelected(true);
+                    controller.filter("filterLabIn");
+                    break;
+                case 2:
+                    Idee.setSelected(true);
+                    controller.filter("filterIdee");
+                    break;
+                case 3:
+                    LabUit.setSelected(true);
+                    controller.filter("filterLabUit");
+                    break;
+                case 4:
+                    NaamOp.setSelected(true);
+                    controller.filter("orderNameAsc");
+                    break;
+                case 5:
+                    NaamAf.setSelected(true);
+                    controller.filter("orderNameDesc");
+                    break;
+                case 6:
+                    LeiderOp.setSelected(true);
+                    controller.filter("orderLiederAsc");
+                    break;
+                case 7:
+                    LeiderAf.setSelected(true);
+                    controller.filter("orderLiederDesc");
+                    System.out.println("1");
+                    break;
+                case 8:
+                    GewijzigdOp.setSelected(true);
+                    controller.filter("orderEditedAsc");
+                    break;
+                case 9:
+                    GewijzigdAf.setSelected(true);
+                    controller.filter("orderEditedDesc");
+                    break;
+                case 10:
+                    HoF.setSelected(true);
+                    controller.filter("filterHoF");
+                    break;
+                case 11:
+                    GY.setSelected(true);
+                    controller.filter("FilterGY");
+                    break;
+            }
+        }
+        else {
+            uncheck();
+            controller.applicationController.experimentListController.updateList("");
         }
     }
 

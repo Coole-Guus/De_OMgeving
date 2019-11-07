@@ -45,6 +45,7 @@ public class ExperimentListView implements Observer {
     }
 
     private void updateList(ExperimentList experimentList) {
+        experimentPane.getChildren().clear();
         for (GridPane card : experimentList.experimentCards) {
             card.setOnMouseClicked( event -> {
                 LoadDetails(card.getId());
@@ -65,7 +66,7 @@ public class ExperimentListView implements Observer {
     public void start() {
         controller.registerObserver(this);
 
-        controller.updateHeleList();
+        controller.updateList("");
 
         experimentPane.setPrefWrapLength(ViewUtilities.screenWidth - 260);
         experimentPane.setHgap(20);

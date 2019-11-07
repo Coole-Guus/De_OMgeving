@@ -18,7 +18,6 @@ public class ExperimentList implements Observable {
     public ArrayList<GridPane> experimentCards = new ArrayList<>();
 
     public void makeList() {
-        experimentCards.clear();
         try {
             for(Experiment experiment : experimentList) {
                 GridPane card = new GridPane();
@@ -65,6 +64,8 @@ public class ExperimentList implements Observable {
 
     public void prepareList() {
         makeList();
+        System.out.println("list size" + experimentList.size());
+        System.out.println("cards size" + experimentCards.size());
         notifyObservers();
     }
 
@@ -84,4 +85,8 @@ public class ExperimentList implements Observable {
         }
     }
 
+    public void clearList() {
+        experimentList.clear();
+        experimentCards.clear();
+    }
 }
