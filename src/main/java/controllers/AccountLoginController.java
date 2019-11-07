@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.scene.control.Alert;
+import models.Account;
 import models.AccountLogin;
 import views.FilterView;
 import views.MainView;
@@ -28,6 +29,7 @@ public class AccountLoginController  {
             applicationController.loadView (MainView.class, applicationController.mainController);
             accountLogin = new AccountLogin (username, applicationController.httpClientBuilder.getRol ());
         }
+
 //        System.out.println (applicationController.httpClientBuilder.getRol ());
     }
 

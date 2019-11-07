@@ -101,7 +101,7 @@ public class HttpClientBuilder {
             return response;
             //"http://localhost:8080/experimenten/create")
 
-           } catch (Exception e) {
+        } catch (Exception e) {
 
             e.printStackTrace();
 
@@ -109,6 +109,10 @@ public class HttpClientBuilder {
 
         return null;
     }
+
+
+
+
 
     private void getReturn(WebResource webResource, String tabel, String totalVars, String... attributen) {
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
@@ -124,6 +128,7 @@ public class HttpClientBuilder {
         }
 
         else if(totalVars.contains ("users/accountId/accountRol")) {
+            accounts = null;
             this.accounts = gson.fromJson(output, Account[].class);
         }
         else if(tabel.contains ("accounts") && attributen[0] != null) {
