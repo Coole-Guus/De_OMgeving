@@ -90,7 +90,9 @@ public class HttpClientBuilder {
             System.out.println(json);
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
             ClientResponse response = webResource.type("application/json").post(ClientResponse.class, json);
-        } catch (Exception e) {
+            //"http://localhost:8080/experimenten/create")
+
+           } catch (Exception e) {
 
             e.printStackTrace();
 

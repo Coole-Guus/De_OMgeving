@@ -103,6 +103,7 @@ public class MainView implements Observer {
             button.setText(labels[i]);
             button.setId(Integer.toString(i));
             button.setPrefHeight(50);
+            button.setMinWidth(200);
             experimentButtons[i] = button;
         }
 

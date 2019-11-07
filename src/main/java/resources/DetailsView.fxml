@@ -216,7 +216,7 @@
       <top>
          <BorderPane prefHeight="95.0" prefWidth="1302.0" BorderPane.alignment="CENTER">
             <left>
-               <Button mnemonicParsing="false" text="wijzigen details" BorderPane.alignment="CENTER">
+               <Button mnemonicParsing="false" text="wijzigen details" BorderPane.alignment="CENTER" onAction="#clickedUpdate">
                   <font>
                      <Font size="16.0" />
                   </font>

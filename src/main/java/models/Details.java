@@ -1,27 +1,40 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+
 public class Details {
 
+    @Expose
     private int experimentId;
 
+    @Expose
     private String netwerk;
 
+    @Expose
     private String status;
 
+    @Expose
     private String statusKleur;
 
+    @Expose
     private String kostenInovatie;
 
+    @Expose
     private String kostenAnders;
 
+    @Expose
     private String doorlooptijd;
 
+    @Expose
     private String beschrijving;
 
+    @Expose
     private String voortgang;
 
+    @Expose
     private boolean archief = false;
 
+    @Expose
     private String archiefType;
 
     private String name;

@@ -31,18 +31,17 @@ public class Experiment implements Observable {
     private Color color;
 
     public enum Color {
-       @SerializedName("Groen") GREEN,
-        @SerializedName("Geel") YELLOW,
+        @SerializedName("Groen") GREEN,
+        @SerializedName("Oranje") YELLOW,
         @SerializedName("Rood") RED
     }
 
     public enum Fase
     {
         @SerializedName("Lab in") LAB_IN,
-        @SerializedName("Lab uit") LAB_UIT,
+        @SerializedName("Lab uit" ) LAB_UIT,
         @SerializedName("Idee") IDEE,
         ERROR
-
     }
     @Expose
     private String experiment_leider;
@@ -63,6 +62,14 @@ public class Experiment implements Observable {
             this.fase = Fase.ERROR;
         }
 
+    }
+
+    public void setWijziging_datum(Date wijziging_datum) {
+        this.wijziging_datum = wijziging_datum;
+    }
+
+    public void setExperimentID(int id) {
+        this.experimentID = id;
     }
 
     public String getExperiment_naam() {

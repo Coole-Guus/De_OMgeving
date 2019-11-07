@@ -31,6 +31,8 @@ public class DetailsView implements Observer {
 
     public AnchorPane updateHistoryPane = new AnchorPane();
 
+    private int editingId;
+
     private DetailsController controller;
     private Stage primaryStage;
 
@@ -50,6 +52,7 @@ public class DetailsView implements Observer {
     public void clickedUpdate(ActionEvent actionEvent) {
 
         this.controller.clickedUpdate(
+                editingId,
                 experiment_naam.getText(),
                 experiment_fase.getText(),
                 experiment_leider.getText(),
@@ -80,8 +83,12 @@ public class DetailsView implements Observer {
     public void update(Observable observable) {
         Experiment updatedExperiment = (Experiment) observable;
         Details details = updatedExperiment.details;
-        System.out.println("getting update");
-        System.out.println(details_beschrijving);
+        editingId = updatedExperiment.getExperimentId();
+        experiment_fase.setText(updatedExperiment.getFase().toString());
+        experiment_leider.setText(updatedExperiment.getExperiment_leider());
+        experiment_naam.setText(updatedExperiment.getExperiment_naam());
+
+
         details_beschrijving.setText(details.getBeschrijving());
         details_kosten_anders.setText(details.getKostenAnders());
         details_doorlooptijd.setText(details.getDoorlooptijd());
@@ -96,7 +103,6 @@ public class DetailsView implements Observer {
     public void start() {
         loadUpdateHistory();
         System.out.println();
-        controller.loadDetails(this);
         controller.registerObserver(this);
     }
 
