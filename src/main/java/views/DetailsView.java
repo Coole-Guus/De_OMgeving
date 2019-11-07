@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -26,7 +27,9 @@ public class DetailsView implements Observer {
     public TextField experiment_leider = new TextField();
     public TextField experiment_fase = new TextField();
     public TextField experiment_naam = new TextField();
-    public TextField message = new TextField();
+    public TextArea updateMessage = new TextArea();
+
+    private int projectID;
 
 
     public AnchorPane updateHistoryPane = new AnchorPane();
@@ -117,7 +120,6 @@ public class DetailsView implements Observer {
             details_status_kleur.setText("");
             details_voortgang.setText("");
         }
-
     }
 
     @Override
@@ -139,7 +141,14 @@ public class DetailsView implements Observer {
     }
 
     public void postMessage(){
-//        controller.postMessage(message.getText());
-        System.out.println(message.getText());
+        if(updateMessage.getText() .equals("") || updateMessage.getText() .equals(" ") || updateMessage.getText() .equals("Plz don't do that")){
+            updateMessage.setText("Plz don't do that");
+        }else{
+            String experimentid = Integer.toString(editingId);
+            System.out.println(updateMessage.getText() + experimentid);
+            controller.postMessage(updateMessage.getText(), experimentid);
+            updateMessage.clear();
+        }
+
     }
 }

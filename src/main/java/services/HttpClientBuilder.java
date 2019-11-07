@@ -134,7 +134,10 @@ public class HttpClientBuilder {
 
     public String getRol() { return currentRol; }
 
-    public Account[] getAccounts() { return accounts; }
+    public Account[] getAccounts() {
+
+        return accounts;
+    }
 
 
 }
