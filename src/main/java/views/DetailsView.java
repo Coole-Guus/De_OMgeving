@@ -15,19 +15,23 @@ import sun.plugin.javascript.navig.Anchor;
 
 public class DetailsView implements Observer {
 
-    public TextField details_voortgang;
-    public TextField details_beschrijving;
-    public TextField details_doorlooptijd;
-    public TextField details_kosten_anders;
-    public TextField details_kosten_inovatie;
-    public TextField details_status_kleur;
-    public TextField details_status;
-    public TextField details_netwerk;
-    public TextField experiment_leider;
-    public TextField experiment_fase;
-    public TextField experiment_naam;
+    public TextField details_voortgang = new TextField();
+    public TextField details_beschrijving = new TextField();
+    public TextField details_doorlooptijd = new TextField();
+    public TextField details_kosten_anders = new TextField();
+    public TextField details_kosten_inovatie = new TextField();
+    public TextField details_status_kleur = new TextField();
+    public TextField details_status = new TextField();
+    public TextField details_netwerk = new TextField();
+    public TextField experiment_leider = new TextField();
+    public TextField experiment_fase = new TextField();
+    public TextField experiment_naam = new TextField();
+    public TextField message = new TextField();
+
 
     public AnchorPane updateHistoryPane = new AnchorPane();
+
+    private int editingId;
 
     private DetailsController controller;
     private Stage primaryStage;
@@ -35,6 +39,9 @@ public class DetailsView implements Observer {
     private Parent root;
 
     public DetailsView() { }
+
+
+
 
     public DetailsView(Stage primaryStage, Object filterController) {
         this.primaryStage = primaryStage;
@@ -45,6 +52,7 @@ public class DetailsView implements Observer {
     public void clickedUpdate(ActionEvent actionEvent) {
 
         this.controller.clickedUpdate(
+                editingId,
                 experiment_naam.getText(),
                 experiment_fase.getText(),
                 experiment_leider.getText(),
@@ -55,9 +63,11 @@ public class DetailsView implements Observer {
                 details_kosten_anders.getText(),
                 details_doorlooptijd.getText(),
                 details_beschrijving.getText(),
-                details_voortgang.getText()
+                details_voortgang.getText(),
+                message.getText()
         );
     }
+
 
     @Override
     public void setStage(Stage stage) {
@@ -73,7 +83,12 @@ public class DetailsView implements Observer {
     public void update(Observable observable) {
         Experiment updatedExperiment = (Experiment) observable;
         Details details = updatedExperiment.details;
-        System.out.println("getting update");
+        editingId = updatedExperiment.getExperimentId();
+        experiment_fase.setText(updatedExperiment.getFase().toString());
+        experiment_leider.setText(updatedExperiment.getExperiment_leider());
+        experiment_naam.setText(updatedExperiment.getExperiment_naam());
+
+
         details_beschrijving.setText(details.getBeschrijving());
         details_kosten_anders.setText(details.getKostenAnders());
         details_doorlooptijd.setText(details.getDoorlooptijd());
@@ -88,7 +103,6 @@ public class DetailsView implements Observer {
     public void start() {
         loadUpdateHistory();
         System.out.println();
-        controller.loadDetails(this);
         controller.registerObserver(this);
     }
 
@@ -96,12 +110,16 @@ public class DetailsView implements Observer {
         updateHistoryPane.getChildren().add(controller.applicationController.loadViewSegment(
                 UpdateHistoryView.class, controller.applicationController.updateHistoryController
         ));
-        System.out.println("pane: " + updateHistoryPane);
     }
 
     @Override
     public Node getParent() {
         Parent node = ViewUtilities.loadFxml("/DetailsView.fxml", primaryStage, controller, this);
         return node;
+    }
+
+    public void postMessage(){
+//        controller.postMessage(message.getText());
+        System.out.println(message.getText());
     }
 }

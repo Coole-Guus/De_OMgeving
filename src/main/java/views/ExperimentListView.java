@@ -42,7 +42,6 @@ public class ExperimentListView implements Observer {
 
     @Override
     public void update(Observable observable) {
-        System.out.println("updating...");
         updateList((ExperimentList) observable);
     }
 
