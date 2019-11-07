@@ -29,6 +29,7 @@ public class Experiment implements Observable {
 
     private String status;
 
+    @Expose
     private Color color;
 
     public void setExperimentID(int experiment_id) {
@@ -62,8 +63,18 @@ public class Experiment implements Observable {
 
     public Details details;
 
-    public Experiment() {}
+    public Experiment() {
+    }
 
+    public String toString() {
+        return "\nexperimentId:" + experimentID + "\n" +
+                "experiment_naam:" + experiment_naam + "\n" +
+                "wijziging_datum:" + wijziging_datum + "\n" +
+                "fase:" + fase + "\n" +
+                "color:" + this.color + "\n" +
+                "experiment_leider:" + experiment_leider + "";
+
+    }
     public Experiment(int experimentId, String experiment_naam, Date wijziging_datum, Fase fase, String experiment_leider, Experiment.Color color) {
         this.experimentID = experimentId;
         this.experiment_naam = experiment_naam;
@@ -99,7 +110,7 @@ public class Experiment implements Observable {
     }
 
     public String getColor() {
-        return Color.values()[(int) Math.floor(Math.random() * Color.values().length)].toString();
+        return color.toString();
     }
     public String getKleur(){
         return color.toString();
@@ -127,10 +138,7 @@ public class Experiment implements Observable {
 
     @Override
     public void notifyObservers() {
-        System.out.println("notifying observers...");
         for (Observer observer : observers) {
-            System.out.println("notifying: " + observer);
-            System.out.println(observer);
             observer.update(this);
         }
     }

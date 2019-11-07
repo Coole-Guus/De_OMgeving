@@ -1,7 +1,7 @@
 package controllers;
 
 public class FilterController {
-    private ApplicationController applicationController;
+    public ApplicationController applicationController;
 
 
     public FilterController(ApplicationController applicationController) {
@@ -9,12 +9,13 @@ public class FilterController {
     }
 
 
-    public void filter(String Filtertype){
-        applicationController.httpClientBuilder.httpGet("experimenten", Filtertype);
-
+    public void filter(String filtertype){
+        applicationController.httpClientBuilder.httpGet("experimenten", filtertype);
+        applicationController.experimentListController.updateList("/" + filtertype);
     }
 
     public void Search(String searchType, String searchWoord){
         applicationController.httpClientBuilder.httpGet("experimenten", searchType, searchWoord);
+        applicationController.experimentListController.updateList("/" + searchType + "/" + "" + searchWoord);
     }
 }

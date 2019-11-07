@@ -25,12 +25,12 @@
     -fx-background-color: #FF9F8E;
 }
 
-.experiment-card-yellow {
-    -fx-background-color: #FFD942;
+.experiment-card-orange {
+    -fx-background-color: #FFB663;
 }
 
-.experiment-card-yellow:hover {
-    -fx-background-color: #FFECA8;
+.experiment-card-orange:hover {
+    -fx-background-color: #FFCE9B;
 }
 
 .experiment-card .label {
