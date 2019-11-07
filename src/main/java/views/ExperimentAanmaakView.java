@@ -43,6 +43,7 @@ public class ExperimentAanmaakView implements Observer{
     @FXML public TextArea beschrijving;
     @FXML public ComboBox statuskleur;
     private Experiment.Color color;
+    private DetailsView detailsView;
     //Need an empty constructor for FXML
     public ExperimentAanmaakView(){}
     public ExperimentAanmaakView(Stage primaryStage, Object popUpVoorbeeldController) {
@@ -114,7 +115,10 @@ public class ExperimentAanmaakView implements Observer{
                 break;
         }
         Experiment newExperiment = new Experiment(50, projectname, ts, fase, projectleader1, color);
+
         (new HttpClientBuilder()).httpPostAdd(newExperiment, "experimenten", "create");
+        detailsView.addDetails();
+
 }
 
     public void show() {

@@ -1,5 +1,6 @@
 package views;
 
+import controllers.ApplicationController;
 import controllers.DetailsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 import models.Details;
 import models.Experiment;
 import models.Observable;
+import services.HttpClientBuilder;
 import sun.plugin.javascript.navig.Anchor;
 
 public class DetailsView implements Observer {
@@ -29,13 +31,16 @@ public class DetailsView implements Observer {
     public TextField message = new TextField();
 
 
+
     public AnchorPane updateHistoryPane = new AnchorPane();
 
     private int editingId;
+    private int experimentID;
+    private ApplicationController applicationController;
 
     private DetailsController controller;
     private Stage primaryStage;
-
+    private Integer integer;
     private Parent root;
 
     public DetailsView() { }
@@ -117,7 +122,12 @@ public class DetailsView implements Observer {
         Parent node = ViewUtilities.loadFxml("/DetailsView.fxml", primaryStage, controller, this);
         return node;
     }
-
+    public void addDetails(){
+        experimentID = (int) applicationController.httpClientBuilder.httpGet(Integer.class, "experimenten", "lastID");
+        System.out.println(experimentID);
+//        Details newDetails = new Details();
+//        (new HttpClientBuilder()).httpPostAdd(newDetails, "experimentDetails", "create");
+    }
     public void postMessage(){
 //        controller.postMessage(message.getText());
         System.out.println(message.getText());

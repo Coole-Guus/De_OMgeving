@@ -54,6 +54,7 @@ public class ExperimentListView implements Observer {
         }
     }
 
+
     private void LoadDetails(String id) {
         controller.applicationController.detailsController.showDetails(id);
     }
