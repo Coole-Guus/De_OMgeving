@@ -23,7 +23,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_netwerk" alignment="CENTER_RIGHT" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="details_netwerk" maxWidth="280.0" minWidth="200.0">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
@@ -49,7 +49,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_status_kleur" alignment="CENTER" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="details_status_kleur" maxWidth="280.0" minWidth="200.0">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
@@ -101,26 +101,23 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_beschrijving" maxHeight="700.0" maxWidth="280.0" minWidth="200.0" prefHeight="139.0" prefWidth="280.0">
+               <TextField fx:id="details_doorlooptijd11" maxWidth="280.0" minWidth="200.0" prefWidth="280.0">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
-                  <VBox.margin>
-                     <Insets bottom="5.0" />
-                  </VBox.margin>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
                </TextField>
                <Label minWidth="50.0" text="Voortgang: ">
                   <font>
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_voortgang" maxWidth="280.0" minWidth="200.0" prefHeight="150.0" prefWidth="280.0">
+               <TextField fx:id="details_doorlooptijd1" maxWidth="280.0" minWidth="200.0">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
-                  <VBox.margin>
-                     <Insets bottom="5.0" />
-                  </VBox.margin>
                </TextField>
             </children>
          </VBox>
@@ -193,19 +190,19 @@
          </VBox>
       </left>
       <right>
-         <VBox prefHeight="870.0" prefWidth="445.0" BorderPane.alignment="CENTER">
+         <VBox prefHeight="714.0" prefWidth="400.0" BorderPane.alignment="CENTER">
             <children>
-               <AnchorPane fx:id="updateHis" prefHeight="614.0" prefWidth="469.0">
+               <AnchorPane fx:id="updateHistoryPane" prefHeight="614.0" prefWidth="469.0">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
                </AnchorPane>
-               <TextField prefHeight="81.0" prefWidth="287.0">
+               <TextField fx:id="message" prefHeight="28.0" prefWidth="400.0">
                   <VBox.margin>
                      <Insets top="5.0" />
                   </VBox.margin>
                </TextField>
-               <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="Post">
+               <Button fx:id="postMessage" mnemonicParsing="false" onAction="#postMessage" prefHeight="25.0" prefWidth="93.0" text="Post">
                   <VBox.margin>
                      <Insets top="5.0" />
                   </VBox.margin>

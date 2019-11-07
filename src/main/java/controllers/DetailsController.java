@@ -24,7 +24,6 @@ public class DetailsController {
 
         detailedExperiment.details = details;
 
-
         detailedExperiment.observers = this.detailedExperiment.observers;
 
         this.detailedExperiment = detailedExperiment;
@@ -63,6 +62,10 @@ public class DetailsController {
         experimentDetails.setDoorlooptijd(details_doorlooptijd);
         experimentDetails.setBeschrijving(details_beschrijving);
         experimentDetails.setVoortgang(details_voortgang);
+    }
+
+    public void postMessage(String message){
+//        applicationController.httpClientBuilder.httpGet("experimenten", message, );
     }
 
 

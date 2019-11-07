@@ -91,26 +91,6 @@ public class HttpClientBuilder {
         }
     }
 
-
-
-//    public void httpPost() {
-//        try {
-//
-//            Client client = Client.create();
-//
-//            Gson gson = new Gson();
-//            String json = gson.toJson (object);
-//
-//            WebResource webResource = client.resource("http://localhost:8080/experiment/create");
-//            webResource.accept("application/json").post(ClientResponse.class, json);
-//
-//        } catch (Exception e) {
-//
-//            e.printStackTrace();
-//
-//        }
-//    }
-
     private void getReturn(WebResource webResource, String tabel) {
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 

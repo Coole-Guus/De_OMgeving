@@ -26,6 +26,8 @@ public class DetailsView implements Observer {
     public TextField experiment_leider;
     public TextField experiment_fase;
     public TextField experiment_naam;
+    public TextField message;
+
 
     public AnchorPane updateHistoryPane = new AnchorPane();
 
@@ -107,5 +109,10 @@ public class DetailsView implements Observer {
     public Node getParent() {
         Parent node = ViewUtilities.loadFxml("/DetailsView.fxml", primaryStage, controller, this);
         return node;
+    }
+
+    public void postMessage(){
+//        controller.postMessage(message.getText());
+        System.out.println(message.getText());
     }
 }
