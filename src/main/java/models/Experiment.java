@@ -26,13 +26,15 @@ public class Experiment implements Observable {
 
     public ArrayList<Observer> observers = new ArrayList<>();
 
+
     private String status;
 
+    @Expose
     private Color color;
 
     public enum Color {
        @SerializedName("Groen") GREEN,
-        @SerializedName("Geel") YELLOW,
+        @SerializedName("Oranje") ORANGE,
         @SerializedName("Rood") RED
     }
 
@@ -87,6 +89,9 @@ public class Experiment implements Observable {
 
     public String getColor() {
         return Color.values()[(int) Math.floor(Math.random() * Color.values().length)].toString();
+    }
+    public String getKleur(){
+        return color.toString();
     }
     public Fase getFase() {
         return fase;

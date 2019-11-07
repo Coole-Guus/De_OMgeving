@@ -35,6 +35,10 @@ public class UpdateHistory implements Observable {
         }
     }
 
+    public void addMessage() {
+
+    }
+
     public void updateList() {
         fillList();
         makeList();

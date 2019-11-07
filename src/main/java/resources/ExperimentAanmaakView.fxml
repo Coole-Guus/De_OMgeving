@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PopUpVoorbeeldView">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ExperimentAanmaakView">
    <children>
       <TextField fx:id="projectnaam" layoutX="33.0" layoutY="26.0" prefHeight="26.0" prefWidth="197.0" promptText="Projectnaam" />
       <TextField fx:id="projectleider1" layoutX="33.0" layoutY="79.0" prefHeight="26.0" prefWidth="198.0" promptText="Projectleider 1" />
@@ -21,6 +21,15 @@
       </items>
       </ComboBox>
       <TextArea fx:id="beschrijving" layoutX="33.0" layoutY="182.0" prefHeight="158.0" prefWidth="414.0" promptText="Beschrijving..." />
+      <ComboBox fx:id= "statuskleur" layoutX="250.0" layoutY="136.0" prefHeight="26.0" prefWidth="198.0" promptText="Statuskleur" visibleRowCount="3" >
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Groen" />
+            <String fx:value="Oranje" />
+            <String fx:value="Rood" />
+         </FXCollections>
+      </items>
+      </ComboBox>
    </children>
 
    </AnchorPane>

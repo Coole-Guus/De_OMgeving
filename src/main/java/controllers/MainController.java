@@ -17,6 +17,11 @@ public class MainController {
     }
 
 
+    public void filter(String Filtertype){
+        applicationController.httpClientBuilder.httpGet("experimenten", Filtertype);
+
+    }
+
     public void reloadView() {
         applicationController.loadView(MainView.class, applicationController.mainController);
     }

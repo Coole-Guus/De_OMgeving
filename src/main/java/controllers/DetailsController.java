@@ -1,10 +1,13 @@
 package controllers;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import models.Details;
 import models.Experiment;
 import services.HttpClientBuilder;
 import views.DetailsView;
 import views.Observer;
+
+import java.util.Date;
 
 public class DetailsController {
     public ApplicationController applicationController;
@@ -20,13 +23,14 @@ public class DetailsController {
         HttpClientBuilder requester = new HttpClientBuilder();
         Details details = (Details) requester.httpGet(Details.class, "experimentDetails", String.valueOf(projectId));
 
-        Experiment detailedExperiment = new Experiment();
+        Experiment detailedExperiment = (Experiment) requester.httpGet(Experiment.class, "experimenten", String.valueOf(projectId));
+
+        System.out.println("detailedExperiment:: " + detailedExperiment.getExperimentId());
 
         detailedExperiment.details = details;
 
-
         detailedExperiment.observers = this.detailedExperiment.observers;
-
+        System.out.println("detailedExperiment.observers: "+detailedExperiment.observers.size());
         this.detailedExperiment = detailedExperiment;
 
         this.detailedExperiment.notifyObservers();
@@ -37,6 +41,7 @@ public class DetailsController {
     }
 
     public void clickedUpdate(
+        int experiment_id,
         String experiment_naam,
         String experiment_fase,
         String experiment_leider,
@@ -47,14 +52,22 @@ public class DetailsController {
         String details_kosten_anders,
         String details_doorlooptijd,
         String details_beschrijving,
-        String details_voortgang
+        String details_voortgang,
+        String message
     ) {
         Experiment experiment = new Experiment();
         experiment.setExperiment_naam(experiment_naam);
-        experiment.setFase(Experiment.Fase.valueOf(experiment_fase));
+
+        try {
+            experiment.setFase(Experiment.Fase.valueOf(experiment_fase));
+        }catch(IllegalArgumentException e){}
+
         experiment.setExperiment_leider(experiment_leider);
+        experiment.setExperimentID(experiment_id);
+        experiment.setWijziging_datum(new Date());
 
         Details experimentDetails = new Details();
+        experimentDetails.setExperimentId(experiment_id);
         experimentDetails.setNetwerk(details_netwerk);
         experimentDetails.setStatus(details_status);
         experimentDetails.setStatusKleur(details_status_kleur);
@@ -63,22 +76,17 @@ public class DetailsController {
         experimentDetails.setDoorlooptijd(details_doorlooptijd);
         experimentDetails.setBeschrijving(details_beschrijving);
         experimentDetails.setVoortgang(details_voortgang);
+
+        experiment.setDetails(experimentDetails);
+        HttpClientBuilder requester = new HttpClientBuilder();
+
+        requester.httpPostAdd(experiment, "experimenten", "update", String.valueOf(experiment.getExperimentId()));
+
+        requester.httpPostAdd(experimentDetails, "experimentDetails", "update", String.valueOf(experiment.getExperimentId()));
+
     }
 
-
-    public void loadDetails(DetailsView detailsView) {
-
-//        final int projectId = 1;
-//        HttpClientBuilder requester = new HttpClientBuilder();
-//        Details details = (Details) requester.httpGet(Details.class, "experimentDetails", String.valueOf(projectId));
-//
-//        detailedExperiment = new Experiment();
-//
-//        detailedExperiment.details = details;
-//
-//        registerObserver((Observer) detailsView);
-//        detailedExperiment.registerObserver(detailsView);
-//
-//        detailedExperiment.notifyObservers();
+    public void postMessage(String message){
+//        applicationController.httpClientBuilder.httpGet("experimenten", message, );
     }
 }

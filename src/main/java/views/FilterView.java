@@ -33,6 +33,8 @@ public class FilterView implements Observer {
     public CheckBox GewijzigdOp;
     public CheckBox GewijzigdAf;
     public TextField searchBar;
+    public CheckBox HoF;
+    public CheckBox GY;
 
 
     public FilterView() { }
@@ -134,6 +136,16 @@ public class FilterView implements Observer {
                 GewijzigdAf.setSelected(true);
                 controller.filter("orderEditedDesc");
                 break;
+            case 10:
+                uncheck();
+                HoF.setSelected(true);
+                controller.filter("filterHoF");
+                break;
+            case 11:
+                uncheck();
+                GY.setSelected(true);
+                controller.filter("FilterGY");
+                break;
         }
     }
 
@@ -147,6 +159,8 @@ public class FilterView implements Observer {
         LeiderAf.setSelected(false);
         GewijzigdOp.setSelected(false);
         GewijzigdAf.setSelected(false);
+        HoF.setSelected(false);
+        GY.setSelected(false);
 
     }
 }
