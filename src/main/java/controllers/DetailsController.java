@@ -21,19 +21,24 @@ public class DetailsController {
 
     public void showDetails(String projectId) {
         HttpClientBuilder requester = new HttpClientBuilder();
-        Details details = (Details) requester.httpGet(Details.class, "experimentDetails", String.valueOf(projectId));
+        try {
+            Details details = (Details) requester.httpGet(Details.class, "experimentDetails", String.valueOf(projectId));
 
-        Experiment detailedExperiment = (Experiment) requester.httpGet(Experiment.class, "experimenten", String.valueOf(projectId));
+            Experiment detailedExperiment = (Experiment) requester.httpGet(Experiment.class, "experimenten", String.valueOf(projectId));
 
-        System.out.println("detailedExperiment:: " + detailedExperiment.getExperimentId());
+            System.out.println("detailedExperiment:: " + detailedExperiment.getExperimentId());
 
-        detailedExperiment.details = details;
+            detailedExperiment.details = details;
 
-        detailedExperiment.observers = this.detailedExperiment.observers;
-        System.out.println("detailedExperiment.observers: "+detailedExperiment.observers.size());
-        this.detailedExperiment = detailedExperiment;
+            detailedExperiment.observers = this.detailedExperiment.observers;
+            System.out.println("detailedExperiment.observers: "+detailedExperiment.observers.size());
+            this.detailedExperiment = detailedExperiment;
 
-        this.detailedExperiment.notifyObservers();
+            this.detailedExperiment.notifyObservers();
+        } catch (Exception e) {
+            System.out.println("HTTP ERROR");
+        }
+
     }
 
     public void registerObserver(Observer observer) {
@@ -52,8 +57,7 @@ public class DetailsController {
         String details_kosten_anders,
         String details_doorlooptijd,
         String details_beschrijving,
-        String details_voortgang,
-        String message
+        String details_voortgang
     ) {
         Experiment experiment = new Experiment();
         experiment.setExperiment_naam(experiment_naam);

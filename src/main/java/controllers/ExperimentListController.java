@@ -1,6 +1,8 @@
 package controllers;
 
+import models.Experiment;
 import models.ExperimentList;
+import services.HttpClientBuilder;
 import views.ExperimentListView;
 import views.Observer;
 
@@ -15,5 +17,19 @@ public class ExperimentListController  {
 
     public void registerObserver(Observer observer) {
         experimentList.registerObserver(observer);
+    }
+
+    public void updateHeleList(){
+        HttpClientBuilder get = new HttpClientBuilder();
+        Experiment[] experimenten = (Experiment[]) get.httpGet(Experiment[].class, "experimenten");
+        updateList(experimenten);
+    }
+
+    public void updateList(Experiment[] experimenten) {
+        for (Experiment experiment : experimenten) {
+            experimentList.addToList(experiment);
+        }
+        experimentList.prepareList();
+
     }
 }
