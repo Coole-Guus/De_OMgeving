@@ -22,7 +22,6 @@ public class ExperimentListView implements Observer {
     public FlowPane experimentPane;
 
     public ExperimentListView() {
-        System.out.println("ExpListView Created 1");
     }
 
     public ExperimentListView(Stage primaryStage, Object experimentListController) {
@@ -46,13 +45,18 @@ public class ExperimentListView implements Observer {
     }
 
     private void updateList(ExperimentList experimentList) {
+        experimentPane.getChildren().clear();
         for (GridPane card : experimentList.experimentCards) {
             card.setOnMouseClicked( event -> {
                 LoadDetails(card.getId());
             });
-            experimentPane.getChildren().add(card);
+            try {
+                experimentPane.getChildren().add(card);
+            } catch (Exception e){
+            }
         }
     }
+
 
     private void LoadDetails(String id) {
         controller.applicationController.detailsController.showDetails(id);
@@ -63,7 +67,7 @@ public class ExperimentListView implements Observer {
     public void start() {
         controller.registerObserver(this);
 
-        controller.experimentList.updateList();
+        controller.updateList("");
 
         experimentPane.setPrefWrapLength(ViewUtilities.screenWidth - 260);
         experimentPane.setHgap(20);

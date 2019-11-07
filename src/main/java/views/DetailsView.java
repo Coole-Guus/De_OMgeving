@@ -1,5 +1,6 @@
 package views;
 
+import controllers.ApplicationController;
 import controllers.DetailsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 import models.Details;
 import models.Experiment;
 import models.Observable;
+import services.HttpClientBuilder;
 import sun.plugin.javascript.navig.Anchor;
 
 public class DetailsView implements Observer {
@@ -29,13 +31,16 @@ public class DetailsView implements Observer {
     public TextField message = new TextField();
 
 
+
     public AnchorPane updateHistoryPane = new AnchorPane();
 
     private int editingId;
+    private int experimentID;
+    private ApplicationController applicationController;
 
     private DetailsController controller;
     private Stage primaryStage;
-
+    private Integer integer;
     private Parent root;
 
     public DetailsView() { }
@@ -63,9 +68,12 @@ public class DetailsView implements Observer {
                 details_kosten_anders.getText(),
                 details_doorlooptijd.getText(),
                 details_beschrijving.getText(),
-                details_voortgang.getText(),
-                message.getText()
+                details_voortgang.getText()
         );
+    }
+
+    public void backButton() {
+        controller.applicationController.experimentListController.experimentList.notifyObservers();
     }
 
 
@@ -83,20 +91,38 @@ public class DetailsView implements Observer {
     public void update(Observable observable) {
         Experiment updatedExperiment = (Experiment) observable;
         Details details = updatedExperiment.details;
-        editingId = updatedExperiment.getExperimentId();
-        experiment_fase.setText(updatedExperiment.getFase().toString());
-        experiment_leider.setText(updatedExperiment.getExperiment_leider());
-        experiment_naam.setText(updatedExperiment.getExperiment_naam());
+        try {
+            editingId = updatedExperiment.getExperimentId();
+            experiment_fase.setText(updatedExperiment.getFase().toString());
+            experiment_leider.setText(updatedExperiment.getExperiment_leider());
+            experiment_naam.setText(updatedExperiment.getExperiment_naam());
 
+            details_beschrijving.setText(details.getBeschrijving());
+            details_kosten_anders.setText(details.getKostenAnders());
+            details_doorlooptijd.setText(details.getDoorlooptijd());
+            details_kosten_inovatie.setText(details.getKostenInovatie());
+            details_netwerk.setText(details.getNetwerk());
+            details_status.setText(details.getStatus());
+            details_status_kleur.setText(details.getStatusKleur());
+            details_voortgang.setText(details.getVoortgang());
+        } catch (NullPointerException e) {
+            System.out.println("details failed");
+            e.printStackTrace();
+            editingId = 0;
+            experiment_fase.setText("");
+            experiment_leider.setText("");
+            experiment_naam.setText("");
 
-        details_beschrijving.setText(details.getBeschrijving());
-        details_kosten_anders.setText(details.getKostenAnders());
-        details_doorlooptijd.setText(details.getDoorlooptijd());
-        details_kosten_inovatie.setText(details.getKostenInovatie());
-        details_netwerk.setText(details.getNetwerk());
-        details_status.setText(details.getStatus());
-        details_status_kleur.setText(details.getStatusKleur());
-        details_voortgang.setText(details.getVoortgang());
+            details_beschrijving.setText("");
+            details_kosten_anders.setText("");
+            details_doorlooptijd.setText("");
+            details_kosten_inovatie.setText("");
+            details_netwerk.setText("");
+            details_status.setText("");
+            details_status_kleur.setText("");
+            details_voortgang.setText("");
+        }
+
     }
 
     @Override
@@ -116,7 +142,12 @@ public class DetailsView implements Observer {
         Parent node = ViewUtilities.loadFxml("/DetailsView.fxml", primaryStage, controller, this);
         return node;
     }
-
+//    public void addDetails(){
+//        experimentID = (int) applicationController.httpClientBuilder.httpGet(Integer.class, "experimenten", "lastID");
+//        System.out.println(experimentID);
+////        Details newDetails = new Details();
+////        (new HttpClientBuilder()).httpPostAdd(newDetails, "experimentDetails", "create");
+//    }
     public void postMessage(){
 //        controller.postMessage(message.getText());
         System.out.println(message.getText());

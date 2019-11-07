@@ -10,11 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Experiment;
 import models.Observable;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import services.HttpClientBuilder;
-
-
-import javax.print.attribute.standard.RequestingUserName;
 
 public class AccountLoginView implements Observer {
 
@@ -66,7 +62,6 @@ public class AccountLoginView implements Observer {
         return null;
     }
 
-//  TODO rename users tabel to actual tabel name
     @FXML
     public void loginButton(){
 //        controller.login(httpClientBuilder.httpGet ("users", username.getText (), password.getText ()));

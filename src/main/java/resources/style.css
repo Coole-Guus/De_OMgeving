@@ -4,7 +4,7 @@
 
 
 .experiment-card {
-    -fx-padding: 20px;
+    -fx-padding: 20;
     -fx-hgap: 20;
     -fx-vgap: 10;
 }
@@ -25,16 +25,26 @@
     -fx-background-color: #FF9F8E;
 }
 
-.experiment-card-yellow {
-    -fx-background-color: #FFD942;
+.experiment-card-orange {
+    -fx-background-color: #FFB663;
 }
 
-.experiment-card-yellow:hover {
-    -fx-background-color: #FFECA8;
+.experiment-card-orange:hover {
+    -fx-background-color: #FFCE9B;
 }
 
 .experiment-card .label {
 
+}
+
+.account-card-gray {
+    -fx-background-color: #9e9e9e;
+}
+
+.account-card {
+    -fx-padding: 20;
+    -fx-hgap: 20;
+    -fx-vgap: 10;
 }
 
 .experiment-card .title {

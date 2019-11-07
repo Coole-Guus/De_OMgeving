@@ -1,6 +1,8 @@
 package views;
 
+import controllers.AccountLoginController;
 import controllers.ToolsController;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,21 +13,29 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Observable;
+import models.Tools;
 
 public class ToolsView implements Observer {
 
-    private  Stage primaryStage;
-    private  ToolsController controller;
+    private Stage primaryStage;
+    private ToolsController controller;
     @FXML
     private ChoiceBox countChoiceBox;
-    public ToolsView() {}
+    public ToolsView() { }
 
     public ToolsView(Stage primaryStage, Object toolsController) {
         this.primaryStage = primaryStage;
 
         this.controller = (ToolsController) toolsController;
-
     }
+
+    public void rolCheck() {
+        if(controller.rolCheck())
+
+            showAccountManagement ();
+    }
+
+
     public void show() {
 
         Parent root = ViewUtilities.loadFxml("/ExperimentAanmaakView.fxml", primaryStage, controller);
@@ -41,6 +51,24 @@ public class ToolsView implements Observer {
         stagePopUp.setScene(scene);
         stagePopUp.show();
     }
+
+    public void showAccountManagement() {
+
+        Parent root = ViewUtilities.loadFxml("/UserManagementView.fxml", primaryStage, controller.applicationController.userManagementController);
+//        controller.applicationController.userManagementController.createAccountList ();
+
+        Pane pane = (Pane) root.lookup("AnchorPane");
+
+        Scene scene = new Scene(root, 600, 400);
+        Stage stagePopUp = new Stage(StageStyle.DECORATED);
+        stagePopUp.setTitle("Accounts beheren");
+        stagePopUp.initOwner(primaryStage);
+        stagePopUp.initModality(Modality.APPLICATION_MODAL);
+
+        stagePopUp.setScene(scene);
+        stagePopUp.show();
+    }
+
     @Override
     public void setStage(Stage stage) {
 
@@ -48,7 +76,8 @@ public class ToolsView implements Observer {
 
     @Override
     public void setController(Object controller) {
-
+        ToolsController toolsController = (ToolsController) controller;
+        this.controller = toolsController;
     }
 
     @Override
