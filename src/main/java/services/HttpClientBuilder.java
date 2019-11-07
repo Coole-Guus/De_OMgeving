@@ -33,7 +33,7 @@ public class HttpClientBuilder {
             System.out.println("http://localhost:8080/" + tabel + totalVars);
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
             System.out.println("halllo");
-            getReturn (webResource, tabel, attributen, totalVars);
+            getReturn (webResource, tabel, totalVars, attributen);
 
         } catch (Exception e) {
 
@@ -110,7 +110,7 @@ public class HttpClientBuilder {
         return null;
     }
 
-    private void getReturn(WebResource webResource, String tabel) {
+    private void getReturn(WebResource webResource, String tabel, String totalVars, String... attributen) {
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 
         if (response.getStatus() != 200) {

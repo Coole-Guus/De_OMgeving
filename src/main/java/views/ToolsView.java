@@ -2,6 +2,7 @@ package views;
 
 import controllers.AccountLoginController;
 import controllers.ToolsController;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -26,11 +27,12 @@ public class ToolsView implements Observer {
         this.primaryStage = primaryStage;
 
         this.controller = (ToolsController) toolsController;
-
     }
 
     public void rolCheck() {
-        controller.rolCheck();
+        if(controller.rolCheck())
+
+            showAccountManagement ();
     }
 
 
@@ -49,6 +51,24 @@ public class ToolsView implements Observer {
         stagePopUp.setScene(scene);
         stagePopUp.show();
     }
+
+    public void showAccountManagement() {
+
+        Parent root = ViewUtilities.loadFxml("/UserManagementView.fxml", primaryStage, controller.applicationController.userManagementController);
+//        controller.applicationController.userManagementController.createAccountList ();
+
+        Pane pane = (Pane) root.lookup("AnchorPane");
+
+        Scene scene = new Scene(root, 600, 400);
+        Stage stagePopUp = new Stage(StageStyle.DECORATED);
+        stagePopUp.setTitle("Accounts beheren");
+        stagePopUp.initOwner(primaryStage);
+        stagePopUp.initModality(Modality.APPLICATION_MODAL);
+
+        stagePopUp.setScene(scene);
+        stagePopUp.show();
+    }
+
     @Override
     public void setStage(Stage stage) {
 

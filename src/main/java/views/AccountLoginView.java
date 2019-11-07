@@ -62,7 +62,6 @@ public class AccountLoginView implements Observer {
         return null;
     }
 
-//  TODO rename users tabel to actual tabel name
     @FXML
     public void loginButton(){
 //        controller.login(httpClientBuilder.httpGet ("users", username.getText (), password.getText ()));

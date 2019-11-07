@@ -44,7 +44,7 @@ public class Experiment implements Observable {
     }
 
     public enum Color {
-       @SerializedName("Groen") GREEN,
+        @SerializedName("Groen") GREEN,
         @SerializedName("Oranje") ORANGE,
         @SerializedName("Rood") RED
     }
