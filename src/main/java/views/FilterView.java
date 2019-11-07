@@ -140,7 +140,7 @@ public class FilterView implements Observer {
                     break;
                 case 11:
                     GY.setSelected(true);
-                    controller.filter("FilterGY");
+                    controller.filter("filterGY");
                     break;
             }
         }

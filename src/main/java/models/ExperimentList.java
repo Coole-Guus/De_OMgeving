@@ -55,7 +55,7 @@ public class ExperimentList implements Observable {
                 experimentCards.add(card);
             }
         } catch (NullPointerException e) {
-            Label errorLabel = new Label("An error occurred whilst trying to retrieve data...");
+            Label errorLabel = new Label("An error occurred whilst trying to retrieve (some of) the data...");
             GridPane errorPane = new GridPane();
             errorPane.getChildren().add(errorLabel);
             experimentCards.add(errorPane);
