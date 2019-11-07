@@ -69,7 +69,7 @@ public class HttpClientBuilder {
         return null;
     }
 
-    public void httpPostAdd(Object object, String tabel, String... attributen) {
+    public String httpPostAdd(Object object, String tabel, String... attributen) {
         try {
             Client client = Client.create();
 
@@ -89,7 +89,9 @@ public class HttpClientBuilder {
             System.out.println("POST TO " + "http://localhost:8080/" + tabel + totalVars);
             System.out.println(json);
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
-            ClientResponse response = webResource.type("application/json").post(ClientResponse.class, json);
+            String response = webResource.type("application/json").post(String.class, json);
+
+            return response;
             //"http://localhost:8080/experimenten/create")
 
            } catch (Exception e) {
@@ -97,6 +99,8 @@ public class HttpClientBuilder {
             e.printStackTrace();
 
         }
+
+        return null;
     }
 
     private void getReturn(WebResource webResource, String tabel) {

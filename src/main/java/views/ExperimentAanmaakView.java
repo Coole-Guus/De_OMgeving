@@ -114,7 +114,10 @@ public class ExperimentAanmaakView implements Observer{
                 break;
         }
         Experiment newExperiment = new Experiment(50, projectname, ts, fase, projectleader1, color);
-        (new HttpClientBuilder()).httpPostAdd(newExperiment, "experimenten", "create");
+        System.out.println(
+                (new HttpClientBuilder()).httpPostAdd(newExperiment, "experimenten", "create")
+        );
+
 }
 
     public void show() {
