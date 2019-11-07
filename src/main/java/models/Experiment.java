@@ -29,8 +29,19 @@ public class Experiment implements Observable {
 
     private String status;
 
-    @Expose
     private Color color;
+
+    public void setExperimentID(int experiment_id) {
+        this.experimentID = experiment_id;
+    }
+
+    public void setWijziging_datum(Date date) {
+        this.wijziging_datum = date;
+    }
+
+    public void setDetails(Details experimentDetails) {
+        this.details = experimentDetails;
+    }
 
     public enum Color {
        @SerializedName("Groen") GREEN,
