@@ -59,6 +59,8 @@ public class UserManagementView implements Observer {
 
     private void updateList(UserManagement userManagement) {
         System.out.println ("set getChildren");
+        accountList.getChildren ().clear ();
+        accountList.getChildren().removeAll ();
         accountList.getChildren().add(userManagement.accountCard);
     }
 

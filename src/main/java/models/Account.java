@@ -1,5 +1,7 @@
 package models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import views.Observer;
 
 public class Account implements Observable {
@@ -16,21 +18,27 @@ public class Account implements Observable {
         return accountRol;
     }
 
-    public String getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 
-    public String accountId;
+    @Expose
+    public int accountId;
+    @Expose
     public String accountNaam;
+    @Expose
     public String accountWachtwoord;
+    @Expose
     public accountRole accountRol;
 
     public enum accountRole
     {
-        Gebruiker, Medewerker, Admin
+        Gebruiker,
+        Medewerker,
+        Admin
     }
 
-    public Account(String userName, String passwd, String accountRole, String accountId) {
+    public Account(String userName, String passwd, String accountRole, int accountId) {
         this.accountNaam = userName;
         this.accountWachtwoord = passwd;
         this.accountId = accountId;

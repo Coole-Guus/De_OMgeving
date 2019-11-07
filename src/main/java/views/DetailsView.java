@@ -68,9 +68,12 @@ public class DetailsView implements Observer {
                 details_kosten_anders.getText(),
                 details_doorlooptijd.getText(),
                 details_beschrijving.getText(),
-                details_voortgang.getText(),
-                message.getText()
+                details_voortgang.getText()
         );
+    }
+
+    public void backButton() {
+        controller.applicationController.experimentListController.experimentList.notifyObservers();
     }
 
 
@@ -88,26 +91,43 @@ public class DetailsView implements Observer {
     public void update(Observable observable) {
         Experiment updatedExperiment = (Experiment) observable;
         Details details = updatedExperiment.details;
-        editingId = updatedExperiment.getExperimentId();
-        experiment_fase.setText(updatedExperiment.getFase().toString());
-        experiment_leider.setText(updatedExperiment.getExperiment_leider());
-        experiment_naam.setText(updatedExperiment.getExperiment_naam());
+        try {
+            editingId = updatedExperiment.getExperimentId();
+            experiment_fase.setText(updatedExperiment.getFase().toString());
+            experiment_leider.setText(updatedExperiment.getExperiment_leider());
+            experiment_naam.setText(updatedExperiment.getExperiment_naam());
 
+            details_beschrijving.setText(details.getBeschrijving());
+            details_kosten_anders.setText(details.getKostenAnders());
+            details_doorlooptijd.setText(details.getDoorlooptijd());
+            details_kosten_inovatie.setText(details.getKostenInovatie());
+            details_netwerk.setText(details.getNetwerk());
+            details_status.setText(details.getStatus());
+            details_status_kleur.setText(details.getStatusKleur());
+            details_voortgang.setText(details.getVoortgang());
+        } catch (NullPointerException e) {
+            System.out.println("details failed");
+            e.printStackTrace();
+            editingId = 0;
+            experiment_fase.setText("");
+            experiment_leider.setText("");
+            experiment_naam.setText("");
 
-        details_beschrijving.setText(details.getBeschrijving());
-        details_kosten_anders.setText(details.getKostenAnders());
-        details_doorlooptijd.setText(details.getDoorlooptijd());
-        details_kosten_inovatie.setText(details.getKostenInovatie());
-        details_netwerk.setText(details.getNetwerk());
-        details_status.setText(details.getStatus());
-        details_status_kleur.setText(details.getStatusKleur());
-        details_voortgang.setText(details.getVoortgang());
+            details_beschrijving.setText("");
+            details_kosten_anders.setText("");
+            details_doorlooptijd.setText("");
+            details_kosten_inovatie.setText("");
+            details_netwerk.setText("");
+            details_status.setText("");
+            details_status_kleur.setText("");
+            details_voortgang.setText("");
+        }
+
     }
 
     @Override
     public void start() {
         loadUpdateHistory();
-        System.out.println();
         controller.registerObserver(this);
     }
 

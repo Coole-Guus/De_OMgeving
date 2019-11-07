@@ -18,56 +18,59 @@ public class ExperimentList implements Observable {
     public ArrayList<GridPane> experimentCards = new ArrayList<>();
 
     public void makeList() {
-        experimentCards.clear();
-        for(Experiment experiment : experimentList) {
-            GridPane card = new GridPane();
-            card.setId(Integer.toString(experiment.getExperimentId()));
-            card.getStyleClass().add("experiment-card");
-            card.setMinWidth(ViewUtilities.screenWidth/5);
-            card.setMinHeight(ViewUtilities.screenHeight/5);
+        try {
+            for(Experiment experiment : experimentList) {
+                GridPane card = new GridPane();
+                card.setId(Integer.toString(experiment.getExperimentId()));
+                card.getStyleClass().add("experiment-card");
+                card.setMinWidth(ViewUtilities.screenWidth/5);
+                card.setMinHeight(ViewUtilities.screenHeight/5);
 
-            switch (experiment.getColor()) {
-                case "GREEN":
-                    card.getStyleClass().add("experiment-card-green");
-                    break;
-                case "ORANGE":
-                    card.getStyleClass().add("experiment-card-yellow");
-                    break;
-                case "RED":
-                    card.getStyleClass().add("experiment-card-red");
-                    break;
+                switch (experiment.getColor()) {
+                    case "GREEN":
+                        card.getStyleClass().add("experiment-card-green");
+                        break;
+                    case "ORANGE":
+                        card.getStyleClass().add("experiment-card-orange");
+                        break;
+                    case "RED":
+                        card.getStyleClass().add("experiment-card-red");
+                        break;
+                }
+
+                Label nameLabel = new Label();
+                nameLabel.setText(experiment.getExperiment_naam());
+                nameLabel.getStyleClass().add("title");
+                card.add(nameLabel, 0, 0, 2, 1);
+
+                card.add(new Label("Experiment-leader:"), 0, 1);
+                card.add(new Label(experiment.getExperiment_leider()), 1, 1);
+
+                card.add(new Label("Laatst gewijzigd: "), 0, 2);
+                card.add(new Label(experiment.getWijziging_datum()), 1, 2);
+
+                card.add(new Label("Status: "), 0, 3);
+                card.add(new Label(experiment.getStatus()), 1, 3);
+
+                experimentCards.add(card);
             }
-
-            Label nameLabel = new Label();
-            nameLabel.setText(experiment.getExperiment_naam());
-            nameLabel.getStyleClass().add("title");
-            card.add(nameLabel, 0, 0, 2, 1);
-
-            card.add(new Label("Experiment-leader:"), 0, 1);
-            card.add(new Label(experiment.getExperiment_leider()), 1, 1);
-
-            card.add(new Label("Laatst gewijzigd: "), 0, 2);
-            card.add(new Label(experiment.getWijziging_datum()), 1, 2);
-
-            card.add(new Label("Status: "), 0, 3);
-            card.add(new Label(experiment.getStatus()), 1, 3);
-
-            experimentCards.add(card);
+        } catch (NullPointerException e) {
+            Label errorLabel = new Label("An error occurred whilst trying to retrieve (some of) the data...");
+            GridPane errorPane = new GridPane();
+            errorPane.getChildren().add(errorLabel);
+            experimentCards.add(errorPane);
         }
     }
 
-    public void updateList() {
-        fillList();
+    public void prepareList() {
         makeList();
+        System.out.println("list size" + experimentList.size());
+        System.out.println("cards size" + experimentCards.size());
         notifyObservers();
     }
 
-    public void fillList() {
-        //replace with database baloney
-        for (int i = 1; i < 75; i++) {
-            Experiment experiment = new Experiment(i, "Experiment_naam_" + i, new Date(2323223232L), Experiment.Fase.IDEE, "Henk van Damme", Experiment.Color.GREEN);
-            experimentList.add(experiment);
-        }
+    public void addToList(Experiment experiment) {
+        experimentList.add(experiment);
     }
 
     @Override
@@ -82,4 +85,8 @@ public class ExperimentList implements Observable {
         }
     }
 
+    public void clearList() {
+        experimentList.clear();
+        experimentCards.clear();
+    }
 }
