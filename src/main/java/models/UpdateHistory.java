@@ -1,10 +1,12 @@
 package models;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import views.Observer;
 import views.ViewUtilities;
 
@@ -25,7 +27,10 @@ public class UpdateHistory implements Observable {
             VBox card = new VBox();
             card.getStyleClass().add("update-card");
 
-            card.getChildren().add(new Label(update.getMessage()));
+            Label messageLabel = new Label(update.getMessage());
+            messageLabel.setPadding(new Insets(10));
+            messageLabel.setFont(new Font(15));
+            card.getChildren().add(messageLabel);
 
             HBox info = new HBox();
             info.getStyleClass().add("update-info");
@@ -33,7 +38,11 @@ public class UpdateHistory implements Observable {
 
             info.getChildren().add(new Label( "on: " + update.getMessageDate()));
             card.getChildren().add(info);
+            info.setPadding(new Insets(0, 10, 0, 10));
             card.getChildren().add(new Separator());
+
+
+
             updateCards.add(card);
         }
     }

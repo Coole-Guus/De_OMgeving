@@ -20,11 +20,6 @@
          <content>
             <VBox prefHeight="865.0" prefWidth="385.0" fx:id="messages">
                <children>
-                  <Separator prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                  </Separator>
                </children>
             </VBox>
          </content>
