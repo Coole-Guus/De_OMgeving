@@ -102,7 +102,6 @@ public class DetailsView implements Observer {
     @Override
     public void start() {
         loadUpdateHistory();
-        System.out.println();
         controller.registerObserver(this);
     }
 

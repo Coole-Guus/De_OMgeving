@@ -1,6 +1,7 @@
 package models;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -14,7 +15,7 @@ public class UpdateHistory implements Observable {
 
     private ArrayList<Observer> observers = new ArrayList<>();
 
-    private ArrayList<UpdateMessage> updateList = new ArrayList<>();
+    public ArrayList<UpdateMessage> updateList = new ArrayList<>();
 
     public ArrayList<VBox> updateCards = new ArrayList<>();
 
@@ -29,8 +30,10 @@ public class UpdateHistory implements Observable {
             HBox info = new HBox();
             info.getStyleClass().add("update-info");
             info.getChildren().add(new Label("Posted by: " + update.getEditorName()));
-            info.getChildren().add(new Label( "on: " + update.getMessageDate()));
 
+            info.getChildren().add(new Label( "on: " + update.getMessageDate()));
+            card.getChildren().add(info);
+            card.getChildren().add(new Separator());
             updateCards.add(card);
         }
     }
@@ -40,26 +43,21 @@ public class UpdateHistory implements Observable {
     }
 
     public void updateList() {
-        fillList();
-        makeList();
         notifyObservers();
     }
 
-    public void fillList() {
-        //replace with database baloney
-        for (int i = 0; i < 10; i++) {
-            UpdateMessage update = new UpdateMessage("Roses are red,\nViolets are blue,\n", new Date(2323223232L), "Henk van Damme");
-            updateList.add(update);
-        }
-    }
+
 
     @Override
     public void registerObserver(Observer observer) {
-
+        observers.add(observer);
     }
 
     @Override
     public void notifyObservers() {
-
+        makeList();
+        for (Observer observer : observers) {
+            observer.update(this);
+        }
     }
 }

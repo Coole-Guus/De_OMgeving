@@ -34,6 +34,7 @@ public class DetailsController {
         this.detailedExperiment = detailedExperiment;
 
         this.detailedExperiment.notifyObservers();
+        this.applicationController.updateHistoryController.showUpdateHistory(projectId);
     }
 
     public void registerObserver(Observer observer) {
