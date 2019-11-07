@@ -122,12 +122,12 @@ public class DetailsView implements Observer {
         Parent node = ViewUtilities.loadFxml("/DetailsView.fxml", primaryStage, controller, this);
         return node;
     }
-    public void addDetails(){
-        experimentID = (int) applicationController.httpClientBuilder.httpGet(Integer.class, "experimenten", "lastID");
-        System.out.println(experimentID);
-//        Details newDetails = new Details();
-//        (new HttpClientBuilder()).httpPostAdd(newDetails, "experimentDetails", "create");
-    }
+//    public void addDetails(){
+//        experimentID = (int) applicationController.httpClientBuilder.httpGet(Integer.class, "experimenten", "lastID");
+//        System.out.println(experimentID);
+////        Details newDetails = new Details();
+////        (new HttpClientBuilder()).httpPostAdd(newDetails, "experimentDetails", "create");
+//    }
     public void postMessage(){
 //        controller.postMessage(message.getText());
         System.out.println(message.getText());

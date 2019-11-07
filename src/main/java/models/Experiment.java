@@ -26,9 +26,9 @@ public class Experiment implements Observable {
 
     public ArrayList<Observer> observers = new ArrayList<>();
 
-
     private String status;
 
+    @Expose
     private Color color;
 
     public void setExperimentID(int experiment_id) {
@@ -42,6 +42,7 @@ public class Experiment implements Observable {
     public void setDetails(Details experimentDetails) {
         this.details = experimentDetails;
     }
+
 
     public enum Color {
         @SerializedName("Groen") GREEN,
@@ -64,7 +65,7 @@ public class Experiment implements Observable {
 
     public Experiment() {}
 
-    public Experiment(int experimentId, String experiment_naam, Date wijziging_datum, Fase fase, String experiment_leider, Experiment.Color color) {
+    public Experiment(int experimentId, String experiment_naam, Date wijziging_datum, Fase fase, String experiment_leider, Color color) {
         this.experimentID = experimentId;
         this.experiment_naam = experiment_naam;
         this.wijziging_datum = wijziging_datum;

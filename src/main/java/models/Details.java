@@ -128,6 +128,7 @@ public class Details {
     public void setArchiefType(String archiefType) {
         this.archiefType = archiefType;
     }
+    public Details(){};
     public Details(int experiment_ID, String netwerk, String status,String status_kleur,String kosten_inovatie, String kosten_anders,String doorlooptijd,String beschrijving,String voortgang,boolean archief,String archief_type){
 
     }
