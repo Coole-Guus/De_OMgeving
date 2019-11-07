@@ -30,7 +30,7 @@ public class ExperimentList implements Observable {
                 case "GREEN":
                     card.getStyleClass().add("experiment-card-green");
                     break;
-                case "YELLOW":
+                case "ORANGE":
                     card.getStyleClass().add("experiment-card-yellow");
                     break;
                 case "RED":

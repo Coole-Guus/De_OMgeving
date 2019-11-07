@@ -1,7 +1,6 @@
 package views;
 
 import controllers.ToolsController;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,8 +11,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Observable;
-
-import java.io.IOException;
 
 public class ToolsView implements Observer {
 
@@ -31,7 +28,7 @@ public class ToolsView implements Observer {
     }
     public void show() {
 
-        Parent root = ViewUtilities.loadFxml("/Pop-up_voorbeeld.fxml", primaryStage, controller);
+        Parent root = ViewUtilities.loadFxml("/ExperimentAanmaakView.fxml", primaryStage, controller);
 
         Pane pane = (Pane) root.lookup("AnchorPane");
 
