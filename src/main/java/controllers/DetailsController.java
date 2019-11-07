@@ -1,5 +1,6 @@
 package controllers;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import models.Details;
 import models.Experiment;
 import services.HttpClientBuilder;
@@ -46,11 +47,16 @@ public class DetailsController {
         String details_kosten_anders,
         String details_doorlooptijd,
         String details_beschrijving,
-        String details_voortgang
+        String details_voortgang,
+        String message
     ) {
         Experiment experiment = new Experiment();
         experiment.setExperiment_naam(experiment_naam);
-        experiment.setFase(Experiment.Fase.valueOf(experiment_fase));
+
+        try {
+            experiment.setFase(Experiment.Fase.valueOf(experiment_fase));
+        }catch(IllegalArgumentException e){}
+
         experiment.setExperiment_leider(experiment_leider);
 
         Details experimentDetails = new Details();
@@ -62,6 +68,8 @@ public class DetailsController {
         experimentDetails.setDoorlooptijd(details_doorlooptijd);
         experimentDetails.setBeschrijving(details_beschrijving);
         experimentDetails.setVoortgang(details_voortgang);
+
+        experiment.setDetails(experimentDetails);
     }
 
     public void postMessage(String message){

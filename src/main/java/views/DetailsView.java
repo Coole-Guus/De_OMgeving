@@ -15,18 +15,18 @@ import sun.plugin.javascript.navig.Anchor;
 
 public class DetailsView implements Observer {
 
-    public TextField details_voortgang;
-    public TextField details_beschrijving;
-    public TextField details_doorlooptijd;
-    public TextField details_kosten_anders;
-    public TextField details_kosten_inovatie;
-    public TextField details_status_kleur;
-    public TextField details_status;
-    public TextField details_netwerk;
-    public TextField experiment_leider;
-    public TextField experiment_fase;
-    public TextField experiment_naam;
-    public TextField message;
+    public TextField details_voortgang = new TextField();
+    public TextField details_beschrijving = new TextField();
+    public TextField details_doorlooptijd = new TextField();
+    public TextField details_kosten_anders = new TextField();
+    public TextField details_kosten_inovatie = new TextField();
+    public TextField details_status_kleur = new TextField();
+    public TextField details_status = new TextField();
+    public TextField details_netwerk = new TextField();
+    public TextField experiment_leider = new TextField();
+    public TextField experiment_fase = new TextField();
+    public TextField experiment_naam = new TextField();
+    public TextField message = new TextField();
 
 
     public AnchorPane updateHistoryPane = new AnchorPane();
@@ -60,7 +60,8 @@ public class DetailsView implements Observer {
                 details_kosten_anders.getText(),
                 details_doorlooptijd.getText(),
                 details_beschrijving.getText(),
-                details_voortgang.getText()
+                details_voortgang.getText(),
+                message.getText()
         );
     }
 
@@ -80,6 +81,7 @@ public class DetailsView implements Observer {
         Experiment updatedExperiment = (Experiment) observable;
         Details details = updatedExperiment.details;
         System.out.println("getting update");
+        System.out.println(details_beschrijving);
         details_beschrijving.setText(details.getBeschrijving());
         details_kosten_anders.setText(details.getKostenAnders());
         details_doorlooptijd.setText(details.getDoorlooptijd());
@@ -102,7 +104,6 @@ public class DetailsView implements Observer {
         updateHistoryPane.getChildren().add(controller.applicationController.loadViewSegment(
                 UpdateHistoryView.class, controller.applicationController.updateHistoryController
         ));
-        System.out.println("pane: " + updateHistoryPane);
     }
 
     @Override

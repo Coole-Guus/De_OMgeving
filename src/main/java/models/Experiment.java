@@ -104,6 +104,10 @@ public class Experiment implements Observable {
         this.experiment_leider = experiment_leider;
     }
 
+    public void setDetails(Details details){
+        this.details = details;
+    }
+
     @Override
     public void registerObserver(Observer observer) {
         observers.add(observer);
