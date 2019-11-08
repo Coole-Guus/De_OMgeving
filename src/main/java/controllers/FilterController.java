@@ -1,12 +1,6 @@
 package controllers;
 
 public class FilterController {
-
-    /**
-     * @author Bart Looij
-     *
-     *
-     */
     public ApplicationController applicationController;
 
 

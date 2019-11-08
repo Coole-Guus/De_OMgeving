@@ -9,12 +9,6 @@ import views.UpdateHistoryView;
 import java.util.ArrayList;
 
 public class UpdateHistoryController {
-
-    /**
-     * @author Stefan
-     *
-     *
-     */
     private ApplicationController applicationController;
 
     UpdateHistory updatehistory;

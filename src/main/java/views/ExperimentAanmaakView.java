@@ -33,12 +33,6 @@ import java.util.Date;
 
 public class ExperimentAanmaakView implements Observer{
 
-    /**
-     * @author Maarten
-     *
-     *
-     */
-
     private Stage primaryStage;
     private PopUpVoorbeeldController controller;
     private ToolsView toolsView;

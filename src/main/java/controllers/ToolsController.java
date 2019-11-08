@@ -3,11 +3,6 @@ package controllers;
 import views.ToolsView;
 
 public class ToolsController  {
-
-    /**
-     * @author Leander
-     *
-     */
     public ApplicationController applicationController;
 
     public ToolsController(ApplicationController applicationController) {

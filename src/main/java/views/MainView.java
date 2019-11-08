@@ -16,11 +16,6 @@ import models.Observable;
 
 public class MainView implements Observer {
 
-    /**
-     * @author Stefan, Leander
-     *
-     *
-     */
     private ExperimentListView experimentListView;
     private FilterView filterView;
     private DetailsView detailsView;
