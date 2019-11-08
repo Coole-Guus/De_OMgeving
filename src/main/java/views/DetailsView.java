@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -21,8 +22,8 @@ import javax.xml.soap.Text;
 
 public class DetailsView implements Observer {
 
-    public TextField details_voortgang = new TextField();
-    public TextField details_beschrijving = new TextField();
+    public TextArea details_voortgang = new TextArea();
+    public TextArea details_beschrijving = new TextArea();
     public TextField details_doorlooptijd = new TextField();
     public TextField details_kosten_anders = new TextField();
     public TextField details_kosten_inovatie = new TextField();
@@ -32,7 +33,7 @@ public class DetailsView implements Observer {
     public TextField experiment_leider = new TextField();
     public TextField experiment_fase = new TextField();
     public TextField experiment_naam = new TextField();
-    public TextField message = new TextField();
+    public TextArea message = new TextArea();
 
     public VBox column1 = new VBox();
     public VBox column2 = new VBox();
@@ -113,6 +114,10 @@ public class DetailsView implements Observer {
             if (node.getStyleClass().contains("detailText")) {
                 TextField textField = (TextField) node;
                 textField.setEditable(!bool);
+            }
+            else if (node.getStyleClass().contains("detailTextArea")) {
+                TextArea textArea = (TextArea) node;
+                textArea.setEditable(!bool);
             }
         }
 
