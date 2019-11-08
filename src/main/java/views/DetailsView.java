@@ -151,7 +151,7 @@ public class DetailsView implements Observer {
             details_kosten_inovatie.setText(details.getKostenInovatie());
             details_netwerk.setText(details.getNetwerk());
             details_status.setText(details.getStatus());
-            details_status_kleur.setText(details.getStatusKleur());
+            details_status_kleur.setText(updatedExperiment.getColor());
             details_voortgang.setText(details.getVoortgang());
         } catch (NullPointerException e) {
             System.out.println("details failed");

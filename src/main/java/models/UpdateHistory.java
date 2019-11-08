@@ -22,7 +22,7 @@ public class UpdateHistory implements Observable {
     public ArrayList<VBox> updateCards = new ArrayList<>();
 
     public void makeList() {
-        updateCards.clear();
+        updateCards = new ArrayList<>();
         for(UpdateMessage update : updateList) {
             VBox card = new VBox();
             card.getStyleClass().add("update-card");
@@ -40,8 +40,6 @@ public class UpdateHistory implements Observable {
             card.getChildren().add(info);
             info.setPadding(new Insets(0, 10, 0, 10));
             card.getChildren().add(new Separator());
-
-
 
             updateCards.add(card);
         }

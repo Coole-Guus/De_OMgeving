@@ -70,6 +70,7 @@ public class DetailsController {
         experiment.setExperiment_leider(experiment_leider);
         experiment.setExperimentID(experiment_id);
         experiment.setWijziging_datum(new Date());
+        experiment.setColor(Experiment.Color.valueOf(details_status_kleur));
 
         Details experimentDetails = new Details();
         experimentDetails.setExperimentId(experiment_id);

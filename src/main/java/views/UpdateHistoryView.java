@@ -41,6 +41,7 @@ public class UpdateHistoryView implements Observer {
     @Override
     public void update(Observable observable) {
         UpdateHistory updateHistory = (UpdateHistory) observable;
+        messages.getChildren().removeAll(messages.getChildren());
         for(VBox vbox : updateHistory.updateCards) {
             messages.getChildren().add(vbox);
         }

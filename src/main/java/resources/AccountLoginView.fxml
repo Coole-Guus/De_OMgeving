@@ -1,16 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AccountLoginView">
+<AnchorPane prefHeight="400.0" prefWidth="900.0" stylesheets="/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.AccountLoginView">
    <children>
-      <Button layoutX="272.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#loginButton" text="Login" />
-      <TextField fx:id="username" layoutX="207.0" layoutY="112.0" promptText="Username">admin</TextField>
-      <TextField fx:id="password" layoutX="207.0" layoutY="185.0" promptText="Password">adminWachtwoord</TextField>
-      <Label layoutX="128.0" layoutY="117.0" text="Username:" />
-      <Label layoutX="130.0" layoutY="190.0" text="Password:" />
+      <StackPane prefHeight="161.0" prefWidth="500.0" AnchorPane.bottomAnchor="139.0" AnchorPane.leftAnchor="800.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="410.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Username:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="username" promptText="Username">admin</TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Password:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="password" promptText="Password">adminWachtwoord</PasswordField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#loginButton" prefHeight="31.0" prefWidth="290.0" style="-fx-background-color: #00DfA0;" text="Login" />
+                     </children>
+                  </HBox>
+               </children>
+               </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </StackPane>
    </children>
 </AnchorPane>
