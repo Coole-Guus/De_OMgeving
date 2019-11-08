@@ -43,7 +43,7 @@ public class MainView implements Observer {
     private Parent root;
 
     public HBox topRibbon = new HBox();
-    private Button[] experimentButtons = new Button[3];
+    private Button[] experimentButtons = new Button[4];
 
     public MainView() { }
 
@@ -98,14 +98,16 @@ public class MainView implements Observer {
                 // change on release
                 "Groen",
                 "Oranje",
-                "Rood" };
+                "Rood",
+                "Alle"};
         for(int i = 0; i < experimentButtons.length; i++) {
             Button button = new Button();
 //            button.addEventHandler(ActionEvent.ACTION, event -> toggleStatus());
             button.setText(labels[i]);
             button.setId(Integer.toString(i));
             button.setPrefHeight(50);
-            button.setMinWidth(200);
+            //-200 / 4
+            button.setMinWidth((ViewUtilities.screenWidth - 250) / 4);
             experimentButtons[i] = button;
         }
 
@@ -115,9 +117,11 @@ public class MainView implements Observer {
         experimentButtons[1].setOnAction(event -> {
             controller.filter("filterOrange");
         });
-
         experimentButtons[2].setOnAction(event -> {
             controller.filter("filterRed");
+        });
+        experimentButtons[3].setOnAction(event -> {
+            controller.reloadView();
         });
 
     }

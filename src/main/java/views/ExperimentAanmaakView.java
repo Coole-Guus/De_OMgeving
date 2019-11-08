@@ -49,6 +49,7 @@ public class ExperimentAanmaakView implements Observer{
     @FXML public ComboBox combobox;
     @FXML public TextArea beschrijving;
     @FXML public ComboBox statuskleur;
+
     private Experiment.Color color;
     //Need an empty constructor for FXML
     public ExperimentAanmaakView(){}
@@ -61,7 +62,6 @@ public class ExperimentAanmaakView implements Observer{
         status.addAll("choice1", "choice2","choice3");
         combobox.setItems(list);
         statuskleur.setItems(status);
-
     }
 
     public void addExperiment(){
@@ -125,7 +125,9 @@ public class ExperimentAanmaakView implements Observer{
         experimentDetails.setVoortgang("");
         experimentDetails.setArchiefType(null);
         requester.httpPostAdd(experimentDetails, "experimentDetails", "create");
-}
+
+//        primaryStage.hide();
+    }
 
     public void show() {
 
