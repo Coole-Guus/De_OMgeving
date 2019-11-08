@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ToolsView">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ToolsView">
     <children>
         <Label text="Tools">
             <font>
@@ -19,8 +21,17 @@
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin></Separator>
-        <Button mnemonicParsing="false" text="Button" />
-        <Button mnemonicParsing="false" onAction="#rolCheck" text="user management" />
-        <Button mnemonicParsing="false" onMouseClicked="#show" text="Nieuw project" />
+        <Button minWidth="150.0" mnemonicParsing="false" text="Button">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin></Button>
+        <Button minWidth="150.0" mnemonicParsing="false" onAction="#rolCheck" text="user management">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin></Button>
+        <Button minWidth="150.0" mnemonicParsing="false" onMouseClicked="#show" text="Nieuw project">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin></Button>
     </children>
 </VBox>
