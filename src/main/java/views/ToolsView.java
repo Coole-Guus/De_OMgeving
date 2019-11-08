@@ -69,6 +69,11 @@ public class ToolsView implements Observer {
         stagePopUp.show();
     }
 
+    @FXML
+    public void refreshButton() {
+        controller.refreshbutton();
+    }
+
     @Override
     public void setStage(Stage stage) {
 
