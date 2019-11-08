@@ -94,8 +94,8 @@ public class MainView implements Observer {
     public void setupExperimentButtons() {
         String labels[] = {
                 // change on release
-                "ShowDetails",
-                "ShowList",
+                "Groen",
+                "Oranje",
                 "Rood" };
         for(int i = 0; i < experimentButtons.length; i++) {
             Button button = new Button();
@@ -108,11 +108,9 @@ public class MainView implements Observer {
         }
 
         experimentButtons[0].setOnMouseClicked(event -> {
-            showDetails();
             controller.filter("filterGreen");
         });
         experimentButtons[1].setOnAction(event -> {
-            showList();
             controller.filter("filterOrange");
         });
 
@@ -127,7 +125,7 @@ public class MainView implements Observer {
     }
 
     public void loadButtons(Button buttonlist[]) {
-            topRibbon.getChildren().removeAll();
+            topRibbon.getChildren().clear();
 
         for (Button button : buttonlist) {
             topRibbon.getChildren().add(button);

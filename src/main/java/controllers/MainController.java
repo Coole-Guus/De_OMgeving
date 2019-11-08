@@ -17,8 +17,9 @@ public class MainController {
     }
 
 
-    public void filter(String Filtertype){
-        applicationController.httpClientBuilder.httpGet("experimenten", Filtertype);
+    public void filter(String filtertype){
+        applicationController.httpClientBuilder.httpGet("experimenten", filtertype);
+        applicationController.experimentListController.updateList("/" + filtertype);
 
     }
 
