@@ -18,4 +18,8 @@ public class ToolsController  {
     public boolean rolCheck() {
         return applicationController.accountLoginController.getRol ().contains ("Admin");
     }
+
+    public void refreshbutton() {
+        applicationController.experimentListController.updateList("");
+    }
 }
