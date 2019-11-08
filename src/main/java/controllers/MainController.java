@@ -4,6 +4,12 @@ import views.AccountLoginView;
 import views.MainView;
 
 public class MainController {
+
+    /**
+     * @author Stefan, Leander
+     *
+     *
+     */
     public ApplicationController applicationController;
 
     public MainController(ApplicationController applicationController) {
@@ -15,8 +21,9 @@ public class MainController {
     }
 
 
-    public void filter(String Filtertype){
-        applicationController.httpClientBuilder.httpGet("experimenten", Filtertype);
+    public void filter(String filtertype){
+        applicationController.httpClientBuilder.httpGet("experimenten", filtertype);
+        applicationController.experimentListController.updateList("/" + filtertype);
 
     }
 

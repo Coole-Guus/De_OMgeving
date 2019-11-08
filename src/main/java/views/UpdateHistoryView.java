@@ -10,6 +10,12 @@ import models.UpdateHistory;
 
 public class UpdateHistoryView implements Observer {
 
+    /**
+     * @author Leander
+     *
+     *
+     */
+
     private Stage primaryStage;
 
     public UpdateHistoryController controller;
@@ -40,6 +46,7 @@ public class UpdateHistoryView implements Observer {
     @Override
     public void update(Observable observable) {
         UpdateHistory updateHistory = (UpdateHistory) observable;
+        messages.getChildren().removeAll(messages.getChildren());
         for(VBox vbox : updateHistory.updateCards) {
             messages.getChildren().add(vbox);
         }

@@ -36,4 +36,16 @@ public class UpdateMessage {
     public String getEditorName() {
         return editorName;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setMessageDate(Date messageDate) {
+        this.messageDate = messageDate;
+    }
+
+    public void setEditorName(String editorName) {
+        this.editorName = editorName;
+    }
 }

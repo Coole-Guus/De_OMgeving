@@ -9,6 +9,12 @@ import views.UpdateHistoryView;
 import java.util.ArrayList;
 
 public class UpdateHistoryController {
+
+    /**
+     * @author Stefan
+     *
+     *
+     */
     private ApplicationController applicationController;
 
     UpdateHistory updatehistory;
@@ -24,9 +30,11 @@ public class UpdateHistoryController {
     public void showUpdateHistory(String projectId) {
         HttpClientBuilder requester = new HttpClientBuilder();
         UpdateMessage[] updateHistory = (UpdateMessage[]) requester.httpGet(UpdateMessage[].class, "messages", String.valueOf(projectId));
-
+        System.out.println("GOT " + updateHistory.length + " MESSAGES ");
+        updatehistory.updateList = new ArrayList<>();
         for(UpdateMessage updateMessage : updateHistory)
             updatehistory.updateList.add(updateMessage);
+
         updatehistory.notifyObservers();
     }
 

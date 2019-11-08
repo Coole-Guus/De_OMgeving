@@ -33,9 +33,11 @@
     -fx-background-color: #FFCE9B;
 }
 
-.experiment-card .label {
-
+.update-card {
+    -fx-background-color: #70DBFF;
+    -fx-padding: 10;
 }
+
 
 .account-card-gray {
     -fx-background-color: #9e9e9e;

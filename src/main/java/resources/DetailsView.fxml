@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,20 +12,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1005.0" prefWidth="1511.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <padding>
          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
       </padding>
       <center>
-         <VBox fx:id="backButton" prefHeight="870.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+         <VBox fx:id="column2" prefHeight="870.0" prefWidth="320.0" BorderPane.alignment="CENTER">
             <children>
                <Label minWidth="50.0" text="Netwerk: ">
                   <font>
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_netwerk" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="details_netwerk" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
@@ -37,7 +38,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_status" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="details_status" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
@@ -50,7 +51,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_status_kleur" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="details_status_kleur" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
@@ -63,7 +64,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_kosten_inovatie" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="details_kosten_inovatie" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
@@ -76,7 +77,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_kosten_anders" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="details_kosten_anders" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
@@ -89,7 +90,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_doorlooptijd" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="details_doorlooptijd" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
                   <padding>
                      <Insets bottom="10.0" />
                   </padding>
@@ -102,30 +103,24 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_doorlooptijd11" maxWidth="280.0" minWidth="200.0" prefWidth="280.0">
-                  <padding>
-                     <Insets bottom="10.0" />
-                  </padding>
-                  <opaqueInsets>
-                     <Insets />
-                  </opaqueInsets>
-               </TextField>
+               <TextArea fx:id="details_beschrijving" editable="false" maxHeight="100.0" maxWidth="280.0" prefHeight="200.0" prefWidth="200.0" styleClass="detailTextArea" />
                <Label minWidth="50.0" text="Voortgang: ">
                   <font>
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_doorlooptijd1" maxWidth="280.0" minWidth="200.0">
-                  <padding>
-                     <Insets bottom="10.0" />
-                  </padding>
-               </TextField>
+               <TextArea fx:id="details_voortgang" editable="false" maxHeight="100.0" maxWidth="280.0" prefHeight="100.0" prefWidth="280.0" styleClass="detailTextArea" />
                <Separator prefWidth="200.0">
                   <VBox.margin>
                      <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                </Separator>
-               <Button mnemonicParsing="false" text="wijzigen details">
+               <Button fx:id="editButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#editDetails" text="Experiment wijzigen">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Button>
+               <Button fx:id="saveButton" alignment="TOP_CENTER" disable="true" layoutX="10.0" layoutY="539.0" mnemonicParsing="false" onAction="#clickedUpdate" text="wijzigingen opslaan">
                   <font>
                      <Font size="16.0" />
                   </font>
@@ -134,7 +129,7 @@
          </VBox>
       </center>
       <left>
-         <VBox prefHeight="870.0" prefWidth="388.0" BorderPane.alignment="CENTER">
+         <VBox fx:id="column1" prefHeight="870.0" prefWidth="388.0" BorderPane.alignment="CENTER">
             <children>
                <Label text="Experiment naam: ">
                   <font>
@@ -147,7 +142,7 @@
                      <Insets />
                   </VBox.margin>
                </Label>
-               <TextField fx:id="experiment_naam" maxWidth="280.0" minWidth="200.0" prefHeight="25.0" prefWidth="321.0">
+               <TextField fx:id="experiment_naam" editable="false" maxWidth="280.0" minWidth="200.0" prefHeight="25.0" prefWidth="321.0" styleClass="detailText">
                   <VBox.margin>
                      <Insets bottom="5.0" />
                   </VBox.margin>
@@ -160,7 +155,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="experiment_fase" maxWidth="280.0" minWidth="200.0">
+               <TextField fx:id="experiment_fase" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
                   <VBox.margin>
                      <Insets bottom="5.0" />
                   </VBox.margin>
@@ -173,7 +168,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="experiment_leider" maxWidth="280.0">
+               <TextField fx:id="experiment_leider" editable="false" maxWidth="280.0" styleClass="detailText">
                   <VBox.margin>
                      <Insets bottom="5.0" />
                   </VBox.margin>
@@ -186,7 +181,7 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField maxWidth="280.0" minWidth="200.0">
+               <TextField editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
                   <VBox.margin>
                      <Insets bottom="5.0" />
                   </VBox.margin>
@@ -208,12 +203,8 @@
                      <Insets />
                   </VBox.margin>
                </AnchorPane>
-               <TextField fx:id="message" prefHeight="28.0" prefWidth="400.0">
-                  <VBox.margin>
-                     <Insets top="5.0" />
-                  </VBox.margin>
-               </TextField>
-               <Button fx:id="postMessage" mnemonicParsing="false" onAction="#postMessage" prefHeight="25.0" prefWidth="93.0" text="Post">
+               <TextArea fx:id="message" editable="false" maxHeight="100.0" maxWidth="400.0" prefHeight="100.0" prefWidth="200.0" styleClass="detailTextArea" />
+               <Button fx:id="postMessage" disable="true" mnemonicParsing="false" onAction="#postMessage" prefHeight="25.0" prefWidth="93.0" text="Post">
                   <VBox.margin>
                      <Insets top="5.0" />
                   </VBox.margin>

@@ -10,6 +10,12 @@ import models.ExperimentList;
 import models.Observable;
 
 public class ExperimentListView implements Observer {
+
+    /**
+     * @author Leander
+     *
+     *
+     */
     private  Stage primaryStage;
     private  ExperimentListController controller;
 

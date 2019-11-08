@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import models.Details;
 import models.Experiment;
 import models.Observable;
 import javafx.scene.control.TextField;
@@ -31,6 +32,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ExperimentAanmaakView implements Observer{
+
+    /**
+     * @author Maarten
+     *
+     *
+     */
 
     private Stage primaryStage;
     private PopUpVoorbeeldController controller;
@@ -102,7 +109,22 @@ public class ExperimentAanmaakView implements Observer{
 
         Experiment newExperiment = new Experiment(150, projectname, ts, fase, projectleader1, color);
         System.out.println(color);
-        (new HttpClientBuilder()).httpPostAdd(newExperiment, "experimenten", "create");
+        HttpClientBuilder requester = new HttpClientBuilder();
+        int experimentId = Integer.parseInt(
+                requester.httpPostAdd(newExperiment, "experimenten", "create")
+        );
+
+        Details experimentDetails = new Details();
+        experimentDetails.setExperimentId(experimentId);
+        experimentDetails.setNetwerk("");
+        experimentDetails.setBeschrijving("");
+        experimentDetails.setDoorlooptijd("");
+        experimentDetails.setKostenInovatie("");
+        experimentDetails.setKostenAnders("");
+        experimentDetails.setStatus("");
+        experimentDetails.setVoortgang("");
+        experimentDetails.setArchiefType(null);
+        requester.httpPostAdd(experimentDetails, "experimentDetails", "create");
 }
 
     public void show() {

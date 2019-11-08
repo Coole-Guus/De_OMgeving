@@ -7,6 +7,12 @@ import services.HttpClientBuilder;
 import views.Observer;
 
 public class ExperimentListController  {
+
+    /**
+     * @author Stefan, Leander
+     *
+     *
+     */
     public ApplicationController applicationController;
 
     public ExperimentList experimentList = new ExperimentList();

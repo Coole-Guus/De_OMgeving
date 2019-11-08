@@ -6,8 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Details;
 import models.Experiment;
@@ -15,10 +18,18 @@ import models.Observable;
 import services.HttpClientBuilder;
 import sun.plugin.javascript.navig.Anchor;
 
+import javax.xml.soap.Text;
+
 public class DetailsView implements Observer {
 
-    public TextField details_voortgang = new TextField();
-    public TextField details_beschrijving = new TextField();
+    /**
+     * @author Stefan
+     *
+     *
+     */
+
+    public TextArea details_voortgang = new TextArea();
+    public TextArea details_beschrijving = new TextArea();
     public TextField details_doorlooptijd = new TextField();
     public TextField details_kosten_anders = new TextField();
     public TextField details_kosten_inovatie = new TextField();
@@ -28,8 +39,14 @@ public class DetailsView implements Observer {
     public TextField experiment_leider = new TextField();
     public TextField experiment_fase = new TextField();
     public TextField experiment_naam = new TextField();
-    public TextField message = new TextField();
+    public TextArea message = new TextArea();
 
+    public VBox column1 = new VBox();
+    public VBox column2 = new VBox();
+
+    public Button editButton = new Button();
+    public Button saveButton = new Button();
+    public Button postMessage = new Button();
 
 
     public AnchorPane updateHistoryPane = new AnchorPane();
@@ -43,6 +60,8 @@ public class DetailsView implements Observer {
     private Integer integer;
     private Parent root;
 
+
+
     public DetailsView() { }
 
 
@@ -55,6 +74,7 @@ public class DetailsView implements Observer {
     }
 
     public void clickedUpdate(ActionEvent actionEvent) {
+        toggleEditable();
 
         this.controller.clickedUpdate(
                 editingId,
@@ -73,7 +93,41 @@ public class DetailsView implements Observer {
     }
 
     public void backButton() {
+        toggleEditable();
         controller.applicationController.experimentListController.experimentList.notifyObservers();
+    }
+
+    @FXML
+    public void editDetails() {
+        toggleEditable();
+    }
+
+    private void toggleEditable() {
+        Boolean bool = editButton.isDisabled();
+        System.out.println(bool);
+
+        editButton.setDisable(!bool);
+        saveButton.setDisable(bool);
+        postMessage.setDisable(bool);
+
+        for (Node node : column1.getChildren()) {
+            if (node.getStyleClass().contains("detailText")) {
+                TextField textField = (TextField) node;
+                textField.setEditable(!bool);
+            }
+        }
+        for (Node node : column2.getChildren()) {
+            if (node.getStyleClass().contains("detailText")) {
+                TextField textField = (TextField) node;
+                textField.setEditable(!bool);
+            }
+            else if (node.getStyleClass().contains("detailTextArea")) {
+                TextArea textArea = (TextArea) node;
+                textArea.setEditable(!bool);
+            }
+        }
+
+        message.setEditable(!bool);
     }
 
 
@@ -103,7 +157,7 @@ public class DetailsView implements Observer {
             details_kosten_inovatie.setText(details.getKostenInovatie());
             details_netwerk.setText(details.getNetwerk());
             details_status.setText(details.getStatus());
-            details_status_kleur.setText(details.getStatusKleur());
+            details_status_kleur.setText(updatedExperiment.getColor());
             details_voortgang.setText(details.getVoortgang());
         } catch (NullPointerException e) {
             System.out.println("details failed");
@@ -142,14 +196,24 @@ public class DetailsView implements Observer {
         Parent node = ViewUtilities.loadFxml("/DetailsView.fxml", primaryStage, controller, this);
         return node;
     }
-//    public void addDetails(){
-//        experimentID = (int) applicationController.httpClientBuilder.httpGet(Integer.class, "experimenten", "lastID");
-//        System.out.println(experimentID);
-////        Details newDetails = new Details();
-////        (new HttpClientBuilder()).httpPostAdd(newDetails, "experimentDetails", "create");
-//    }
+
+
+    /**
+     * @author Bart Looij
+     *
+     * postMessage method This will be called when the post button is pressed in the details view
+     * It wil take the experiment id and the text end send it ot the database
+     */
+
     public void postMessage(){
-//        controller.postMessage(message.getText());
-        System.out.println(message.getText());
+        if(message.getText() .equals("") || message.getText() .equals(" ") || message.getText() .equals("Plz don't do that")){
+            message.setText("Plz don't do that");
+        }else{
+            String experimentid = Integer.toString(editingId);
+            System.out.println(message.getText() + experimentid);
+            controller.postMessage(message.getText(), experimentid);
+            message.clear();
+        }
+
     }
 }

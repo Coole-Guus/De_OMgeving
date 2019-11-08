@@ -8,6 +8,12 @@ import java.io.IOException;
 
 public class ViewUtilities {
 
+    /**
+     * @author Leander, Maarten
+     *
+     *
+     */
+
     //the dimensions of the client's screen
     public static double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
     public static double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();

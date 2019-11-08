@@ -3,6 +3,11 @@ package controllers;
 import views.ToolsView;
 
 public class ToolsController  {
+
+    /**
+     * @author Leander
+     *
+     */
     public ApplicationController applicationController;
 
     public ToolsController(ApplicationController applicationController) {
@@ -15,5 +20,9 @@ public class ToolsController  {
 
     public boolean rolCheck() {
         return applicationController.accountLoginController.getRol ().contains ("Admin");
+    }
+
+    public void refreshbutton() {
+        applicationController.experimentListController.updateList("");
     }
 }

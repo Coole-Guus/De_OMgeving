@@ -28,6 +28,10 @@ public class Experiment implements Observable {
     @Expose
     private Color color;
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public void setExperimentID(int experiment_id) {
         this.experimentID = experiment_id;
     }
