@@ -17,6 +17,11 @@ import models.Tools;
 
 public class ToolsView implements Observer {
 
+    /**
+     * @author Leander
+     *
+     */
+
     private Stage primaryStage;
     private ToolsController controller;
     @FXML

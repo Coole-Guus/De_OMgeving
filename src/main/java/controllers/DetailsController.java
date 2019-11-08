@@ -12,6 +12,12 @@ import views.Observer;
 import java.util.Date;
 
 public class DetailsController {
+
+    /**
+     * @author Stefan, Leander
+     *
+     *
+     */
     public ApplicationController applicationController;
 
     private Experiment detailedExperiment = new Experiment();

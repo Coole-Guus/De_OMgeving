@@ -6,6 +6,12 @@ import views.AccountLoginView;
 import views.MainView;
 
 public class MainController {
+
+    /**
+     * @author Stefan, Leander
+     *
+     *
+     */
     public ApplicationController applicationController;
 
     public MainController(ApplicationController applicationController) {

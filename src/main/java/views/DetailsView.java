@@ -22,6 +22,12 @@ import javax.xml.soap.Text;
 
 public class DetailsView implements Observer {
 
+    /**
+     * @author Stefan
+     *
+     *
+     */
+
     public TextArea details_voortgang = new TextArea();
     public TextArea details_beschrijving = new TextArea();
     public TextField details_doorlooptijd = new TextField();
@@ -190,12 +196,14 @@ public class DetailsView implements Observer {
         Parent node = ViewUtilities.loadFxml("/DetailsView.fxml", primaryStage, controller, this);
         return node;
     }
-//    public void addDetails(){
-//        experimentID = (int) applicationController.httpClientBuilder.httpGet(Integer.class, "experimenten", "lastID");
-//        System.out.println(experimentID);
-////        Details newDetails = new Details();
-////        (new HttpClientBuilder()).httpPostAdd(newDetails, "experimentDetails", "create");
-//    }
+
+
+    /**
+     * @author Bart Looij
+     *
+     * postMessage method This will be called when the post button is pressed in the details view
+     * It wil take the experiment id and the text end send it ot the database
+     */
 
     public void postMessage(){
         if(message.getText() .equals("") || message.getText() .equals(" ") || message.getText() .equals("Plz don't do that")){

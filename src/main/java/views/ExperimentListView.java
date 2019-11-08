@@ -15,6 +15,12 @@ import models.Observable;
 import java.io.IOException;
 
 public class ExperimentListView implements Observer {
+
+    /**
+     * @author Leander
+     *
+     *
+     */
     private  Stage primaryStage;
     private  ExperimentListController controller;
 

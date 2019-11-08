@@ -11,6 +11,12 @@ import models.UpdateHistory;
 
 public class UpdateHistoryView implements Observer {
 
+    /**
+     * @author Leander
+     *
+     *
+     */
+
     private Stage primaryStage;
 
     public UpdateHistoryController controller;

@@ -9,6 +9,12 @@ import views.Observer;
 import java.lang.reflect.InvocationTargetException;
 
 public class ApplicationController {
+
+    /**
+     * @author Stefan, Leander
+     *
+     *
+     */
     private Stage primaryStage;
 
     //store all controllers

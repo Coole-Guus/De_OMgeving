@@ -78,6 +78,12 @@ public class FilterView implements Observer {
         return node;
     }
 
+    /**
+     * @author Bart Looij
+     *
+     *search this will take the text from the text box ent send it to the httpclient
+     */
+
     @FXML
     public void search(){
         if (searchBar.getText().isEmpty()) {
@@ -86,9 +92,17 @@ public class FilterView implements Observer {
         }
         else {
             controller.Search("filterSearch", searchBar.getText());
+            uncheck();
         }
 
     }
+
+    /**
+     * @author Bart Looij
+     *
+     * Checkpress method when one of the checkboxes is used then this method wilt start it will take the checkbox id and
+     * put it in the switch will cal the filter controller
+     */
 
     @FXML
     public void Checkpress(ActionEvent actionEvent) {
@@ -149,6 +163,12 @@ public class FilterView implements Observer {
             controller.applicationController.experimentListController.updateList("");
         }
     }
+
+    /**
+     * @author Bart Looij
+     *
+     * unchecks all checkboxes when checkbox is used
+     */
 
     public void uncheck(){
         LabUit.setSelected(false);
