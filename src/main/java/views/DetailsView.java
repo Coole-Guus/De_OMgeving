@@ -196,8 +196,16 @@ public class DetailsView implements Observer {
 ////        Details newDetails = new Details();
 ////        (new HttpClientBuilder()).httpPostAdd(newDetails, "experimentDetails", "create");
 //    }
+
     public void postMessage(){
-//        controller.postMessage(message.getText());
-        System.out.println(message.getText());
+        if(message.getText() .equals("") || message.getText() .equals(" ") || message.getText() .equals("Plz don't do that")){
+            message.setText("Plz don't do that");
+        }else{
+            String experimentid = Integer.toString(editingId);
+            System.out.println(message.getText() + experimentid);
+            controller.postMessage(message.getText(), experimentid);
+            message.clear();
+        }
+
     }
 }

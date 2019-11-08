@@ -1,8 +1,10 @@
 package controllers;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
+import models.Account;
 import models.Details;
 import models.Experiment;
+import models.Message;
 import services.HttpClientBuilder;
 import views.DetailsView;
 import views.Observer;
@@ -92,7 +94,22 @@ public class DetailsController {
 
     }
 
-    public void postMessage(String message){
-//        applicationController.httpClientBuilder.httpGet("experimenten", message, );
+    public void postMessage(String message, String experimentid){
+        applicationController.httpClientBuilder.httpGet ("accounts", "users", "accountId", "accountRol");
+        for(Account account : applicationController.httpClientBuilder.getAccounts()) {
+            if(account.getAccountNaam().contains(applicationController.accountLoginController.getUsername())) {
+                Message newMessage = new Message();
+                newMessage.setAccountId(Integer.parseInt(String.valueOf(account.getAccountId())));
+                newMessage.setBericht(message);
+                newMessage.setExperimentId(Integer.parseInt(experimentid));
+                System.out.println(newMessage);
+                applicationController.httpClientBuilder.httpPostAdd(newMessage, "messages", "addMessage");
+                System.out.println("message:" + message);
+                System.out.println("experimentid:" + experimentid);
+                System.out.println("account:" + account.getAccountId());
+
+
+            }
+        }
     }
 }
