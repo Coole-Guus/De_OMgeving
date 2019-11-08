@@ -2,11 +2,53 @@
     -fx-height: 100%;
 }
 
+.button {
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-border-radius: 0;
+    -fx-background-color: #B5ECFF;
+    -fx-border-color: #70DBFF;
+    -fx-background-radius : 0;
+}
+
+.green-button {
+    -fx-border-color: #4F6870;
+    -fx-background-color: #8CFF8E;
+}
+
+.green-button : hover {
+    -fx-background-color: #CCFFCC;
+}
+
+.orange-button {
+    -fx-border-color: #4F6870;
+    -fx-background-color: #FFB663;
+}
+
+.orange-button : hover {
+    -fx-background-color: #FFCE9B;
+}
+
+.red-button {
+    -fx-border-color: #4F6870;
+    -fx-background-color: #FF7256;
+}
+
+.red-button : hover {
+    -fx-background-color: #FF9F8E;
+}
+
+
+.update-info {
+    -fx-background-color: #B5ECFF;
+    -fx-padding: 5;
+}
 
 .experiment-card {
     -fx-padding: 20;
     -fx-hgap: 20;
     -fx-vgap: 10;
+    -fx-background-radius: 10;
 }
 
 .experiment-card-green {

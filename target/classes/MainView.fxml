@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
@@ -11,8 +12,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="950.0" prefWidth="1500.0" stylesheets="/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="950.0" prefWidth="1500.0" stylesheets="/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane fx:id="mainBorderPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -29,7 +31,10 @@
                            </image>
                         </ImageView>
                         <Separator orientation="VERTICAL" />
-                        <TextField editable="false" prefHeight="50.0" text="Welkom!" />
+                        <TextField alignment="CENTER" editable="false" prefHeight="50.0" text="Welkom!">
+                           <font>
+                              <Font name="Corbel" size="22.0" />
+                           </font></TextField>
                      </children>
                   </HBox>
                   <Separator />
@@ -62,7 +67,10 @@
                   <ScrollPane fx:id="mainSection" fitToWidth="true" layoutY="50.0" prefHeight="900.0">
                      <content>
 
-                     </content></ScrollPane>
+                     </content>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding></ScrollPane>
                </children>
             </AnchorPane>
          </center>

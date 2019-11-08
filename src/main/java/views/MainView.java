@@ -114,16 +114,21 @@ public class MainView implements Observer {
         experimentButtons[0].setOnMouseClicked(event -> {
             controller.filter("filterGreen");
         });
+        experimentButtons[0].getStyleClass().add("green-button");
+
         experimentButtons[1].setOnAction(event -> {
             controller.filter("filterOrange");
         });
+        experimentButtons[1].getStyleClass().add("orange-button");
+
         experimentButtons[2].setOnAction(event -> {
             controller.filter("filterRed");
         });
+        experimentButtons[2].getStyleClass().add("red-button");
+
         experimentButtons[3].setOnAction(event -> {
             controller.reloadView();
         });
-
     }
 
     private void toggleStatus(int status) {
@@ -153,7 +158,6 @@ public class MainView implements Observer {
             exitButton.setOpacity(1);
         }
     }
-
 
     @Override
     public void setStage(Stage stage) {
