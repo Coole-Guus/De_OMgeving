@@ -6,14 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Details;
 import models.Experiment;
 import models.Observable;
 import services.HttpClientBuilder;
 import sun.plugin.javascript.navig.Anchor;
+
+import javax.xml.soap.Text;
 
 public class DetailsView implements Observer {
 
@@ -30,6 +34,12 @@ public class DetailsView implements Observer {
     public TextField experiment_naam = new TextField();
     public TextField message = new TextField();
 
+    public VBox column1 = new VBox();
+    public VBox column2 = new VBox();
+
+    public Button editButton = new Button();
+    public Button saveButton = new Button();
+    public Button postMessage = new Button();
 
 
     public AnchorPane updateHistoryPane = new AnchorPane();
@@ -43,6 +53,8 @@ public class DetailsView implements Observer {
     private Integer integer;
     private Parent root;
 
+
+
     public DetailsView() { }
 
 
@@ -55,6 +67,7 @@ public class DetailsView implements Observer {
     }
 
     public void clickedUpdate(ActionEvent actionEvent) {
+        toggleEditable();
 
         this.controller.clickedUpdate(
                 editingId,
@@ -73,7 +86,37 @@ public class DetailsView implements Observer {
     }
 
     public void backButton() {
+        toggleEditable();
         controller.applicationController.experimentListController.experimentList.notifyObservers();
+    }
+
+    @FXML
+    public void editDetails() {
+        toggleEditable();
+    }
+
+    private void toggleEditable() {
+        Boolean bool = editButton.isDisabled();
+        System.out.println(bool);
+
+        editButton.setDisable(!bool);
+        saveButton.setDisable(bool);
+        postMessage.setDisable(bool);
+
+        for (Node node : column1.getChildren()) {
+            if (node.getStyleClass().contains("detailText")) {
+                TextField textField = (TextField) node;
+                textField.setEditable(!bool);
+            }
+        }
+        for (Node node : column2.getChildren()) {
+            if (node.getStyleClass().contains("detailText")) {
+                TextField textField = (TextField) node;
+                textField.setEditable(!bool);
+            }
+        }
+
+        message.setEditable(!bool);
     }
 
 
