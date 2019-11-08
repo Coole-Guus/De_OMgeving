@@ -12,8 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1005.0" prefWidth="1511.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1511.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <padding>
          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
       </padding>
@@ -51,14 +54,15 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="details_status_kleur" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
-                  <padding>
-                     <Insets bottom="10.0" />
-                  </padding>
-                  <VBox.margin>
-                     <Insets bottom="5.0" />
-                  </VBox.margin>
-               </TextField>
+               <ComboBox fx:id="details_status_kleur" maxWidth="280.0" minWidth="200.0" styleClass="detailText" disable="true">
+                  <items>
+                     <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="GREEN" />
+                        <String fx:value="ORANGE" />
+                        <String fx:value="RED" />
+                     </FXCollections>
+                  </items>
+               </ComboBox>
                <Label minWidth="50.0" text="Kosten innovatie: ">
                   <font>
                      <Font size="20.0" />
@@ -155,14 +159,23 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField fx:id="experiment_fase" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
-                  <VBox.margin>
-                     <Insets bottom="5.0" />
-                  </VBox.margin>
-                  <padding>
-                     <Insets bottom="10.0" />
-                  </padding>
-               </TextField>
+               <ComboBox fx:id="experiment_fase" maxWidth="280.0" minWidth="200.0" styleClass="detailText" disable="true">
+                  <items>
+                     <FXCollections fx:factory="observableArrayList" >
+                        <String fx:value="LAB_IN" />
+                        <String fx:value="LAB_UIT" />
+                        <String fx:value="IDEE" />
+                     </FXCollections>
+                  </items>
+               </ComboBox>
+<!--               <TextField fx:id="experiment_fase" editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">-->
+<!--                  <VBox.margin>-->
+<!--                     <Insets bottom="5.0" />-->
+<!--                  </VBox.margin>-->
+<!--                  <padding>-->
+<!--                     <Insets bottom="10.0" />-->
+<!--                  </padding>-->
+<!--               </TextField>-->
                <Label minWidth="50.0" text="Leider: ">
                   <font>
                      <Font size="20.0" />
@@ -181,14 +194,15 @@
                      <Font size="20.0" />
                   </font>
                </Label>
-               <TextField editable="false" maxWidth="280.0" minWidth="200.0" styleClass="detailText">
-                  <VBox.margin>
-                     <Insets bottom="5.0" />
-                  </VBox.margin>
-                  <padding>
-                     <Insets bottom="10.0" />
-                  </padding>
-               </TextField>
+               <ComboBox fx:id="details_archived" maxWidth="280.0" minWidth="200.0" styleClass="detailText" disable="true">
+                  <items>
+                     <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Niet gearchiveerd" />
+                        <String fx:value="Hall Of Fame" />
+                        <String fx:value="Graveyard" />
+                     </FXCollections>
+                  </items>
+               </ComboBox>
             </children>
             <BorderPane.margin>
                <Insets left="75.0" />

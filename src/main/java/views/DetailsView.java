@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -33,13 +34,14 @@ public class DetailsView implements Observer {
     public TextField details_doorlooptijd = new TextField();
     public TextField details_kosten_anders = new TextField();
     public TextField details_kosten_inovatie = new TextField();
-    public TextField details_status_kleur = new TextField();
+    public ComboBox details_status_kleur = new ComboBox();
     public TextField details_status = new TextField();
     public TextField details_netwerk = new TextField();
     public TextField experiment_leider = new TextField();
-    public TextField experiment_fase = new TextField();
+    public ComboBox experiment_fase = new ComboBox();
     public TextField experiment_naam = new TextField();
     public TextArea message = new TextArea();
+    public ComboBox details_archived = new ComboBox();
 
     public VBox column1 = new VBox();
     public VBox column2 = new VBox();
@@ -60,12 +62,7 @@ public class DetailsView implements Observer {
     private Integer integer;
     private Parent root;
 
-
-
     public DetailsView() { }
-
-
-
 
     public DetailsView(Stage primaryStage, Object filterController) {
         this.primaryStage = primaryStage;
@@ -76,24 +73,35 @@ public class DetailsView implements Observer {
     public void clickedUpdate(ActionEvent actionEvent) {
         toggleEditable();
 
+        String archivedStr = details_archived.getSelectionModel().getSelectedItem().toString();
+        boolean archived = !archivedStr.equals("Niet gearchiveerd");
+        String archivedType = archived ? (archivedStr.equals("Hall Of Fame") ? "HoF" : "GY" )
+                : null;
+
+        System.out.println(archivedStr);
+
         this.controller.clickedUpdate(
                 editingId,
                 experiment_naam.getText(),
-                experiment_fase.getText(),
+                experiment_fase.getItems().get(experiment_fase.getSelectionModel().getSelectedIndex()).toString(),
                 experiment_leider.getText(),
                 details_netwerk.getText(),
                 details_status.getText(),
-                details_status_kleur.getText(),
+                details_status_kleur.getItems().get(details_status_kleur.getSelectionModel().getSelectedIndex()).toString(),
                 details_kosten_inovatie.getText(),
                 details_kosten_anders.getText(),
                 details_doorlooptijd.getText(),
                 details_beschrijving.getText(),
-                details_voortgang.getText()
+                details_voortgang.getText(),
+                archived,
+                archivedType
+
         );
     }
 
     public void backButton() {
-        toggleEditable();
+        if(editButton.isDisabled())
+            toggleEditable();
         controller.applicationController.experimentListController.experimentList.notifyObservers();
     }
 
@@ -104,7 +112,7 @@ public class DetailsView implements Observer {
 
     private void toggleEditable() {
         Boolean bool = editButton.isDisabled();
-        System.out.println(bool);
+
 
         editButton.setDisable(!bool);
         saveButton.setDisable(bool);
@@ -112,14 +120,24 @@ public class DetailsView implements Observer {
 
         for (Node node : column1.getChildren()) {
             if (node.getStyleClass().contains("detailText")) {
-                TextField textField = (TextField) node;
-                textField.setEditable(!bool);
+                if(node instanceof TextField) {
+                    TextField textField = (TextField) node;
+                    textField.setEditable(!bool);
+                } else if(node instanceof ComboBox){
+                    ComboBox textField = (ComboBox) node;
+                    textField.setDisable(bool);
+                }
             }
         }
         for (Node node : column2.getChildren()) {
             if (node.getStyleClass().contains("detailText")) {
-                TextField textField = (TextField) node;
-                textField.setEditable(!bool);
+                if(node instanceof TextField) {
+                    TextField textField = (TextField) node;
+                    textField.setEditable(!bool);
+                } else if(node instanceof ComboBox){
+                    ComboBox textField = (ComboBox) node;
+                    textField.setDisable(bool);
+                }
             }
             else if (node.getStyleClass().contains("detailTextArea")) {
                 TextArea textArea = (TextArea) node;
@@ -147,7 +165,9 @@ public class DetailsView implements Observer {
         Details details = updatedExperiment.details;
         try {
             editingId = updatedExperiment.getExperimentId();
-            experiment_fase.setText(updatedExperiment.getFase().toString());
+            experiment_fase.getSelectionModel().select(
+                    experiment_fase.getItems().indexOf(updatedExperiment.getFase().toString())
+            );
             experiment_leider.setText(updatedExperiment.getExperiment_leider());
             experiment_naam.setText(updatedExperiment.getExperiment_naam());
 
@@ -157,13 +177,19 @@ public class DetailsView implements Observer {
             details_kosten_inovatie.setText(details.getKostenInovatie());
             details_netwerk.setText(details.getNetwerk());
             details_status.setText(details.getStatus());
-            details_status_kleur.setText(updatedExperiment.getColor());
+            details_status_kleur.getSelectionModel().select(
+                    details_status_kleur.getItems().indexOf(updatedExperiment.getColor())
+            );
             details_voortgang.setText(details.getVoortgang());
+            details_archived.getSelectionModel().select(
+                    details.isArchief() ? (details.getArchiefType().equals("HoF") ? 1 : 2)
+                            : 0
+            );
         } catch (NullPointerException e) {
             System.out.println("details failed");
             e.printStackTrace();
             editingId = 0;
-            experiment_fase.setText("");
+            experiment_fase.getSelectionModel().select("IDEE");
             experiment_leider.setText("");
             experiment_naam.setText("");
 
@@ -173,7 +199,7 @@ public class DetailsView implements Observer {
             details_kosten_inovatie.setText("");
             details_netwerk.setText("");
             details_status.setText("");
-            details_status_kleur.setText("");
+            details_status_kleur.getSelectionModel().select("GROEN");
             details_voortgang.setText("");
         }
 

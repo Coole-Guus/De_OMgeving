@@ -66,7 +66,9 @@ public class DetailsController {
         String details_kosten_anders,
         String details_doorlooptijd,
         String details_beschrijving,
-        String details_voortgang
+        String details_voortgang,
+        boolean archived,
+        String archivedType
     ) {
         Experiment experiment = new Experiment();
         experiment.setExperiment_naam(experiment_naam);
@@ -81,6 +83,8 @@ public class DetailsController {
         experiment.setColor(Experiment.Color.valueOf(details_status_kleur));
 
         Details experimentDetails = new Details();
+        experimentDetails.setArchief(archived);
+        experimentDetails.setArchiefType(archivedType);
         experimentDetails.setExperimentId(experiment_id);
         experimentDetails.setNetwerk(details_netwerk);
         experimentDetails.setStatus(details_status);

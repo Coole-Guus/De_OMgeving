@@ -34,11 +34,11 @@ public class UpdateHistory implements Observable {
 
             card.getChildren().add(new Separator());
 
-            HBox info = new HBox();
+            VBox info = new VBox();
             info.getStyleClass().add("update-info");
             info.getChildren().add(new Label("Posted by: " + update.getEditorName()));
 
-            info.getChildren().add(new Label( "\tOp: " + update.getMessageDate()));
+            info.getChildren().add(new Label( "Op: " + update.getMessageDate()));
             card.getChildren().add(info);
             info.setPadding(new Insets(10, 10, 0, 10));
             updateCards.add(card);
