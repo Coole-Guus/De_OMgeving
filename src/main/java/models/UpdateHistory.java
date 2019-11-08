@@ -8,8 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import views.Observer;
-import views.ViewUtilities;
-
 import java.util.ArrayList;
 import java.util.Date;
 

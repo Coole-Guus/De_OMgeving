@@ -1,20 +1,14 @@
 package views;
 
-import controllers.AccountLoginController;
-import controllers.ToolsController;
 import controllers.UserManagementController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import models.ExperimentList;
 import models.Observable;
 import models.UserManagement;
 
@@ -53,12 +47,10 @@ public class UserManagementView implements Observer {
 
     @Override
     public void update(Observable observable) {
-        System.out.println("updating accounts...");
         updateList((UserManagement) observable);
     }
 
     private void updateList(UserManagement userManagement) {
-        System.out.println ("set getChildren");
         accountList.getChildren ().clear ();
         accountList.getChildren().removeAll ();
         accountList.getChildren().add(userManagement.accountCard);

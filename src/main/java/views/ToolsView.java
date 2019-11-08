@@ -1,8 +1,7 @@
 package views;
 
-import controllers.AccountLoginController;
+
 import controllers.ToolsController;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,7 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Observable;
-import models.Tools;
+
 
 public class ToolsView implements Observer {
 
@@ -55,7 +54,6 @@ public class ToolsView implements Observer {
     public void showAccountManagement() {
 
         Parent root = ViewUtilities.loadFxml("/UserManagementView.fxml", primaryStage, controller.applicationController.userManagementController);
-//        controller.applicationController.userManagementController.createAccountList ();
 
         Pane pane = (Pane) root.lookup("AnchorPane");
 

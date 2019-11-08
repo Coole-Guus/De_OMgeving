@@ -2,13 +2,9 @@ package models;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import views.Observer;
 import views.ViewUtilities;
-
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ExperimentList implements Observable {
 
@@ -64,8 +60,6 @@ public class ExperimentList implements Observable {
 
     public void prepareList() {
         makeList();
-        System.out.println("list size" + experimentList.size());
-        System.out.println("cards size" + experimentCards.size());
         notifyObservers();
     }
 

@@ -6,11 +6,6 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import models.Account;
-import models.Experiment;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 
 public class HttpClientBuilder {
 
@@ -20,6 +15,12 @@ public class HttpClientBuilder {
     private String currentRol;
     private Account[] accounts;
 
+    /**
+     * @author Guus Kleinlein
+     * generates Http get request.
+     * @param tabel
+     * @param attributen
+     */
     public void httpGet(String tabel, String... attributen) {
         try {
 
@@ -30,7 +31,6 @@ public class HttpClientBuilder {
 
                 totalVars = totalVars + "/" + attribuut;
             }
-            System.out.println("http://localhost:8080/" + tabel + totalVars);
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
             getReturn (webResource, tabel, totalVars, attributen);
 
@@ -41,6 +41,14 @@ public class HttpClientBuilder {
         }
     }
 
+    /**
+     * @author Stefan Damen, Guus Kleinlein
+     * Generates the http get with a body containing json of an object.
+     * @param resultClass
+     * @param tabel
+     * @param attributen
+     * @return
+     */
     public Object httpGet(Class resultClass, String tabel, String... attributen) {
         Client client = Client.create();
         String totalVars = "";
@@ -51,7 +59,6 @@ public class HttpClientBuilder {
         }
 
         WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
-        System.out.println("URL: " + "http://localhost:8080/" + tabel + totalVars);
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 
         if (response.getStatus() != 200) {
@@ -59,7 +66,6 @@ public class HttpClientBuilder {
         }
 
         String output = response.getEntity(String.class);
-        System.out.println(output);
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         Object outputObject = gson.fromJson(output, resultClass);
 
@@ -67,6 +73,14 @@ public class HttpClientBuilder {
 
     }
 
+    /**
+     * @author Stefan Damen, Guus Kleinlein
+     * Generates http post request with an object body.
+     * @param object
+     * @param tabel
+     * @param attributen
+     * @return
+     */
     public String httpPostAdd(Object object, String tabel, String... attributen) {
         try {
             Client client = Client.create();
@@ -84,8 +98,6 @@ public class HttpClientBuilder {
                 totalVars = totalVars + "/" + attribuut;
             }
 
-            System.out.println("POST TO " + "http://localhost:8080/" + tabel + totalVars);
-            System.out.println(json);
             WebResource webResource = client.resource("http://localhost:8080/" + tabel + totalVars);
             String response = webResource.type("application/json").post(String.class, json);
 
@@ -101,10 +113,14 @@ public class HttpClientBuilder {
         return null;
     }
 
-
-
-
-
+    /**
+     * @author Guus Kleinlein
+     * Catches the return of the http and decodes it into somethin useable.
+     * @param webResource
+     * @param tabel
+     * @param totalVars
+     * @param attributen
+     */
     private void getReturn(WebResource webResource, String tabel, String totalVars, String... attributen) {
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
 
@@ -125,8 +141,6 @@ public class HttpClientBuilder {
         else if(tabel.contains ("accounts") && attributen[0] != null) {
             currentRol = output;
         }
-
-//        Experiment experiment = gson.fromJson(output, Experiment.class);
 
     }
 

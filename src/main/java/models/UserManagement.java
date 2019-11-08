@@ -17,13 +17,11 @@ public class UserManagement implements Observable {
 
     @Override
     public void registerObserver(Observer observer) {
-        System.out.println ("register observer");
         observers.add (observer);
     }
 
     @Override
     public void notifyObservers() {
-        System.out.println ("notifyObservers");
         for(Observer observer : observers) {
             observer.update(this);
         }
@@ -63,6 +61,5 @@ public class UserManagement implements Observable {
             currRow++;
         }
         this.accountCard = card;
-        System.out.println ("set card");
     }
 }

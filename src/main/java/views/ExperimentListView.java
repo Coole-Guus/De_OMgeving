@@ -1,18 +1,13 @@
 package views;
 
 import controllers.ExperimentListController;
-import controllers.FilterController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import models.Experiment;
 import models.ExperimentList;
 import models.Observable;
-
-import java.io.IOException;
 
 public class ExperimentListView implements Observer {
     private  Stage primaryStage;

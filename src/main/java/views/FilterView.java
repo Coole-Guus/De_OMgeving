@@ -1,22 +1,15 @@
 package views;
 
 import controllers.FilterController;
-import controllers.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Observable;
-
-import javax.swing.*;
-import java.sql.SQLOutput;
-
 
 public class FilterView implements Observer {
     private Stage primaryStage;
@@ -124,7 +117,6 @@ public class FilterView implements Observer {
                 case 7:
                     LeiderAf.setSelected(true);
                     controller.filter("orderLiederDesc");
-                    System.out.println("1");
                     break;
                 case 8:
                     GewijzigdOp.setSelected(true);
