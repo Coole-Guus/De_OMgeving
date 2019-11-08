@@ -1,6 +1,5 @@
 package views;
 
-import controllers.DetailsController;
 import controllers.UpdateHistoryController;
 import javafx.scene.Node;
 import javafx.scene.Parent;

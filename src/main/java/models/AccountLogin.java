@@ -5,12 +5,14 @@ import views.Observer;
 public class AccountLogin implements Observable {
 
     public String username;
-
-    public String getAccountRol() {
-        return accountRol;
-    }
-
     public String accountRol;
+
+    /**
+     * @author Guus Kleinlein
+     * AccountLogin model.
+     * @param username
+     * @param accountRol
+     */
     public AccountLogin(String username, String accountRol) {
         this.username = username;
         this.accountRol = accountRol;
@@ -26,7 +28,5 @@ public class AccountLogin implements Observable {
 
     }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getAccountRol() { return accountRol; }
 }

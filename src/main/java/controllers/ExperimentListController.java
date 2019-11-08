@@ -3,7 +3,7 @@ package controllers;
 import models.Experiment;
 import models.ExperimentList;
 import services.HttpClientBuilder;
-import views.ExperimentListView;
+
 import views.Observer;
 
 public class ExperimentListController  {

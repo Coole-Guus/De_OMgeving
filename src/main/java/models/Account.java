@@ -1,17 +1,13 @@
 package models;
 
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import views.Observer;
+
 
 public class Account implements Observable {
 
     public String getAccountNaam() {
         return accountNaam;
-    }
-
-    public String getAccountWachtwoord() {
-        return accountWachtwoord;
     }
 
     public accountRole getAccountRol() {
@@ -38,6 +34,14 @@ public class Account implements Observable {
         Admin
     }
 
+    /**
+     * @author Guus Kleinlein
+     * Account model.
+     * @param userName
+     * @param passwd
+     * @param accountRole
+     * @param accountId
+     */
     public Account(String userName, String passwd, String accountRole, int accountId) {
         this.accountNaam = userName;
         this.accountWachtwoord = passwd;

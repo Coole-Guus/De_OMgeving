@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
 import views.AccountLoginView;
 import views.MainView;
 

@@ -2,11 +2,8 @@ package models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import views.DetailsView;
 import views.Observer;
-
 import java.util.ArrayList;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.util.Date;
 public class Experiment implements Observable {

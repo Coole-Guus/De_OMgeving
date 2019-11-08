@@ -85,15 +85,12 @@ public class ExperimentAanmaakView implements Observer{
         switch (combodoos) {
             case "Idee":
                 fase = Experiment.Fase.IDEE;
-                System.out.println(fase);
                 break;
             case "Lab in":
                fase = Experiment.Fase.LAB_IN;
-                System.out.println(fase);
                 break;
             case "Lab uit":
                 fase = Experiment.Fase.LAB_UIT;
-                System.out.println(fase);
                 break;
         }
         switch (status_kleur) {

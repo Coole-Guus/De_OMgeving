@@ -5,12 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import models.Experiment;
 import models.Observable;
-import services.HttpClientBuilder;
 
 public class AccountLoginView implements Observer {
 
@@ -64,10 +61,6 @@ public class AccountLoginView implements Observer {
 
     @FXML
     public void loginButton(){
-//        controller.login(httpClientBuilder.httpGet ("users", username.getText (), password.getText ()));
-//        Experiment experiment = new Experiment (99, "test_expiriment", "2019-11-20", Experiment.Fase.IDEE, "Testpersoon");
-//        httpClientBuilder.httpPost (experiment);
-//        httpClientBuilder.httpGet ("experimenten", username.getText (), password.getText ());
         controller.login (username.getText (), password.getText ());
 
     }
