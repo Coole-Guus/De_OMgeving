@@ -43,7 +43,7 @@ public class ToolsView implements Observer {
 
         Scene scene = new Scene(root, 500, 410);
         Stage stagePopUp = new Stage(StageStyle.DECORATED);
-        stagePopUp.setTitle("Nieuw project aanmaken");
+        stagePopUp.setTitle("Nieuw experiment aanmaken");
         stagePopUp.initOwner(primaryStage);
         stagePopUp.initModality(Modality.APPLICATION_MODAL);
 

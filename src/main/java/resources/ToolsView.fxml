@@ -29,7 +29,7 @@
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin></Button>
-        <Button minWidth="150.0" mnemonicParsing="false" onMouseClicked="#show" text="Nieuw project">
+        <Button minWidth="150.0" mnemonicParsing="false" onMouseClicked="#show" text="Nieuw experiment">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin></Button>

@@ -11,7 +11,7 @@
       <TextField fx:id="projectleider1" layoutX="33.0" layoutY="79.0" prefHeight="26.0" prefWidth="198.0" promptText="Projectleider 1" />
       <TextField fx:id="projectleider2" layoutX="250.0" layoutY="79.0" prefHeight="26.0" prefWidth="198.0" promptText="Projectleider 2" />
       <Button layoutX="33.0" layoutY="360.0" mnemonicParsing="false" onAction="#addExperiment" text="OK" />
-      <ComboBox fx:id="combobox" layoutX="33.0" layoutY="135.0" prefHeight="26.0" prefWidth="198.0" promptText="Huidige projectfase" visibleRowCount="3">
+      <ComboBox fx:id="combobox" layoutX="33.0" layoutY="135.0" prefHeight="26.0" prefWidth="198.0" promptText="Huidige experimentfase" visibleRowCount="3">
       <items>
          <FXCollections fx:factory="observableArrayList">
             <String fx:value="Idee" />
