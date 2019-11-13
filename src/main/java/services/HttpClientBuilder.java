@@ -104,7 +104,7 @@ public class HttpClientBuilder {
                 return response;
 
             } catch(Exception e) {
-                System.out.println(e.getMessage());
+
             }
 
 

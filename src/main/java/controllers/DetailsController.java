@@ -34,18 +34,18 @@ public class DetailsController {
 
             Experiment detailedExperiment = (Experiment) requester.httpGet(Experiment.class, "experimenten", String.valueOf(projectId));
 
-            System.out.println("detailedExperiment:: " + detailedExperiment.getExperimentId());
+
 
             detailedExperiment.details = details;
 
             detailedExperiment.observers = this.detailedExperiment.observers;
-            System.out.println("detailedExperiment.observers: "+detailedExperiment.observers.size());
+
             this.detailedExperiment = detailedExperiment;
 
         this.detailedExperiment.notifyObservers();
         this.applicationController.updateHistoryController.showUpdateHistory(projectId);
         } catch (Exception e) {
-            System.out.println("HTTP ERROR");
+
         }
 
     }
@@ -101,7 +101,6 @@ public class DetailsController {
         requester.httpPostAdd(experiment, "experimenten", "update", String.valueOf(experiment.getExperimentId()));
 
         requester.httpPostAdd(experimentDetails, "experimentDetails", "update", String.valueOf(experiment.getExperimentId()));
-
     }
 
     public void postMessage(String message, String experimentid){
@@ -112,14 +111,11 @@ public class DetailsController {
                 newMessage.setAccountId(Integer.parseInt(String.valueOf(account.getAccountId())));
                 newMessage.setBericht(message);
                 newMessage.setExperimentId(Integer.parseInt(experimentid));
-                System.out.println(newMessage);
+
                 applicationController.httpClientBuilder.httpPostAdd(newMessage, "messages", "addMessage");
-                System.out.println("message:" + message);
-                System.out.println("experimentid:" + experimentid);
-                System.out.println("account:" + account.getAccountId());
-
-
+                this.applicationController.updateHistoryController.showUpdateHistory(String.valueOf(detailedExperiment.getExperimentId()));
             }
         }
+
     }
 }

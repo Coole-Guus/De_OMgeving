@@ -102,7 +102,7 @@ public class ExperimentAanmaakView implements Observer{
         }
 
         Experiment newExperiment = new Experiment(150, projectname, ts, fase, projectleader1, color);
-        System.out.println(color);
+
         HttpClientBuilder requester = new HttpClientBuilder();
         int experimentId = Integer.parseInt(
                 requester.httpPostAdd(newExperiment, "experimenten", "create")

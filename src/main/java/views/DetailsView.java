@@ -78,7 +78,7 @@ public class DetailsView implements Observer {
         String archivedType = archived ? (archivedStr.equals("Hall Of Fame") ? "HoF" : "GY" )
                 : null;
 
-        System.out.println(archivedStr);
+
 
         this.controller.clickedUpdate(
                 editingId,
@@ -186,7 +186,7 @@ public class DetailsView implements Observer {
                             : 0
             );
         } catch (NullPointerException e) {
-            System.out.println("details failed");
+
             e.printStackTrace();
             editingId = 0;
             experiment_fase.getSelectionModel().select("IDEE");
@@ -236,7 +236,7 @@ public class DetailsView implements Observer {
             message.setText("Plz don't do that");
         }else{
             String experimentid = Integer.toString(editingId);
-            System.out.println(message.getText() + experimentid);
+
             controller.postMessage(message.getText(), experimentid);
             message.clear();
         }
