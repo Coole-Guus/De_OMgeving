@@ -36,7 +36,7 @@
                      <Insets bottom="5.0" />
                   </VBox.margin>
                </TextField>
-               <Label minWidth="50.0" text="Fase: ">
+               <Label minWidth="50.0" text="Status beschrijving: ">
                   <font>
                      <Font size="20.0" />
                   </font>
